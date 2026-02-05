@@ -71,7 +71,6 @@ Run these scripts to get feedback on:
 - **`scripts/`** — Validation scripts for each module
 - **`common_dut/`** — Shared DUT RTL and testbench skeletons
 - **`docs/`** — Detailed module documentation
-- **`solutions/`** — Additional instructor reference code (e.g., DMA capstone)
 
 ## Getting Help
 
