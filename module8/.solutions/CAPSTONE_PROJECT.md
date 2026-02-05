@@ -167,5 +167,4 @@ After completing the capstone, record:
 
 Notes:
 
-- Plan and skeleton (solutions/dma RTL and tb) are in place; full implementation and regression runs will be completed as capstone execution proceeds. Retrospective will be updated after DMA tests and coverage runs are done.  
 
