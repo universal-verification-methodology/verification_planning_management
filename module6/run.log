@@ -1,9 +1,9 @@
 ==========================================
 Module 6 Complex Testbench Log
-Started: 2026-02-06 02:03:48
-Command: ./scripts/module6.sh 
-Project root: /home/yongfu/proj/designs/verification_planning_management
-Module dir : /home/yongfu/proj/designs/verification_planning_management/module6
+Started: 2026-02-06 03:14:13
+Command: /mnt/d/proj/designs/verification_planning_management/scripts/module6.sh --summary
+Project root: /mnt/d/proj/designs/verification_planning_management
+Module dir : /mnt/d/proj/designs/verification_planning_management/module6
 ==========================================
 
 
@@ -11,52 +11,52 @@ Module dir : /home/yongfu/proj/designs/verification_planning_management/module6
 [0;36mModule 6: Complex Multi-Agent & Protocol Testbenches[0m
 [0;36m========================================[0m
 
-[0;34m[2026-02-06 02:03:48] Checking basic Module 6 structure...[0m
-[0;32m[2026-02-06 02:03:48] Basic Module 6 structure looks OK.[0m
+[0;34m[2026-02-06 03:14:13] Checking basic Module 6 structure...[0m
+[0;32m[2026-02-06 03:14:13] Basic Module 6 structure looks OK.[0m
 
 [0;36m========================================[0m
 [0;36mMulti-Agent Architecture Status[0m
 [0;36m========================================[0m
 
-[0;32m[2026-02-06 02:03:48] Found multi_agent_architecture.md (42 lines).[0m
-[1;33m[2026-02-06 02:03:48] Remaining TODO markers in multi_agent_architecture.md: 9[0m
+[0;32m[2026-02-06 03:14:13] Found multi_agent_architecture.md (42 lines).[0m
+[1;33m[2026-02-06 03:14:13] Remaining TODO markers in multi_agent_architecture.md: 9[0m
 
 [0;36m========================================[0m
 [0;36mProtocol Verification Plan Status[0m
 [0;36m========================================[0m
 
-[0;32m[2026-02-06 02:03:48] Found protocol_verification_plan.md (46 lines).[0m
-[1;33m[2026-02-06 02:03:48] Remaining TODO markers in protocol_verification_plan.md: 9[0m
+[0;32m[2026-02-06 03:14:13] Found protocol_verification_plan.md (46 lines).[0m
+[1;33m[2026-02-06 03:14:13] Remaining TODO markers in protocol_verification_plan.md: 9[0m
 
 [0;36m========================================[0m
 [0;36mIntegration Plan Status[0m
 [0;36m========================================[0m
 
-[0;32m[2026-02-06 02:03:48] Found integration_plan.md (38 lines).[0m
-[1;33m[2026-02-06 02:03:48] Remaining TODO markers in integration_plan.md: 8[0m
+[0;32m[2026-02-06 03:14:13] Found integration_plan.md (38 lines).[0m
+[1;33m[2026-02-06 03:14:13] Remaining TODO markers in integration_plan.md: 8[0m
 
 [0;36m========================================[0m
 [0;36mModule 6 Checklist Status[0m
 [0;36m========================================[0m
 
-[0;32m[2026-02-06 02:03:48] Found checklist_module6.md.[0m
-[0;34m[2026-02-06 02:03:48] Checklist items: 23  |  Completed: 0  |  Remaining: 23[0m
-[1;33m[2026-02-06 02:03:48] There are still unchecked items; review checklist_module6.md.[0m
+[0;32m[2026-02-06 03:14:13] Found checklist_module6.md.[0m
+[0;34m[2026-02-06 03:14:13] Checklist items: 23  |  Completed: 0  |  Remaining: 23[0m
+[1;33m[2026-02-06 03:14:13] There are still unchecked items; review checklist_module6.md.[0m
 
 [0;36m========================================[0m
 [0;36mSummary[0m
 [0;36m========================================[0m
 
-[0;32m[2026-02-06 02:03:48] ✓ Module 6 complex testbench artifacts look structurally OK.[0m
+[0;32m[2026-02-06 03:14:13] ✓ Module 6 complex testbench artifacts look structurally OK.[0m
 
-[0;34m[2026-02-06 02:03:48] Next steps:[0m
+[0;34m[2026-02-06 03:14:13] Next steps:[0m
   1. Implement/extend multi-agent env per multi_agent_architecture.md.
   2. Implement protocol agents/checkers from protocol_verification_plan.md.
   3. Exercise integration scenarios from integration_plan.md and track progress via checklist_module6.md.
 
 ==========================================
 Module 6 Complex Testbench Log - Completed
-Finished: 2026-02-06 02:03:48
+Finished: 2026-02-06 03:14:13
 Exit code: 0
-Log file: /home/yongfu/proj/designs/verification_planning_management/module6/run.log
+Log file: /mnt/d/proj/designs/verification_planning_management/module6/run.log
 ==========================================

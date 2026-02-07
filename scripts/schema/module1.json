@@ -1,0 +1,41 @@
+{
+  "VERIFICATION_PLAN.md": [
+    "1. Project and DUT Overview",
+    "2. Verification Objectives and Scope",
+    "3. Verification Strategy (SV/UVM)",
+    "4. Test Planning and Test Catalogue",
+    "5. Coverage Planning",
+    "6. Regression and Sign-off (High-Level)",
+    "7. Open Questions and Risks",
+    "8. Review and Action Items",
+    "9. Revision History"
+  ],
+  "REQUIREMENTS_MATRIX.md": [
+    "1. Instructions",
+    "2. Requirement List",
+    "3. Requirement → Test Mapping",
+    "4. Requirement → Coverage Mapping",
+    "5. Requirement → Checkers / Assertions",
+    "6. Test Definitions (Summary)",
+    "7. Coverage Item Definitions (Summary)",
+    "8. Traceability Checklist"
+  ],
+  "CHECKLIST.md": [
+    "1. Admin and Setup",
+    "2. Requirements and Scope",
+    "3. Verification Strategy (SV/UVM)",
+    "4. Test Planning",
+    "5. Coverage Planning",
+    "6. Regression and Sign-off (Preview)",
+    "7. Traceability",
+    "8. Review",
+    "9. Ready to Move to Module 2"
+  ],
+  "HIGH_PRIORITY_REQUIREMENTS_TRACEABILITY.md": [
+    "Overview",
+    "High-Priority Requirements",
+    "Traceability Matrix Summary",
+    "Verification Strategy Summary (3-5 Minute Explanation)",
+    "References"
+  ]
+}

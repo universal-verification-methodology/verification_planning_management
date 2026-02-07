@@ -25,6 +25,8 @@ LOG_FILE="$MODULE1_DIR/run.log"
 RUN_PLAN_STATUS=true
 RUN_MATRIX_STATUS=true
 RUN_CHECKLIST_STATUS=true
+RUN_STRUCTURE_CHECK=true
+RUN_TRACEABILITY_CHECK=true
 
 print_status() {
     local color=$1
@@ -52,6 +54,8 @@ OPTIONS:
     --plan-status        Show status of verification_plan.md only
     --matrix-status      Show status of requirements_matrix.md only
     --checklist-status   Show status of checklist_module1.md only
+    --structure-status   Show required-sections check only
+    --traceability-status  Show Req ID traceability check only
     --summary            Show all statuses (default)
     --help, -h           Show this help message
 
@@ -76,24 +80,48 @@ parse_args() {
                 RUN_PLAN_STATUS=true
                 RUN_MATRIX_STATUS=false
                 RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
+                RUN_TRACEABILITY_CHECK=false
                 shift
                 ;;
             --matrix-status)
                 RUN_PLAN_STATUS=false
                 RUN_MATRIX_STATUS=true
                 RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
+                RUN_TRACEABILITY_CHECK=false
                 shift
                 ;;
             --checklist-status)
                 RUN_PLAN_STATUS=false
                 RUN_MATRIX_STATUS=false
+                RUN_STRUCTURE_CHECK=false
+                RUN_TRACEABILITY_CHECK=false
                 RUN_CHECKLIST_STATUS=true
+                shift
+                ;;
+            --structure-status)
+                RUN_PLAN_STATUS=false
+                RUN_MATRIX_STATUS=false
+                RUN_CHECKLIST_STATUS=false
+                RUN_TRACEABILITY_CHECK=true
+                RUN_STRUCTURE_CHECK=true
+                shift
+                ;;
+            --traceability-status)
+                RUN_PLAN_STATUS=false
+                RUN_MATRIX_STATUS=false
+                RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
+                RUN_TRACEABILITY_CHECK=true
                 shift
                 ;;
             --summary)
                 RUN_PLAN_STATUS=true
                 RUN_MATRIX_STATUS=true
                 RUN_CHECKLIST_STATUS=true
+                RUN_STRUCTURE_CHECK=true
+                RUN_TRACEABILITY_CHECK=true
                 shift
                 ;;
             --help|-h)
@@ -139,8 +167,9 @@ plan_status() {
     local plan_file="$DOCS_DIR/VERIFICATION_PLAN.md"
 
     if [[ ! -f "$plan_file" ]]; then
-        print_status "$RED" "verification_plan.md not found at: $plan_file"
-        echo "Hint: copy from module1/templates/ or edit the file in module1/ directly. Reference: module1/.solutions/."
+        print_status "$RED" "File missing: VERIFICATION_PLAN.md"
+        echo "  Location: $plan_file"
+        echo "  How to fix: copy from module1/templates/VERIFICATION_PLAN.md, or create the file in module1/. See module1/.solutions/VERIFICATION_PLAN.md for an example."
         return 1
     fi
 
@@ -153,11 +182,12 @@ plan_status() {
     # This avoids duplicate numeric outputs that would otherwise break numeric tests below.
     todos=$(grep -c "TODO" "$plan_file" || true)
 
-    print_status "$GREEN" "Found verification_plan.md ($lines lines)."
+    print_status "$GREEN" "Found VERIFICATION_PLAN.md ($lines lines)."
     if [[ "$todos" -gt 0 ]]; then
-        print_status "$YELLOW" "Remaining TODO markers in plan: $todos"
+        print_status "$YELLOW" "File: VERIFICATION_PLAN.md — $todos TODO marker(s) still present (sections not yet filled)."
+        echo "  How to fix: replace each <!-- TODO: ... --> with real content for that section. See module1/.solutions/VERIFICATION_PLAN.md for an example, or docs/FILL_GUIDES.md for section-by-section guidance."
     else
-        print_status "$GREEN" "No explicit TODO markers found in verification_plan.md."
+        print_status "$GREEN" "No explicit TODO markers found in VERIFICATION_PLAN.md."
     fi
 }
 
@@ -167,25 +197,80 @@ matrix_status() {
     local matrix_file="$DOCS_DIR/REQUIREMENTS_MATRIX.md"
 
     if [[ ! -f "$matrix_file" ]]; then
-        print_status "$RED" "requirements_matrix.md not found at: $matrix_file"
-        echo "Hint: copy from module1/templates/ or edit the file in module1/ directly. Reference: module1/.solutions/."
+        print_status "$RED" "File missing: REQUIREMENTS_MATRIX.md"
+        echo "  Location: $matrix_file"
+        echo "  How to fix: copy from module1/templates/REQUIREMENTS_MATRIX.md, or create the file in module1/. See module1/.solutions/REQUIREMENTS_MATRIX.md for an example."
         return 1
     fi
 
-    local req_count test_map_count cov_map_count
+    local req_count
 
     # Count Req IDs in section 2 (simple heuristic)
-    req_count=$(grep -E "^\| R[0-9]+" "$matrix_file" | wc -l || echo 0)
-    test_map_count=$(grep -E "^\| R[0-9]+" "$matrix_file" | wc -l || echo 0)
-    cov_map_count=$(grep -E "^\| R[0-9]+" "$matrix_file" | wc -l || echo 0)
+    req_count=$(grep -c -E "^\| R[0-9]+" "$matrix_file" 2>/dev/null) || req_count=0
 
-    print_status "$GREEN" "Found requirements_matrix.md."
+    print_status "$GREEN" "Found REQUIREMENTS_MATRIX.md."
     print_status "$BLUE"  "Approx. requirement entries: $req_count"
 
     # Simple sanity: if zero, warn
     if [[ "$req_count" -eq 0 ]]; then
-        print_status "$YELLOW" "No requirement rows detected yet (R1, R2, ...)."
+        print_status "$YELLOW" "File: REQUIREMENTS_MATRIX.md — Section: Requirement List (§2). No requirement rows detected (R1, R2, …)."
+        echo "  How to fix: add a markdown table with rows like | R1 | Description | H | Notes |. See module1/.solutions/REQUIREMENTS_MATRIX.md §2, or docs/FILL_GUIDES.md."
     fi
+}
+
+traceability_check_status() {
+    print_header "Traceability (Requirement IDs)"
+
+    local check_script="$SCRIPT_DIR/check_traceability.py"
+    if [[ ! -f "$check_script" ]]; then
+        print_status "$YELLOW" "Traceability checker not found: $check_script (skipping)."
+        return 0
+    fi
+
+    if ! command -v python3 &>/dev/null; then
+        print_status "$YELLOW" "python3 not found (skipping traceability check)."
+        return 0
+    fi
+
+    local out
+    out=$(python3 "$check_script" --module 1 --module-dir "$MODULE1_DIR" 2>&1) || true
+    local rc=$?
+    if [[ -n "$out" ]]; then
+        echo "$out"
+    fi
+    if [[ $rc -ne 0 ]]; then
+        print_status "$YELLOW" "Some requirement IDs in the matrix are not referenced in the plan or high-priority doc. See above."
+        return 1
+    fi
+    return 0
+}
+
+structure_check_status() {
+    print_header "Document Structure (Required Sections)"
+
+    local check_script="$SCRIPT_DIR/check_structure.py"
+    if [[ ! -f "$check_script" ]]; then
+        print_status "$YELLOW" "Structure checker not found: $check_script (skipping section check)."
+        return 0
+    fi
+
+    if ! command -v python3 &>/dev/null; then
+        print_status "$YELLOW" "python3 not found (skipping section check)."
+        return 0
+    fi
+
+    local out
+    out=$(python3 "$check_script" --module 1 --module-dir "$MODULE1_DIR" 2>&1) || true
+    local rc=$?
+    if [[ -n "$out" ]]; then
+        echo "$out"
+    fi
+    if [[ $rc -ne 0 ]]; then
+        print_status "$YELLOW" "Some required sections are missing or still placeholder. See above for file and section."
+        return 1
+    fi
+    print_status "$GREEN" "Required sections present in planning documents."
+    return 0
 }
 
 checklist_status() {
@@ -194,8 +279,9 @@ checklist_status() {
     local checklist_file="$DOCS_DIR/CHECKLIST.md"
 
     if [[ ! -f "$checklist_file" ]]; then
-        print_status "$RED" "checklist_module1.md not found at: $checklist_file"
-        echo "Hint: copy from module1/templates/ or edit the file in module1/ directly. Reference: module1/.solutions/."
+        print_status "$RED" "File missing: CHECKLIST.md"
+        echo "  Location: $checklist_file"
+        echo "  How to fix: copy from module1/templates/CHECKLIST.md, or create the file in module1/. See module1/.solutions/CHECKLIST.md for an example."
         return 1
     fi
 
@@ -206,11 +292,23 @@ checklist_status() {
     # Treat both lowercase and uppercase checked boxes as completed using a single regex.
     checked=$(grep -Ec "^\- \[[xX]\]" "$checklist_file" || true)
 
-    print_status "$GREEN" "Found checklist_module1.md."
+    print_status "$GREEN" "Found CHECKLIST.md."
     print_status "$BLUE"  "Checklist items: $total  |  Completed: $checked  |  Remaining: $unchecked"
 
     if [[ "$unchecked" -gt 0 ]]; then
-        print_status "$YELLOW" "There are still unchecked items; review checklist_module1.md."
+        print_status "$YELLOW" "File: CHECKLIST.md — $unchecked item(s) still unchecked."
+        echo "  How to fix: mark completed items with - [x] (lowercase x). Work through each section; run ./scripts/module1.sh again to see progress. See module1/.solutions/CHECKLIST.md or docs/FILL_GUIDES.md."
+        echo ""
+        print_status "$BLUE" "Unchecked items (line : content):"
+        grep -n "^\- \[ \]" "$checklist_file" 2>/dev/null | while IFS= read -r line; do
+            line_num="${line%%:*}"
+            rest="${line#*:}"
+            # Show first 60 chars of content
+            if [[ ${#rest} -gt 60 ]]; then
+                rest="${rest:0:57}..."
+            fi
+            echo "    $line_num : $rest"
+        done
     else
         print_status "$GREEN" "All checklist items appear to be completed."
     fi
@@ -256,6 +354,18 @@ main() {
 
     if [[ "$RUN_CHECKLIST_STATUS" == true ]]; then
         if ! checklist_status; then
+            errors=$((errors + 1))
+        fi
+    fi
+
+    if [[ "$RUN_STRUCTURE_CHECK" == true ]]; then
+        if ! structure_check_status; then
+            errors=$((errors + 1))
+        fi
+    fi
+
+    if [[ "$RUN_TRACEABILITY_CHECK" == true ]]; then
+        if ! traceability_check_status; then
             errors=$((errors + 1))
         fi
     fi

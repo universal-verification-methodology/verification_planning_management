@@ -15,6 +15,7 @@ A **self-paced** course for learning verification planning and management using 
 - [Course Structure](#course-structure)
 - [Self-Paced Learning Structure](#self-paced-learning-structure)
 - [Validation Scripts](#validation-scripts)
+- [CI](#ci)
 - [Documentation](#documentation)
 - [Repository Contents](#repository-contents)
 - [Getting Help](#getting-help)
@@ -47,7 +48,7 @@ This repository is a complete **self-paced** educational resource for verificati
 - ✅ **Templates**: Copy from `moduleN/templates/` for a fresh start
 - ✅ **Reference Solutions**: View `moduleN/.solutions/` when you want to compare
 - ✅ **Validation Scripts**: Run `./scripts/moduleN.sh` to check progress
-- ✅ **Methodology Guide**: [`METHODS.md`](METHODS.md) explains the self-paced structure
+- ✅ **Methodology Guide**: [`docs/METHODS.md`](docs/METHODS.md) explains the self-paced structure
 - ✅ **Module Documentation**: Detailed objectives in `docs/MODULE1.md` through `docs/MODULE8.md`
 - ✅ **Common DUT**: Shared RTL and testbench in `common_dut/`
 
@@ -55,7 +56,7 @@ This repository is a complete **self-paced** educational resource for verificati
 
 ### 1. Understand the Methodology
 
-Read **[`METHODS.md`](METHODS.md)** to understand the self-paced learning structure.
+Read **[`docs/METHODS.md`](docs/METHODS.md)** to understand the self-paced learning structure.
 
 ### 2. Start with Module 1
 
@@ -116,27 +117,43 @@ Run these scripts to get feedback on:
 - Missing required files
 - TODO markers remaining
 - Checklist completion status
+- **Module 1**: Required document sections (structure check), which checklist items are still unchecked, and Req ID traceability (matrix ↔ plan / high-priority doc)
 
-For script usage: `./scripts/moduleN.sh --help`
+**Validate all modules** (combined report):
+
+```bash
+./scripts/validate_all.sh         # Full output for each module
+./scripts/validate_all.sh --quiet # Summary only
+./scripts/validate_all.sh --modules 1,2
+```
+
+Module 1 also runs a **structure checker** (required `##` sections per file; schema: `scripts/schema/module1.json`) and a **traceability checker** (requirement IDs in matrix must be referenced in VERIFICATION_PLAN.md or HIGH_PRIORITY_REQUIREMENTS_TRACEABILITY.md). Module 2 also runs a structure checker (schema: `scripts/schema/module2.json`). For script usage: `./scripts/moduleN.sh --help`, `./scripts/validate_all.sh --help`.
+
+### CI
+
+On **push** and **pull_request** to `main` or `master`, [GitHub Actions](.github/workflows/validate.yml) runs `./scripts/validate_all.sh --quiet`. The workflow checks all module planning artifacts (files, TODOs, checklists, structure, and Module 1 traceability). Fix any reported errors so the workflow passes.
 
 ## 📖 Documentation
 
-### Core Documentation
-
-- **[`METHODS.md`](METHODS.md)** — Detailed explanation of the self-paced methodology
-
-### Module Documentation
-
-- **[`docs/MODULE1.md`](docs/MODULE1.md)** through **[`docs/MODULE8.md`](docs/MODULE8.md)** — Detailed module objectives and topics
-- Each **`moduleN/README.md`** — Quick reference and self-paced learning guide for that module
+| Document | Description |
+|----------|-------------|
+| **[docs/METHODS.md](docs/METHODS.md)** | Self-paced methodology (includes "First time?" path) |
+| **[docs/USER_GUIDE.md](docs/USER_GUIDE.md)** | User guide: workflows, tips, troubleshooting |
+| **[docs/FILL_GUIDES.md](docs/FILL_GUIDES.md)** | Section-by-section guidance (Module 1, 2) |
+| **[docs/USE_CASES.md](docs/USE_CASES.md)** | Worked use cases (Stream FIFO, UART) |
+| **[docs/MODULE1.md](docs/MODULE1.md)** … **[docs/MODULE8.md](docs/MODULE8.md)** | Module objectives and topics |
+| **`moduleN/README.md`** | Per-module quick reference |
 
 ## 📂 Repository Contents
 
 ```
 verification_planning_management/
-├── docs/                    # Detailed module documentation
-│   ├── MODULE1.md          # Module 1 objectives and topics
-│   ├── ...                 # MODULE2–MODULE8
+├── docs/                    # All documentation
+│   ├── METHODS.md          # Self-paced methodology
+│   ├── USER_GUIDE.md       # User guide
+│   ├── FILL_GUIDES.md      # How to fill planning docs
+│   ├── USE_CASES.md        # Worked use cases
+│   ├── MODULE1.md … MODULE8.md
 │   └── ...
 ├── module1/ … module8/     # Course modules (workspace + templates + solutions)
 │   ├── templates/          # Skeleton planning documents
@@ -144,11 +161,9 @@ verification_planning_management/
 │   ├── *.md                # Your workspace files
 │   └── README.md           # Module instructions
 ├── scripts/                # Validation scripts per module
-│   ├── module1.sh
-│   ├── ...
-│   └── module8.sh
+│   ├── module1.sh … module8.sh
+│   └── validate_all.sh
 ├── common_dut/             # Shared DUT RTL and testbench skeletons
-├── METHODS.md              # Self-paced methodology guide
 └── README.md               # This file
 ```
 
@@ -157,7 +172,7 @@ verification_planning_management/
 1. **Module guidance**: Check the `README.md` in each `moduleN/` directory.
 2. **Reference examples**: Review `moduleN/.solutions/` when you need a comparison.
 3. **Script usage**: Run `./scripts/moduleN.sh --help` for validation script options.
-4. **Methodology**: Read [`METHODS.md`](METHODS.md) for the overall learning structure.
+4. **Methodology**: Read [`docs/METHODS.md`](docs/METHODS.md) for the overall learning structure.
 
 ## 📄 License
 
@@ -180,4 +195,4 @@ When using or adapting this material, please provide attribution as required by 
 
 ---
 
-**Start with Module 1** → Read [`METHODS.md`](METHODS.md), then open `module1/README.md` and begin your workspace in `module1/`.
+**Start with Module 1** → Read [`docs/METHODS.md`](docs/METHODS.md), then open `module1/README.md` and begin your workspace in `module1/`.

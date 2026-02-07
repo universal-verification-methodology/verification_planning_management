@@ -42,7 +42,7 @@ common_dut/
 > - **`module4/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module4/*.md`** — Your workspace (edit these files)
 > 
-> See [`module4/README.md`](../module4/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module4/README.md`](../module4/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Re-open:
    - `module1/VERIFICATION_PLAN.md` (env sketch, requirements).  

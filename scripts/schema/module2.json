@@ -1,0 +1,47 @@
+{
+  "TEST_PLAN.md": [
+    "1. Context",
+    "2. Test Taxonomy",
+    "3. Test Metadata and Conventions",
+    "4. Test Catalogue",
+    "5. Negative and Stress Test Planning",
+    "6. Seed and Randomness Policy",
+    "7. Mapping to Regression Tiers",
+    "8. Open Issues and Actions",
+    "9. Revision History"
+  ],
+  "REGRESSION_PLAN.md": [
+    "1. Regression Goals",
+    "2. Regression Tiers",
+    "3. Test Assignment to Tiers",
+    "4. Runtime Budgeting",
+    "5. Pass/Fail, Flakes, and Quarantine (Planning-Level)",
+    "6. CI / Automation Considerations",
+    "7. Monitoring and Reporting",
+    "8. Open Items",
+    "9. Revision History"
+  ],
+  "COVERAGE_PLAN.md": [
+    "1. Context",
+    "2. Functional Coverage Model",
+    "3. Code Coverage Expectations (Planning)",
+    "4. Coverage Goals by Requirement / Feature",
+    "5. Coverage–Test Relationships",
+    "6. Coverage in Regression Tiers",
+    "7. Early Gap Analysis Workflow (Planning)",
+    "8. Open Questions",
+    "9. Revision History"
+  ],
+  "CHECKLIST.md": [
+    "1. Pre-Reqs from Module 1",
+    "2. Test Taxonomy and Tiers",
+    "3. Test Catalogue",
+    "4. Negative and Stress Tests",
+    "5. Seed and Randomness Policy",
+    "6. Regression Plan",
+    "7. Coverage Plan Refinement",
+    "8. Traceability and Consistency",
+    "9. Review",
+    "10. Ready to Move to Module 3"
+  ]
+}

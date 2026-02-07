@@ -42,7 +42,7 @@ common_dut/
 > - **`module3/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module3/*.md`** — Your workspace (edit these files)
 > 
-> See [`module3/README.md`](../module3/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module3/README.md`](../module3/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Re-open `module1/VERIFICATION_PLAN.md` and `module2/COVERAGE_PLAN.md`.  
 2. **Edit the workspace files** in `module3/`:

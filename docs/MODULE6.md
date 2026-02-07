@@ -46,7 +46,7 @@ common_dut/
 > - **`module6/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module6/*.md`** — Your workspace (edit these files)
 > 
-> See [`module6/README.md`](../module6/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module6/README.md`](../module6/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Re-open:
    - `module4/ENV_DESIGN.md` and `module4/CHECKER_PLAN.md`.  

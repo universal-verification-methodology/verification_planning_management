@@ -2,7 +2,9 @@
 
 > **Purpose**: Track completion of Module 1 planning tasks.
 
-> **Instructions**: Check off items as you complete them. Copy from `module1/templates/` if needed, or edit the file in `module1/` directly. Reference: `module1/.solutions/`.
+> **Instructions**: Check off items as you complete them. Copy from `module1/templates/` if needed, or edit the file in `module1/` directly. Reference: `module1/.solutions/`. For guidance see [docs/FILL_GUIDES.md](../../docs/FILL_GUIDES.md#module-1---checklist).
+
+> **How to use**: Work through each section in order. When a task is done, change `- [ ]` to `- [x]`. Run `./scripts/module1.sh` to see how many items are still unchecked.
 
 ## 1. Admin and Setup
 

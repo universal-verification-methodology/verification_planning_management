@@ -1,0 +1,24 @@
+# Validate planning artifacts for all modules.
+# Runs on push and pull_request to main and master.
+name: Validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Validate all modules
+        run: ./scripts/validate_all.sh --quiet

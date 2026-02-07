@@ -43,7 +43,7 @@ common_dut/
 > - **`module5/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module5/*.md`** — Your workspace (edit these files)
 > 
-> See [`module5/README.md`](../module5/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module5/README.md`](../module5/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Re-open:
    - `module2/REGRESSION_PLAN.md` (tiers, runtimes, policies).  

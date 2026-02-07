@@ -44,7 +44,7 @@ common_dut/
 > - **`module2/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module2/*.md`** — Your workspace (edit these files)
 > 
-> See [`module2/README.md`](../module2/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module2/README.md`](../module2/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Re-open your `module1/VERIFICATION_PLAN.md` and `module1/REQUIREMENTS_MATRIX.md`.  
 2. **Edit the workspace files** in `module2/`:

@@ -42,7 +42,7 @@ common_dut/
 > - **`module7/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module7/*.md`** — Your workspace (edit these files)
 > 
-> See [`module7/README.md`](../module7/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module7/README.md`](../module7/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Choose a **primary project** (or two smaller ones), for example:
    - A DMA-like controller at block/subsystem level.  

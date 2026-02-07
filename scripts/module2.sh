@@ -26,6 +26,7 @@ RUN_TEST_PLAN_STATUS=true
 RUN_REGRESSION_PLAN_STATUS=true
 RUN_COVERAGE_PLAN_STATUS=true
 RUN_CHECKLIST_STATUS=true
+RUN_STRUCTURE_CHECK=true
 
 print_status() {
     local color=$1
@@ -54,6 +55,7 @@ OPTIONS:
     --regression-status      Show status of regression_plan.md only
     --coverage-status        Show status of coverage_plan.md only
     --checklist-status       Show status of checklist_module2.md only
+    --structure-status       Show required-sections check only
     --summary                Show all statuses (default)
     --help, -h               Show this help message
 
@@ -78,6 +80,7 @@ parse_args() {
                 RUN_REGRESSION_PLAN_STATUS=false
                 RUN_COVERAGE_PLAN_STATUS=false
                 RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
                 shift
                 ;;
             --regression-status)
@@ -85,6 +88,7 @@ parse_args() {
                 RUN_REGRESSION_PLAN_STATUS=true
                 RUN_COVERAGE_PLAN_STATUS=false
                 RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
                 shift
                 ;;
             --coverage-status)
@@ -92,13 +96,23 @@ parse_args() {
                 RUN_REGRESSION_PLAN_STATUS=false
                 RUN_COVERAGE_PLAN_STATUS=true
                 RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=false
                 shift
                 ;;
             --checklist-status)
                 RUN_TEST_PLAN_STATUS=false
                 RUN_REGRESSION_PLAN_STATUS=false
                 RUN_COVERAGE_PLAN_STATUS=false
+                RUN_STRUCTURE_CHECK=false
                 RUN_CHECKLIST_STATUS=true
+                shift
+                ;;
+            --structure-status)
+                RUN_TEST_PLAN_STATUS=false
+                RUN_REGRESSION_PLAN_STATUS=false
+                RUN_COVERAGE_PLAN_STATUS=false
+                RUN_CHECKLIST_STATUS=false
+                RUN_STRUCTURE_CHECK=true
                 shift
                 ;;
             --summary)
@@ -106,6 +120,7 @@ parse_args() {
                 RUN_REGRESSION_PLAN_STATUS=true
                 RUN_COVERAGE_PLAN_STATUS=true
                 RUN_CHECKLIST_STATUS=true
+                RUN_STRUCTURE_CHECK=true
                 shift
                 ;;
             --help|-h)
@@ -149,8 +164,9 @@ test_plan_status() {
     local plan_file="$DOCS_DIR/TEST_PLAN.md"
 
     if [[ ! -f "$plan_file" ]]; then
-        print_status "$RED" "test_plan.md not found at: $plan_file"
-        echo "Hint: copy from module2/templates/ or edit the file in module2/ directly. Reference: module2/.solutions/."
+        print_status "$RED" "File missing: TEST_PLAN.md"
+        echo "  Location: $plan_file"
+        echo "  How to fix: copy from module2/templates/TEST_PLAN.md, or create the file in module2/. See module2/.solutions/TEST_PLAN.md for an example."
         return 1
     fi
 
@@ -159,11 +175,12 @@ test_plan_status() {
     todos=$(grep -c "TODO" "$plan_file" 2>/dev/null)
     todos=${todos:-0}
 
-    print_status "$GREEN" "Found test_plan.md ($lines lines)."
+    print_status "$GREEN" "Found TEST_PLAN.md ($lines lines)."
     if [[ "$todos" -gt 0 ]]; then
-        print_status "$YELLOW" "Remaining TODO markers in test_plan.md: $todos"
+        print_status "$YELLOW" "File: TEST_PLAN.md — $todos TODO marker(s) still present (sections not yet filled)."
+        echo "  How to fix: replace each <!-- TODO: ... --> with real content for that section. See module2/.solutions/TEST_PLAN.md for an example, or docs/FILL_GUIDES.md for section-by-section guidance."
     else
-        print_status "$GREEN" "No explicit TODO markers found in test_plan.md."
+        print_status "$GREEN" "No explicit TODO markers found in TEST_PLAN.md."
     fi
 }
 
@@ -173,8 +190,9 @@ regression_plan_status() {
     local reg_file="$DOCS_DIR/REGRESSION_PLAN.md"
 
     if [[ ! -f "$reg_file" ]]; then
-        print_status "$RED" "regression_plan.md not found at: $reg_file"
-        echo "Hint: copy from module2/templates/ or edit the file in module2/ directly. Reference: module2/.solutions/."
+        print_status "$RED" "File missing: REGRESSION_PLAN.md"
+        echo "  Location: $reg_file"
+        echo "  How to fix: copy from module2/templates/REGRESSION_PLAN.md, or create the file in module2/. See module2/.solutions/REGRESSION_PLAN.md for an example."
         return 1
     fi
 
@@ -183,11 +201,12 @@ regression_plan_status() {
     todos=$(grep -c "TODO" "$reg_file" 2>/dev/null)
     todos=${todos:-0}
 
-    print_status "$GREEN" "Found regression_plan.md ($lines lines)."
+    print_status "$GREEN" "Found REGRESSION_PLAN.md ($lines lines)."
     if [[ "$todos" -gt 0 ]]; then
-        print_status "$YELLOW" "Remaining TODO markers in regression_plan.md: $todos"
+        print_status "$YELLOW" "File: REGRESSION_PLAN.md — $todos TODO marker(s) still present (sections not yet filled)."
+        echo "  How to fix: replace each <!-- TODO: ... --> with real content for that section. See module2/.solutions/REGRESSION_PLAN.md for an example, or docs/FILL_GUIDES.md."
     else
-        print_status "$GREEN" "No explicit TODO markers found in regression_plan.md."
+        print_status "$GREEN" "No explicit TODO markers found in REGRESSION_PLAN.md."
     fi
 }
 
@@ -197,8 +216,9 @@ coverage_plan_status() {
     local cov_file="$DOCS_DIR/COVERAGE_PLAN.md"
 
     if [[ ! -f "$cov_file" ]]; then
-        print_status "$YELLOW" "coverage_plan.md not found at: $cov_file"
-        echo "Hint: coverage refinement is optional but recommended; copy from module2/templates/ (or create COVERAGE_PLAN.md) and edit in module2/. Reference: module2/.solutions/."
+        print_status "$YELLOW" "File missing: COVERAGE_PLAN.md (optional but recommended)"
+        echo "  Location: $cov_file"
+        echo "  How to fix: copy from module2/templates/COVERAGE_PLAN.md, or create the file in module2/. See module2/.solutions/COVERAGE_PLAN.md for an example, or docs/FILL_GUIDES.md."
         return 0
     fi
 
@@ -207,12 +227,41 @@ coverage_plan_status() {
     todos=$(grep -c "TODO" "$cov_file" 2>/dev/null)
     todos=${todos:-0}
 
-    print_status "$GREEN" "Found coverage_plan.md ($lines lines)."
+    print_status "$GREEN" "Found COVERAGE_PLAN.md ($lines lines)."
     if [[ "$todos" -gt 0 ]]; then
-        print_status "$YELLOW" "Remaining TODO markers in coverage_plan.md: $todos"
+        print_status "$YELLOW" "File: COVERAGE_PLAN.md — $todos TODO marker(s) still present (sections not yet filled)."
+        echo "  How to fix: replace each <!-- TODO: ... --> with real content for that section. See module2/.solutions/COVERAGE_PLAN.md for an example, or docs/FILL_GUIDES.md."
     else
-        print_status "$GREEN" "No explicit TODO markers found in coverage_plan.md."
+        print_status "$GREEN" "No explicit TODO markers found in COVERAGE_PLAN.md."
     fi
+}
+
+structure_check_status() {
+    print_header "Document Structure (Required Sections)"
+
+    local check_script="$SCRIPT_DIR/check_structure.py"
+    if [[ ! -f "$check_script" ]]; then
+        print_status "$YELLOW" "Structure checker not found: $check_script (skipping section check)."
+        return 0
+    fi
+
+    if ! command -v python3 &>/dev/null; then
+        print_status "$YELLOW" "python3 not found (skipping section check)."
+        return 0
+    fi
+
+    local out
+    out=$(python3 "$check_script" --module 2 --module-dir "$MODULE2_DIR" 2>&1) || true
+    local rc=$?
+    if [[ -n "$out" ]]; then
+        echo "$out"
+    fi
+    if [[ $rc -ne 0 ]]; then
+        print_status "$YELLOW" "Some required sections are missing or still placeholder. See above for file and section."
+        return 1
+    fi
+    print_status "$GREEN" "Required sections present in planning documents."
+    return 0
 }
 
 checklist_status() {
@@ -221,8 +270,9 @@ checklist_status() {
     local checklist_file="$DOCS_DIR/CHECKLIST.md"
 
     if [[ ! -f "$checklist_file" ]]; then
-        print_status "$RED" "checklist_module2.md not found at: $checklist_file"
-        echo "Hint: copy from module2/templates/ or edit the file in module2/ directly. Reference: module2/.solutions/."
+        print_status "$RED" "File missing: CHECKLIST.md"
+        echo "  Location: $checklist_file"
+        echo "  How to fix: copy from module2/templates/CHECKLIST.md, or create the file in module2/. See module2/.solutions/CHECKLIST.md for an example."
         return 1
     fi
 
@@ -237,11 +287,23 @@ checklist_status() {
     checked_X=${checked_X:-0}
     checked=$((checked_x + checked_X))
 
-    print_status "$GREEN" "Found checklist_module2.md."
+    print_status "$GREEN" "Found CHECKLIST.md."
     print_status "$BLUE"  "Checklist items: $total  |  Completed: $checked  |  Remaining: $unchecked"
 
     if [[ "$unchecked" -gt 0 ]]; then
-        print_status "$YELLOW" "There are still unchecked items; review checklist_module2.md."
+        print_status "$YELLOW" "File: CHECKLIST.md — $unchecked item(s) still unchecked."
+        echo "  How to fix: mark completed items with - [x] (lowercase x). Work through each section; run ./scripts/module2.sh again to see progress. See module2/.solutions/CHECKLIST.md or docs/FILL_GUIDES.md."
+        echo ""
+        print_status "$BLUE" "Unchecked items (line : content):"
+        grep -n "^\- \[ \]" "$checklist_file" 2>/dev/null | while IFS= read -r line; do
+            line_num="${line%%:*}"
+            rest="${line#*:}"
+            # Show first 60 chars of content
+            if [[ ${#rest} -gt 60 ]]; then
+                rest="${rest:0:57}..."
+            fi
+            echo "    $line_num : $rest"
+        done
     else
         print_status "$GREEN" "All checklist items appear to be completed."
     fi
@@ -292,6 +354,12 @@ main() {
 
     if [[ "$RUN_CHECKLIST_STATUS" == true ]]; then
         if ! checklist_status; then
+            errors=$((errors + 1))
+        fi
+    fi
+
+    if [[ "$RUN_STRUCTURE_CHECK" == true ]]; then
+        if ! structure_check_status; then
             errors=$((errors + 1))
         fi
     fi

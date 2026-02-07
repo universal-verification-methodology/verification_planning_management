@@ -44,7 +44,7 @@ All code (RTL, UVM, tests, scripts) can live in `common_dut/` or in dedicated pr
 > - **`module8/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module8/*.md`** — Your workspace (edit these files)
 > 
-> See [`module8/README.md`](../module8/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module8/README.md`](../module8/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. Choose your **capstone project** (DMA, protocol VIP, or custom IP).
 2. **Edit the workspace files** in `module8/`:

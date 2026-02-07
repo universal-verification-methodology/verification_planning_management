@@ -46,7 +46,7 @@ common_dut/
 > - **`module1/.solutions/`** — Reference solutions (opt-in to view)
 > - **`module1/*.md`** — Your workspace (edit these files)
 > 
-> See [`module1/README.md`](../module1/README.md) and [`../METHODS.md`](../METHODS.md) for details.
+> See [`module1/README.md`](../module1/README.md) and [`METHODS.md`](METHODS.md) for details.
 
 1. **Select the DUT** you will use for this course (e.g., FIFO, UART, or AXI-lite reg block).
 2. **Read the DUT specification** and list all features, modes, interfaces, and constraints.
