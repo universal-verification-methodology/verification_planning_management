@@ -1,0 +1,35 @@
+`timescale 1ns/1ps
+
+// -----------------------------------------------------------------------------
+// UVM-based testbench for the common stream_fifo DUT
+// -----------------------------------------------------------------------------
+//
+// This top-level testbench:
+// - Instantiates the shared DUT: common_dut/rtl/stream_fifo.sv
+// - Instantiates two stream_if interfaces (source and sink)
+// - Connects interfaces to DUT ports
+// - Puts the virtual interfaces into the UVM config DB
+// - Calls run_test("stream_test") defined in stream_pkg.sv
+//
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+// Import the UVM components for this bench
+`include "stream_if.sv"
+`include "stream_pkg.sv"
+
+module tb_stream_fifo_uvm;
+
+  localparam int DATA_WIDTH = 8;
+  localparam int DEPTH      = 4;
+
+  // Clock and reset
+  logic clk;
+  logic rst_n;
+
+  // Source and sink interfaces
+  stream_if #(.DATA_WIDTH(DATA_WIDTH)) s_if (.*);
+  stream_if #(.DATA_WIDTH(DATA_WIDTH)) m_if (.*);
+
+  // Status from DUT

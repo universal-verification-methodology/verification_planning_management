@@ -1,0 +1,20 @@
+# Coverage Design (Module 3)
+
+> **Purpose**: Define the concrete functional coverage model (covergroups/coverpoints/crosses) and how it is integrated into your UVM environment.  
+> **Module**: 3 – Coverage Planning & Analysis in Practice (SV/UVM)
+
+## 1. Context and Scope
+
+- **DUT**: `stream_fifo` — parameterizable streaming FIFO with ready/valid handshakes on source (push) and sink (pop) interfaces; configurable DATA_WIDTH (default 8) and DEPTH (default 16). Exposes `level`, `overflow`, and `underflow` status signals.  
+- **Main interfaces / protocols**: Source (push) and sink (pop) ready/valid streaming interfaces; no address space.  
+- **Reference docs**:
+  - `module1/VERIFICATION_PLAN.md`  
+  - `module2/COVERAGE_PLAN.md`  
+  - `module1/REQUIREMENTS_MATRIX.md`
+
+Summarize which **features/requirements** this coverage design targets first:
+
+- **R1** (in-order transfer): Occupancy levels (CG_LEVEL), operation types (CG_OPS), and backpressure (CG_BACKPRESSURE).  
+- **R2** (overflow flag): Overflow set/clear and level×overflow cross (CG_FLAGS, CROSS_LEVEL_FLAGS).  
+- **R3** (underflow flag): Underflow set/clear and level×underflow cross (CG_FLAGS, CROSS_LEVEL_FLAGS).
+

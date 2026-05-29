@@ -1,0 +1,20 @@
+# Capstone Project Plan (Module 8)
+
+> **Purpose**: Define and track your major end‑to‑end verification or VIP project.  
+> **Module**: 8 – Capstone: End‑to‑End Verification & VIP Delivery (SV/UVM)
+
+## 1. Capstone Choice
+
+- **Project ID / Name**: `CAP_DMA_FIFO`  
+- **Brief Description**:  
+  - Verify a simple **DMA engine** that uses the shared `stream_fifo` DUT as its internal buffer.  
+  - The DMA engine reads descriptors from a register interface, transfers a programmable number of bytes from a source to a sink stream, and reports status and errors via status/IRQ.  
+  - The capstone applies the full verification lifecycle (Modules 1–7) to this DMA, including requirements, plan, UVM environment, coverage, regressions, and a small DMA verification IP package.  
+- **Type**:
+  - [x] Block/IP verification  
+  - [ ] Subsystem / SoC‑style integration  
+  - [ ] Protocol VIP (reusable agent + checker + coverage)  
+
+## 2. Requirements and Goals
+
+Summarize the key requirements and goals (link to `REQUIREMENTS_MATRIX.md` when used).

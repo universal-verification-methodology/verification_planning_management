@@ -1,0 +1,20 @@
+# Verification Plan Template (Module 1)
+
+> **Purpose**: Capture the initial verification plan for your chosen DUT  
+> **Module**: 1 – Verification Planning & Management Foundations (SV/UVM)
+
+## 1. Project and DUT Overview
+
+- **Project name**: Stream FIFO Verification  
+- **Block/DUT name**: `stream_fifo`  
+- **Owner(s)**: Yongfu  
+- **Date / version**: 2026-02-03 / v0.1  
+
+### 1.1 DUT Description
+
+- **High-level function**:  
+  - `stream_fifo` is a parameterizable streaming FIFO that buffers data between a source and a sink using ready/valid handshakes.  
+  - It stores up to `DEPTH` elements of `DATA_WIDTH` bits each and guarantees in-order delivery.  
+  - It exposes status information (current fill level) and sticky overflow/underflow flags to aid system-level flow control and debug.  
+- **External interfaces** (ports, buses, clocks, resets):  
+  - `clk`, `rst_n`: single clock and active-low asynchronous reset for all internal state.  

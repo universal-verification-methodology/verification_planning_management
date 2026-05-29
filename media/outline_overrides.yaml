@@ -1,0 +1,160 @@
+# Course overrides for generate_outline_from_module.py
+# demos: fix capture commands per EXAMPLES.md folder
+# architecture: two_column layouts + code slides from repo sources
+
+module1:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "DUT — stream_fifo ports"
+      source_file: common_dut/rtl/stream_fifo.sv
+      start_line: 20
+      end_line: 41
+    tb_code:
+      title: "UVM env skeleton"
+      source_file: common_dut/tb/stream_fifo_env_skeleton.sv
+      start_line: 51
+      end_line: 71
+  demos:
+    solutions:
+      expect: ""
+    validate:
+      command: "./scripts/module1.sh --check"
+      expect: "All required checks passed"
+
+module2:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "Handshake logic (push/pop)"
+      source_file: common_dut/rtl/stream_fifo.sv
+      start_line: 53
+      end_line: 61
+    tb_code:
+      title: "Agent stub — build_phase"
+      source_file: common_dut/tb/stream_fifo_env_skeleton.sv
+      start_line: 23
+      end_line: 45
+  demos:
+    validate:
+      command: "./scripts/module2.sh --check"
+      expect: "All required checks passed"
+
+module3:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "Coverage model — covergroups"
+      source_file: common_dut/tb/stream_fifo_coverage.sv
+      start_line: 25
+      end_line: 47
+    test_code:
+      title: "sample() integration point"
+      source_file: common_dut/tb/stream_fifo_coverage.sv
+      start_line: 59
+      end_line: 71
+  demos:
+    tb_coverage:
+      expect: "covergroup"
+    validate:
+      command: "./scripts/module3.sh --check"
+      expect: "All required checks passed"
+
+module4:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "DUT instantiation in UVM top"
+      source_file: module4/tb/tb_stream_fifo_uvm.sv
+      start_line: 40
+      end_line: 58
+    tb_code:
+      title: "stream_env — build & connect"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 180
+      end_line: 210
+    env_code:
+      title: "Scoreboard write() hook"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 151
+      end_line: 174
+  demos:
+    module_tb:
+      expect: "module"
+    validate:
+      command: "./scripts/module4.sh --check"
+      expect: "All required checks passed"
+
+module5:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "Monitor — analysis port"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 113
+      end_line: 145
+    tb_code:
+      title: "stream_test — run_phase"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 218
+      end_line: 246
+  demos:
+    validate:
+      command: "./scripts/module5.sh --check"
+      expect: "All required checks passed"
+
+module6:
+  architecture:
+    two_column: true
+    rtl_code:
+      title: "Monitor observes transactions"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 113
+      end_line: 140
+    design_code:
+      title: "Multi-agent architecture template"
+      source_file: module6/templates/MULTI_AGENT_ARCHITECTURE.md
+      start_line: 1
+      end_line: 28
+  demos:
+    validate:
+      command: "./scripts/module6.sh --check"
+      expect: "All required checks passed"
+
+module7:
+  architecture:
+    two_column: true
+    design_code:
+      title: "VIP design template"
+      source_file: module7/templates/VIP_DESIGN.md
+      start_line: 1
+      end_line: 35
+    test_code:
+      title: "Project scope template"
+      source_file: module7/templates/PROJECTS.md
+      start_line: 1
+      end_line: 30
+  demos:
+    validate:
+      command: "./scripts/module7.sh --check"
+      expect: "All required checks passed"
+
+module8:
+  architecture:
+    two_column: true
+    design_code:
+      title: "Capstone project plan template"
+      source_file: module8/templates/CAPSTONE_PROJECT.md
+      start_line: 1
+      end_line: 40
+    test_code:
+      title: "Capstone checklist excerpt"
+      source_file: module8/templates/CHECKLIST.md
+      start_line: 1
+      end_line: 25
+  demos:
+    fill_guides:
+      expect: "Fill Guides"
+    validate:
+      command: "./scripts/module8.sh --check"
+      expect: "All required checks passed"

@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE5_DIR="$PROJECT_ROOT/module5"
+MODULE_DIR="$MODULE5_DIR"
+MODULE_NUM=5
 DOCS_DIR="$MODULE5_DIR"
 LOG_FILE="$MODULE5_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_REGRESSION_OPS_STATUS=true
@@ -55,6 +63,9 @@ OPTIONS:
     --debug-status         Show status of debug_flake_plan.md only
     --checklist-status     Show status of checklist_module5.md only
     --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module5/ if missing
     --help, -h             Show this help message
 
 EXAMPLES:
@@ -69,6 +80,10 @@ EOF
 
 parse_args() {
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --regression-status)
                 RUN_REGRESSION_OPS_STATUS=true
@@ -265,6 +280,8 @@ main() {
     print_header "Module 5: Regression Management & Advanced UVM Orchestration"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

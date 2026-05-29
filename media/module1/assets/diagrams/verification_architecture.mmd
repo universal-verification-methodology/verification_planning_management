@@ -1,0 +1,5 @@
+flowchart LR
+  SPEC["DUT spec"] --> PLAN["VERIFICATION_PLAN.md"]
+  PLAN --> MATRIX["REQUIREMENTS_MATRIX.md"]
+  MATRIX --> TB["common_dut/tb skeleton\n(env stubs)"]
+  PLAN --> CHECK["module1/CHECKLIST.md"]

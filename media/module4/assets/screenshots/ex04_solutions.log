@@ -1,0 +1,20 @@
+# UVM Environment & Agent Design (Module 4)
+
+> **Purpose**: Define the detailed UVM environment, agent, transaction, and sequence design for your DUT.  
+> **Module**: 4 – UVM Environment & Checker Maturity (SV/UVM)
+
+## 1. Context
+
+- **DUT**: `stream_fifo` — parameterizable streaming FIFO with ready/valid handshakes on source (push) and sink (pop); configurable DATA_WIDTH (default 8) and DEPTH (default 16). Exposes `level`, `overflow`, and `underflow` status.  
+- **Key Interfaces / Protocols**: Source interface (s_valid, s_ready, s_data); sink interface (m_valid, m_ready, m_data); status (level, overflow, underflow). No address bus; single data beat per handshake.  
+- **Prior artifacts**:
+  - `module1/VERIFICATION_PLAN.md` (high-level env & strategy).  
+  - `module2/TEST_PLAN.md` (test catalogue and types/tiers).  
+  - `module3/COVERAGE_DESIGN.md` (coverage placement and IDs).  
+
+Summarize the **main verification concerns** that drive your env design (e.g., throughput, ordering, error handling):
+
+- **In-order transfer (R1)**: Scoreboard must compare popped data with expected order (reference queue).  
+- **Overflow/underflow flags (R2, R3)**: Assertions and scoreboard must verify flags set only when appropriate (write when full / read when empty) and sticky until reset.  
+- **Backpressure and protocol**: Driver and monitor must respect valid/ready handshake; tests must exercise backpressure (source/sink slow).  
+

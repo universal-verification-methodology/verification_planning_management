@@ -1,0 +1,198 @@
+title: Module 7 — Real-World Verification Applications & VIP (SV/UVM)
+course: verification_planning_management
+module: 7
+subtitle: Apply the full methodology (planning, UVM env, coverage, regressions) to
+  **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and
+  design **reusable verification IP (VIP)** ready for production.
+footer: verification_planning_management / Module 7
+slides:
+- type: title
+  title: Module 7
+  subtitle: Real-World Verification Applications & VIP (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world
+    style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable
+    verification IP (VIP)** ready for production.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Apply the full methodology (planning, UVM env, coverage, regressions) to
+    **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP)
+    and design **reusable verification IP (VIP)** ready for production.
+- type: bullets
+  title: Overview
+  bullets:
+  - "Modules 1–6 built up your **skills and infrastructure**.  \nModule 7 is about\
+    \ **applying** them to realistic verification challenges:"
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Real-world DUT / subsystem
+  left:
+  - Choose DMA-style block, bus/register IP, or protocol DUT (UART/SPI/I2C/AXI-lite
+    style).
+  - Document block diagram, clocks/resets, and interface contracts in `PROJECTS.md`.
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE7 Design Architecture.
+- type: two_column
+  title: 2. VIP package architecture
+  left:
+  - 'Reusable VIP: agent, sequencer, driver, monitor, checker, coverage, config objects.'
+  - '`VIP_DESIGN.md` defines public API, sequences, and integration guide for adopters.'
+  - 'Package boundaries: what integrators configure vs what VIP owns internally.'
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE7 Design Architecture.
+- type: bullets
+  title: 3. Production layout
+  bullets:
+  - Separate `rtl/`, `tb/`, `tests/`, `docs/` with consistent naming for handoff to
+    another team.
+  notes: From MODULE7 Design Architecture.
+- type: code
+  title: VIP design template
+  language: markdown
+  source_file: module7/templates/VIP_DESIGN.md
+  code: "# Verification IP (VIP) Design Plan (Module 7)\n\n> **Purpose**: Design and\
+    \ document a reusable Verification IP (VIP) for a chosen protocol or IP block.\
+    \  \n> **Module**: 7 – Real-World Verification Applications & VIP (SV/UVM)\n\n\
+    > **Instructions**: Fill in this document for your design. Copy from `module7/templates/`\
+    \ if needed, or edit the file in `module7/` directly. Reference: `module7/.solutions/`.\n\
+    \n## 1. VIP Overview\n\n<!-- TODO: Protocol/IP name, intended use. What this VIP\
+    \ should enable users to do (drive, observe, check, measure, configure). -->\n\
+    \n## 2. VIP Components\n\n<!-- TODO: Table of Component ID, Type, Purpose. Location\
+    \ in codebase. -->\n\n## 3. Interfaces and Transactions\n\n### 3.1 DUT Interface(s)\n\
+    // ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. End-to-end IP verification
+  left:
+  - 'Full lifecycle: requirements → env → tests → coverage → regressions → sign-off
+    preview.'
+  - Regression tiers and coverage goals match production expectations.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE7 Verification & Testing Methods.
+- type: bullets
+  title: 2. VIP validation
+  bullets:
+  - Self-test environment for the VIP plus integrator tests on a reference DUT.
+  - 'Documentation-driven review: another engineer can adopt VIP from docs alone.'
+  notes: From MODULE7 Verification & Testing Methods.
+- type: bullets
+  title: 3. Quality bar
+  bullets:
+  - '`BEST_PRACTICES.md` — coding standards, review checklist, maintenance and versioning.'
+  - '`./scripts/module7.sh --check` validates project and VIP design documentation.'
+  notes: From MODULE7 Verification & Testing Methods.
+- type: code
+  title: Project scope template
+  language: markdown
+  source_file: module7/templates/PROJECTS.md
+  code: "# Real-World Verification Projects (Module 7)\n\n> **Purpose**: Describe\
+    \ one or more real-world style verification projects you will implement (DMA,\
+    \ protocols, custom IP, etc.).  \n> **Module**: 7 – Real-World Verification Applications\
+    \ & VIP (SV/UVM)\n\n> **Instructions**: Fill in this document for your design.\
+    \ Copy from `module7/templates/` if needed, or edit the file in `module7/` directly.\
+    \ Reference: `module7/.solutions/`.\n\n## 1. Project Overview\n\n<!-- TODO: For\
+    \ each project: DUT/IP, scope (level, features), goals, status. Add more projects\
+    \ as needed. -->\n\n## 2. Requirements and Use Cases\n\n<!-- TODO: For each project,\
+    \ list key requirements and use cases. Link to module1/REQUIREMENTS_MATRIX.md\
+    \ if applicable. Table of Req ID, Description, Priority, Notes. -->\n\n## 3. Planned\
+    \ Verification Approach\n\n<!-- TODO: For each project: Environment, tests (link\
+    \ to test_plan.md), coverage, regressions. Document concrete plan. -->\n// ..."
+- type: section
+  title: Syllabus topics
+- type: bullets
+  title: 1. End-to-End IP Verification
+  bullets:
+  - Applying planning + UVM + coverage + regression to realistic IP.
+  - Realistic test planning, coverage closure, and regression operation.
+  notes: From MODULE7 Topics Covered.
+- type: bullets
+  title: 2. VIP Design and Reuse
+  bullets:
+  - Designing and documenting verification IP (VIP) for protocols or blocks.
+  notes: From MODULE7 Topics Covered.
+- type: bullets
+  title: 3. Production Quality and Maintenance
+  bullets:
+  - Best practices for project structure, code quality, docs, and maintenance.
+  notes: From MODULE7 Topics Covered.
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 7 self-check
+  command: ./scripts/module7.sh --help
+  screenshot: assets/screenshots/module7_check.png
+  expect_stdout_contains: Module
+  notes: Run from course repository root.
+- type: demo
+  title: 'Demo: VIP design template'
+  command: head -30 module7/templates/VIP_DESIGN.md
+  screenshot: assets/screenshots/ex01_vip_design.png
+  notes: 'Hands-on: module7/examples/vip_design/'
+- type: demo
+  title: 'Demo: Projects overview'
+  command: head -25 module7/templates/PROJECTS.md
+  screenshot: assets/screenshots/ex02_projects.png
+  notes: 'Hands-on: module7/examples/projects/'
+- type: demo
+  title: 'Demo: Best practices'
+  command: head -25 module7/templates/BEST_PRACTICES.md
+  screenshot: assets/screenshots/ex03_best_practices.png
+  notes: 'Hands-on: module7/examples/best_practices/'
+- type: demo
+  title: 'Demo: Reference VIP design'
+  command: head -20 module7/.solutions/VIP_DESIGN.md
+  screenshot: assets/screenshots/ex04_solutions.png
+  notes: 'Hands-on: module7/examples/solutions/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module7.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module7/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/2)
+  bullets:
+  - Design and implement a complete verification environment for a realistic DUT.
+  - Create and document reusable VIP that others could adopt.
+  - Operate regressions and coverage closure as you would in a real team.
+  - Maintain production-quality code, docs, and tests over the lifetime of a project.
+  - At least one substantial real-world style project is described and partially/fully
+    implemented.
+  - VIP or environment design is documented in `module7/VIP_DESIGN.md` and `module7/PROJECTS.md`.
+  notes: From MODULE7 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/2)
+  bullets:
+  - Best-practices checklist largely satisfied (`module7/BEST_PRACTICES.md` / `module7/CHECKLIST.md`).
+  - You can explain your project and design decisions as if presenting to a review
+    board.
+  notes: From MODULE7 Learning Outcomes.
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - At least one substantial real-world style project is described and partially/fully
+    implemented.
+  - VIP or environment design is documented in `module7/VIP_DESIGN.md` and `module7/PROJECTS.md`.
+  - Best-practices checklist largely satisfied (`module7/BEST_PRACTICES.md` / `module7/CHECKLIST.md`).
+  - You can explain your project and design decisions as if presenting to a review
+    board.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world
+    style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable
+    verification IP (VIP)** ready for production.
+  - Complete module7/CHECKLIST.md
+  - Review module7/EXAMPLES.md and run each lab
+  - 'Next: Next module in course'

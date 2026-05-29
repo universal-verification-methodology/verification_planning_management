@@ -1,0 +1,220 @@
+title: Module 4 — UVM Environment & Checker Maturity (SV/UVM)
+course: verification_planning_management
+module: 4
+subtitle: Design and mature your **UVM environment** (env, agents, drivers, monitors,
+  sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional
+  assertions) so that your test and coverage plans from earlier modules can be executed
+  reliably at scale.
+footer: verification_planning_management / Module 4
+slides:
+- type: title
+  title: Module 4
+  subtitle: UVM Environment & Checker Maturity (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers)
+    and **checking strategy** (scoreboards, reference models, protocol/functional
+    assertions) so that your test and coverage plans from earlier modules can be executed
+    reliably at scale.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Design and mature your **UVM environment** (env, agents, drivers, monitors,
+    sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional
+    assertions) so that your test and coverage plans from earlier modules can be executed
+    reliably at scale.
+- type: bullets
+  title: Overview
+  bullets:
+  - "Modules 1–3 focused on planning (scope, tests, regressions) and measurement (coverage).\
+    \  \nIn Module 4, you focus on the **quality and structure of the verification\
+    \ environment itself**:"
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Mature UVM environment (stream_fifo)
+  left:
+  - 'Env (`stream_fifo_env`): connects source/sink agents, scoreboard, coverage subscribers.'
+  - 'Agents: driver + sequencer + monitor per interface; active vs passive roles documented
+    in `ENV_DESIGN.md`.'
+  - 'Transactions: item fields mirror DUT handshake semantics (data, valid/ready timing).'
+  - 'Reference implementation sketch: `module4/tb/tb_stream_fifo_uvm.sv` and `stream_pkg.sv`
+    patterns.'
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE4 Design Architecture.
+- type: two_column
+  title: 2. Checking architecture
+  left:
+  - Scoreboard / reference model — golden data path and ordering checks (`CHECKER_PLAN.md`).
+  - SVA — protocol and functional assertions on interfaces and internal flags.
+  - 'Clear split: what is checked in SVA vs scoreboard vs test self-check.'
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE4 Design Architecture.
+- type: code
+  title: DUT instantiation in UVM top
+  language: systemverilog
+  source_file: module4/tb/tb_stream_fifo_uvm.sv
+  code: "  // DUT instance\n  stream_fifo #(\n    .DATA_WIDTH (DATA_WIDTH),\n    .DEPTH\
+    \      (DEPTH)\n  ) dut (\n    .clk       (clk),\n    .rst_n     (rst_n),\n  \
+    \  // source side\n    .s_valid   (s_if.valid),\n    .s_data    (s_if.data),\n\
+    \    .s_ready   (s_if.ready),\n    // sink side\n    .m_valid   (m_if.valid),\n\
+    \    .m_data    (m_if.data),\n    .m_ready   (m_if.ready),\n    // status\n  \
+    \  .level     (level),\n    .overflow  (overflow),\n// ..."
+- type: code
+  title: stream_env — build & connect
+  language: systemverilog
+  source_file: module4/tb/stream_pkg.sv
+  code: "class stream_env extends uvm_env;\n\n  `uvm_component_utils(stream_env)\n\
+    \n  stream_driver     drv;\n  stream_monitor    mon;\n  stream_scoreboard sb;\n\
+    \n  function new(string name, uvm_component parent);\n    super.new(name, parent);\n\
+    \  endfunction\n\n  function void build_phase(uvm_phase phase);\n    super.build_phase(phase);\n\
+    \    drv = stream_driver    ::type_id::create(\"drv\", this);\n    mon = stream_monitor\
+    \   ::type_id::create(\"mon\", this);\n    sb  = stream_scoreboard::type_id::create(\"\
+    sb\",  this);\n\n// ..."
+- type: code
+  title: Scoreboard write() hook
+  language: systemverilog
+  source_file: module4/tb/stream_pkg.sv
+  code: "class stream_scoreboard extends uvm_component;\n\n  `uvm_component_utils(stream_scoreboard)\n\
+    \n  uvm_analysis_imp #(stream_item, stream_scoreboard) imp_in;\n\n  int unsigned\
+    \ num_seen;\n\n  function new(string name, uvm_component parent);\n    super.new(name,\
+    \ parent);\n    imp_in = new(\"imp_in\", this);\n    num_seen = 0;\n  endfunction\n\
+    \n  // Called for each transaction seen by the monitor\n  function void write(stream_item\
+    \ t);\n    num_seen++;\n    `uvm_info(get_type_name(),\n// ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. Stimulus and checking flow
+  left:
+  - Sequences → driver → DUT → monitor → scoreboard compare and assertion sampling.
+  - Reset, backpressure, and error-injection scenarios exercised per `TEST_PLAN.md`.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE4 Verification & Testing Methods.
+- type: bullets
+  title: 2. Assertion-based verification (ABV)
+  bullets:
+  - Place assertions close to interfaces; use `assert`/`assume` policy consistent
+    with your simulator flow.
+  - Document waiver and severity policy for known benign cases.
+  notes: From MODULE4 Verification & Testing Methods.
+- type: bullets
+  title: 3. Environment review
+  bullets:
+  - Peer/self review of `ENV_DESIGN.md` and `CHECKER_PLAN.md` before expanding regression
+    scope.
+  - '`./scripts/module4.sh --check` validates design docs and TB file presence.'
+  notes: From MODULE4 Verification & Testing Methods.
+- type: section
+  title: Syllabus topics
+- type: bullets
+  title: 1. Environment and Agent Architecture
+  bullets:
+  - Environment and agent architecture (env vs agents vs tests).
+  - Layered testbench structure and reuse across tiers and DUT variants.
+  notes: From MODULE4 Topics Covered.
+- type: bullets
+  title: 2. Transactions and Sequences
+  bullets:
+  - Transaction and sequence design aligned with your test plan.
+  - Mapping test intents to UVM sequences and configuration.
+  notes: From MODULE4 Topics Covered.
+- type: bullets
+  title: 3. Drivers and Monitors
+  bullets:
+  - Driver and monitor behavior, including resets, backpressure, and error handling.
+  notes: From MODULE4 Topics Covered.
+- type: bullets
+  title: 4. Scoreboards and Reference Models
+  bullets:
+  - Scoreboard and reference model design.
+  notes: From MODULE4 Topics Covered.
+- type: bullets
+  title: 5. Assertions and Checking Strategy
+  bullets:
+  - 'Assertion strategy: what to check with SVA vs scoreboards vs tests.'
+  notes: From MODULE4 Topics Covered.
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 4 self-check
+  command: ./scripts/module4.sh --help
+  screenshot: assets/screenshots/module4_check.png
+  expect_stdout_contains: Module
+  notes: Run from course repository root.
+- type: code
+  title: Exercise scaffold
+  language: bash
+  source_file: scripts/module4.sh
+  code: ./scripts/module4.sh --scaffold
+- type: demo
+  title: 'Demo: Environment design template'
+  command: head -30 module4/templates/ENV_DESIGN.md
+  screenshot: assets/screenshots/ex01_env_design.png
+  notes: 'Hands-on: module4/examples/env_design/'
+- type: demo
+  title: 'Demo: Checker plan template'
+  command: head -25 module4/templates/CHECKER_PLAN.md
+  screenshot: assets/screenshots/ex02_checker_plan.png
+  notes: 'Hands-on: module4/examples/checker_plan/'
+- type: demo
+  title: 'Demo: Module-local UVM TB'
+  command: head -35 module4/tb/tb_stream_fifo_uvm.sv
+  screenshot: assets/screenshots/ex03_module_tb.png
+  notes: 'Hands-on: module4/examples/module_tb/'
+  expect_stdout_contains: module
+- type: demo
+  title: 'Demo: Reference env design'
+  command: head -20 module4/.solutions/ENV_DESIGN.md
+  screenshot: assets/screenshots/ex04_solutions.png
+  notes: 'Hands-on: module4/examples/solutions/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module4.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module4/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/2)
+  bullets:
+  - Describe and justify your UVM environment and agent architecture.
+  - Implement and maintain drivers, monitors, sequencers, and transactions that match
+    your DUT and test plan.
+  - Implement or integrate scoreboards and reference models for robust checking.
+  - Design and place protocol and functional assertions that support your verification
+    goals.
+  - Configure your environment for different modes and regression tiers.
+  - UVM env/agent architecture documented in `module4/ENV_DESIGN.md`.
+  notes: From MODULE4 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/2)
+  bullets:
+  - Transaction and sequence designs documented and aligned with `module2/TEST_PLAN.md`.
+  - Scoreboards and reference models specified in `module4/CHECKER_PLAN.md`.
+  - Key protocol/functional assertions listed and placed.
+  - At least one env/checker review (self or peer) completed; action items captured.
+  notes: From MODULE4 Learning Outcomes.
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - UVM env/agent architecture documented in `module4/ENV_DESIGN.md`.
+  - Transaction and sequence designs documented and aligned with `module2/TEST_PLAN.md`.
+  - Scoreboards and reference models specified in `module4/CHECKER_PLAN.md`.
+  - Key protocol/functional assertions listed and placed.
+  - At least one env/checker review (self or peer) completed; action items captured.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers)
+    and **checking strategy** (scoreboards, reference models, protocol/functional
+    assertions) so that your test and coverage plans from earlier modules can be executed
+    reliably at scale.
+  - Complete module4/CHECKLIST.md
+  - Review module4/EXAMPLES.md and run each lab
+  - 'Next: Next module in course'

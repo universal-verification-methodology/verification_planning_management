@@ -15,6 +15,7 @@ A **self-paced** course for learning verification planning and management using 
 - [Course Structure](#course-structure)
 - [Self-Paced Learning Structure](#self-paced-learning-structure)
 - [Validation Scripts](#validation-scripts)
+- [Slides and video](#slides-and-video)
 - [CI](#ci)
 - [Documentation](#documentation)
 - [Repository Contents](#repository-contents)
@@ -51,6 +52,7 @@ This repository is a complete **self-paced** educational resource for verificati
 - ✅ **Methodology Guide**: [`docs/METHODS.md`](docs/METHODS.md) explains the self-paced structure
 - ✅ **Module Documentation**: Detailed objectives in `docs/MODULE1.md` through `docs/MODULE8.md`
 - ✅ **Common DUT**: Shared RTL and testbench in `common_dut/`
+- ✅ **Slides & video**: Per-module `slides.pptx`, `slides.pdf`, and `video.mp4` under `media/` (see [`./scripts/build_all_media.sh`](scripts/build_all_media.sh))
 
 ## 🚀 Quick Start
 
@@ -127,6 +129,25 @@ Run these scripts to get feedback on:
 ./scripts/validate_all.sh --modules 1,2
 ```
 
+Media-friendly checks (structure only, for slides/video capture):
+
+```bash
+./scripts/module1.sh --check      # Fast self-check; prints "All required checks passed."
+./scripts/module1.sh --scaffold   # Copy templates/*.md into module1/ if missing
+```
+
+## Slides and video
+
+Pre-built decks live under `media/moduleN/`. To regenerate all modules (requires the [module-to-slides-video](~/.cursor/skills/module-to-slides-video) skill):
+
+```bash
+./scripts/build_all_media.sh --regenerate-outlines   # Refresh outline.yaml from docs/ (incl. Design Architecture & Testing Methods) + EXAMPLES.md
+./scripts/build_all_media.sh                         # pptx + PDF + video for all modules
+./scripts/build_all_media.sh --pptx-only --module 3  # Single module, decks only
+```
+
+Each module also has `moduleN/EXAMPLES.md` (planning demos) and `media/outline_overrides.yaml` for capture tweaks.
+
 Module 1 also runs a **structure checker** (required `##` sections per file; schema: `scripts/schema/module1.json`) and a **traceability checker** (requirement IDs in matrix must be referenced in VERIFICATION_PLAN.md or HIGH_PRIORITY_REQUIREMENTS_TRACEABILITY.md). Module 2 also runs a structure checker (schema: `scripts/schema/module2.json`). For script usage: `./scripts/moduleN.sh --help`, `./scripts/validate_all.sh --help`.
 
 ### CI
@@ -160,8 +181,10 @@ verification_planning_management/
 │   ├── .solutions/         # Reference solutions (opt-in)
 │   ├── *.md                # Your workspace files
 │   └── README.md           # Module instructions
+├── media/                  # Slides, PDF, video per module (build_all_media.sh)
 ├── scripts/                # Validation scripts per module
 │   ├── module1.sh … module8.sh
+│   ├── build_all_media.sh
 │   └── validate_all.sh
 ├── common_dut/             # Shared DUT RTL and testbench skeletons
 └── README.md               # This file

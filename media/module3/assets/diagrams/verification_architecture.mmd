@@ -1,0 +1,6 @@
+flowchart TB
+  ENV["UVM env"] --> CG["Functional covergroups\nstream_fifo_coverage.sv"]
+  ENV --> CC["Code coverage hooks\n(simulator flags)"]
+  PLAN["COVERAGE_DESIGN.md"] --> CG
+  RUN["COVERAGE_RUN.md"] --> CC
+  CG --> GAP["Gap analysis → new tests"]

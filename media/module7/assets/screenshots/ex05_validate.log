@@ -1,0 +1,13 @@
+
+[0;36m========================================[0m
+[0;36mModule 7: Real-World Verification Applications & VIP[0m
+[0;36m========================================[0m
+
+Module 7: media self-check
+  OK: module7/ exists
+  OK: templates/ exists
+  OK: EXAMPLES.md exists
+  OK: docs/MODULE7.md exists
+  OK: common_dut/rtl/ exists
+
+All required checks passed.

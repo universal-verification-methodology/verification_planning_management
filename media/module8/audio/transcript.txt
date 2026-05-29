@@ -1,0 +1,49 @@
+[Slide 1] Capstone – End‑to‑End Verification & VIP Delivery (SV/UVM) Module 8
+
+[Slide 2] Learning objectives Plan and execute a **single, substantial capstone project** that exercises the full verification lifecycle (Modules 1–7), from requirements and planning through UVM environment, coverage, regressions, and delivery of a reusable **verification solution or VIP**.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Plan and execute a **single, substantial capstone project** that exercises the full verification lifecycle (Modules 1–7), from requirements and planning through UVM environment, coverage, regressions, and delivery of a reusable **verification solution or VIP**.
+
+[Slide 5] Overview Module 8 is not another theory module; it is a **major project** that ties everything together:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 8: DUT structure and key interfaces (see common_dut/rtl/).
+
+[Slide 8] Verification environment architecture Module 8: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE8 Design Architecture.
+
+[Slide 10] From MODULE8 Design Architecture.
+
+[Slide 11] Verification & testing methods
+
+[Slide 12] Testing and closure flow Module 8: how tests, checks, and metrics close verification goals.
+
+[Slide 13] From MODULE8 Verification & Testing Methods.
+
+[Slide 14] From MODULE8 Verification & Testing Methods.
+
+[Slide 15] From MODULE8 Verification & Testing Methods.
+
+[Slide 16] Hands-on examples
+
+[Slide 17] Run from course repository root.
+
+[Slide 18] Hands-on: module8/examples/capstone/
+
+[Slide 19] Hands-on: module8/examples/checklist/
+
+[Slide 20] Hands-on: module8/examples/fill_guides/
+
+[Slide 21] Hands-on: module8/examples/solutions/
+
+[Slide 22] Hands-on: module8/examples/validate/
+
+[Slide 23] Practice & assessment
+
+[Slide 24] Assessment checklist A clearly defined capstone project documented in `capstone_project.md`. Evidence that Modules 1–7 have been applied (plans, env, tests, coverage, regressions). A “deliverable” verification solution or VIP (code + docs) that could be handed to another team. A short written or presented retrospective on what worked, what didn’t, and what you’d improve next.
+
+[Slide 25] Summary & next steps Plan and execute a **single, substantial capstone project** that exercises the full verification lifecycle (Modules 1–7), from requirements and planning through UVM environment, coverage, regressions, and delivery of a reusable **verification solution or VIP**. Complete module8/CHECKLIST.md Run ./scripts/module8.sh --check Next: Next module in course

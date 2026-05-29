@@ -1,0 +1,155 @@
+1
+00:00:00,000 --> 00:00:06,528
+Regression Management & Advanced UVM Orchestration (SV/UVM) Module 5
+
+2
+00:00:06,878 --> 00:00:23,630
+Learning objectives Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+
+3
+00:00:23,980 --> 00:00:26,740
+Prerequisites See module README
+
+4
+00:00:27,090 --> 00:00:43,602
+Learning path Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+
+5
+00:00:43,952 --> 00:00:55,784
+Overview Modules 1–4 established **what to test**, **how to measure**, and **how to build a solid UVM environment**.   In Module 5, you focus on **running that environment at scale**:
+
+6
+00:00:56,134 --> 00:00:58,342
+Design architecture
+
+7
+00:00:58,692 --> 00:01:07,644
+RTL / block architecture Module 5: DUT structure and key interfaces (see common_dut/rtl/).
+
+8
+00:01:07,994 --> 00:01:15,434
+Verification environment architecture Module 5: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:15,784 --> 00:01:18,904
+From MODULE5 Design Architecture.
+
+10
+00:01:19,254 --> 00:01:22,374
+From MODULE5 Design Architecture.
+
+11
+00:01:22,724 --> 00:01:25,796
+Verification & testing methods
+
+12
+00:01:26,146 --> 00:01:33,202
+Testing and closure flow Module 5: how tests, checks, and metrics close verification goals.
+
+13
+00:01:33,552 --> 00:01:37,536
+From MODULE5 Verification & Testing Methods.
+
+14
+00:01:37,886 --> 00:01:41,870
+From MODULE5 Verification & Testing Methods.
+
+15
+00:01:42,220 --> 00:01:46,204
+From MODULE5 Verification & Testing Methods.
+
+16
+00:01:46,554 --> 00:01:48,810
+Syllabus topics
+
+17
+00:01:49,160 --> 00:01:52,016
+From MODULE5 Topics Covered.
+
+18
+00:01:52,366 --> 00:01:55,222
+From MODULE5 Topics Covered.
+
+19
+00:01:55,572 --> 00:01:58,428
+From MODULE5 Topics Covered.
+
+20
+00:01:58,778 --> 00:02:01,634
+From MODULE5 Topics Covered.
+
+21
+00:02:01,984 --> 00:02:04,840
+From MODULE5 Topics Covered.
+
+22
+00:02:05,190 --> 00:02:08,046
+From MODULE5 Topics Covered.
+
+23
+00:02:08,396 --> 00:02:11,252
+From MODULE5 Topics Covered.
+
+24
+00:02:11,602 --> 00:02:14,458
+From MODULE5 Topics Covered.
+
+25
+00:02:14,808 --> 00:02:17,664
+From MODULE5 Topics Covered.
+
+26
+00:02:18,014 --> 00:02:20,870
+From MODULE5 Topics Covered.
+
+27
+00:02:21,220 --> 00:02:24,076
+From MODULE5 Topics Covered.
+
+28
+00:02:24,426 --> 00:02:26,658
+Hands-on examples
+
+29
+00:02:27,008 --> 00:02:29,840
+Run from course repository root.
+
+30
+00:02:30,190 --> 00:02:34,198
+Exercise scaffold The following command is shown on screen.
+
+31
+00:02:34,548 --> 00:02:39,948
+Hands-on: module5/examples/regression_ops/
+
+32
+00:02:40,298 --> 00:02:45,674
+Hands-on: module5/examples/debug_flake/
+
+33
+00:02:46,024 --> 00:02:51,640
+Hands-on: module5/examples/advanced_uvm/
+
+34
+00:02:51,990 --> 00:02:56,766
+Hands-on: module5/examples/solutions/
+
+35
+00:02:57,116 --> 00:03:01,892
+Hands-on: module5/examples/validate/
+
+36
+00:03:02,242 --> 00:03:04,570
+Practice & assessment
+
+37
+00:03:04,920 --> 00:03:09,456
+Exercises Runtime Tuning Coverage-Driven Job Resilience Drill
+
+38
+00:03:09,806 --> 00:03:36,470
+Assessment checklist Concrete regression jobs and commands captured in `module5/REGRESSION_OPS.md`. Virtual sequence and advanced UVM usage planned in `module5/ADVANCED_UVM_PLAN.md`. Flake and debug strategy documented in `module5/DEBUG_FLAKE_PLAN.md`. Regression flows demonstrably support coverage and sign-off goals.
+
+39
+00:03:36,820 --> 00:04:02,908
+Summary & next steps Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement. Complete module5/CHECKLIST.md Run ./scripts/module5.sh --check Next: Next module in course

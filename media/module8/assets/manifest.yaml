@@ -1,0 +1,81 @@
+module: 8
+course: verification_planning_management
+assets:
+- id: learning_path
+  type: diagram
+  file: assets/diagrams/learning_path.png
+  source: assets/diagrams/learning_path.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 4
+  - 4
+  license: verification_planning_management course materials
+- id: rtl_architecture
+  type: diagram
+  file: assets/diagrams/rtl_architecture.png
+  source: assets/diagrams/rtl_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 7
+  license: verification_planning_management course materials
+- id: verification_architecture
+  type: diagram
+  file: assets/diagrams/verification_architecture.png
+  source: assets/diagrams/verification_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 8
+  license: verification_planning_management course materials
+- id: testing_methods
+  type: diagram
+  file: assets/diagrams/testing_methods.png
+  source: assets/diagrams/testing_methods.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 11
+  license: verification_planning_management course materials
+- id: module8_check
+  type: screenshot
+  file: assets/screenshots/module8_check.png
+  capture_command: ./scripts/module8.sh --capstone
+  cwd: .
+  slides:
+  - 16
+  expect_stdout_contains: completed successfully
+- id: ex01_capstone
+  type: screenshot
+  file: assets/screenshots/ex01_capstone.png
+  capture_command: head -35 module8/templates/CAPSTONE_PROJECT.md
+  cwd: .
+  slides:
+  - 17
+- id: ex02_checklist
+  type: screenshot
+  file: assets/screenshots/ex02_checklist.png
+  capture_command: head -25 module8/templates/CHECKLIST.md
+  cwd: .
+  slides:
+  - 18
+- id: ex03_fill_guides
+  type: screenshot
+  file: assets/screenshots/ex03_fill_guides.png
+  capture_command: head -30 docs/FILL_GUIDES.md
+  cwd: .
+  slides:
+  - 19
+  expect_stdout_contains: Fill Guides
+- id: ex04_solutions
+  type: screenshot
+  file: assets/screenshots/ex04_solutions.png
+  capture_command: head -20 module8/.solutions/CAPSTONE_PROJECT.md
+  cwd: .
+  slides:
+  - 20
+- id: ex05_validate
+  type: screenshot
+  file: assets/screenshots/ex05_validate.png
+  capture_command: ./scripts/module8.sh --check
+  cwd: .
+  slides:
+  - 21
+  expect_stdout_contains: All required checks passed

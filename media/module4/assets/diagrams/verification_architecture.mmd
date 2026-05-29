@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph ENV["stream_fifo UVM env"]
+    SEQ["Sequences / transactions"]
+    DRV["Drivers"]
+    MON["Monitors"]
+    SB["Scoreboard / ref model"]
+    SVA["SVA checkers"]
+  end
+  SEQ --> DRV --> DUT["stream_fifo"]
+  DUT --> MON --> SB
+  MON --> SVA
+  ENV_DESIGN["ENV_DESIGN.md"] --> ENV
+  CHECKER["CHECKER_PLAN.md"] --> SB
+  CHECKER --> SVA

@@ -1,0 +1,92 @@
+[Slide 1] Verification Planning & Management Foundations (SV/UVM) Module 1
+
+[Slide 2] Learning objectives Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches.
+
+[Slide 5] Overview This module establishes the foundation for **verification planning and management**.  
+Instead of starting from coding UVM components, you will start from the **specification and DUT** and learn how to:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 1: DUT / block hierarchy (see module1/examples/).
+
+[Slide 8] Verification environment architecture Module 1: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE1 Design Architecture.
+
+[Slide 10] From MODULE1 Design Architecture.
+
+[Slide 11] Verification & testing methods
+
+[Slide 12] Testing and closure flow Module 1: how tests, checks, and metrics close verification goals.
+
+[Slide 13] From MODULE1 Verification & Testing Methods.
+
+[Slide 14] From MODULE1 Verification & Testing Methods.
+
+[Slide 15] From MODULE1 Verification & Testing Methods.
+
+[Slide 16] Syllabus topics
+
+[Slide 17] From MODULE1 Topics Covered.
+
+[Slide 18] From MODULE1 Topics Covered.
+
+[Slide 19] From MODULE1 Topics Covered.
+
+[Slide 20] From MODULE1 Topics Covered.
+
+[Slide 21] From MODULE1 Topics Covered.
+
+[Slide 22] From MODULE1 Topics Covered.
+
+[Slide 23] 3. Verification flow Stimulus, observation, and check strategy for this module.
+
+[Slide 24] From MODULE1 Topics Covered.
+
+[Slide 25] From MODULE1 Topics Covered.
+
+[Slide 26] From MODULE1 Topics Covered.
+
+[Slide 27] From MODULE1 Topics Covered.
+
+[Slide 28] From MODULE1 Topics Covered.
+
+[Slide 29] Hands-on examples
+
+[Slide 30] Run from course repository root.
+
+[Slide 31] Exercise scaffold The following command is shown on screen.
+
+[Slide 32] Hands-on: module1/examples/plan_template/
+
+[Slide 33] Hands-on: module1/examples/matrix_template/
+
+[Slide 34] Hands-on: module1/examples/solutions/
+
+[Slide 35] Hands-on: module1/examples/dut_rtl/
+
+[Slide 36] Hands-on: module1/examples/validate/
+
+[Slide 37] Practice & assessment
+
+[Slide 38] From MODULE1 Learning Outcomes.
+
+[Slide 39] From MODULE1 Learning Outcomes.
+
+[Slide 40] From MODULE1 Learning Outcomes.
+
+[Slide 41] From MODULE1 Learning Outcomes.
+
+[Slide 42] From MODULE1 Learning Outcomes.
+
+[Slide 43] From MODULE1 Learning Outcomes.
+
+[Slide 44] Exercises Scope and Risk Matrix Assumption Log UVM Architecture Sketch
+
+[Slide 45] Assessment checklist Can explain verification’s role and goals in the SV/UVM context. Has produced a written verification scope (in-scope, out-of-scope, assumptions). Has a concise verification strategy document for the chosen DUT. Has an initial test catalogue with traceability to requirements. Has a high-level coverage plan (what to cover and why). Can articulate a basic regression and sign-off concept, even if details come later.
+
+[Slide 46] Summary & next steps Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches. Complete module1/CHECKLIST.md Review module1/EXAMPLES.md and run each lab Next: Test Planning & Strategy in Depth

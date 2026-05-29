@@ -1,0 +1,64 @@
+[Slide 1] UVM Environment & Checker Maturity (SV/UVM) Module 4
+
+[Slide 2] Learning objectives Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+
+[Slide 5] Overview Modules 1–3 focused on planning (scope, tests, regressions) and measurement (coverage).  
+In Module 4, you focus on the **quality and structure of the verification environment itself**:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 4: DUT structure and key interfaces (see common_dut/rtl/).
+
+[Slide 8] Verification environment architecture Module 4: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE4 Design Architecture.
+
+[Slide 10] From MODULE4 Design Architecture.
+
+[Slide 11] Verification & testing methods
+
+[Slide 12] Testing and closure flow Module 4: how tests, checks, and metrics close verification goals.
+
+[Slide 13] From MODULE4 Verification & Testing Methods.
+
+[Slide 14] From MODULE4 Verification & Testing Methods.
+
+[Slide 15] From MODULE4 Verification & Testing Methods.
+
+[Slide 16] Syllabus topics
+
+[Slide 17] From MODULE4 Topics Covered.
+
+[Slide 18] From MODULE4 Topics Covered.
+
+[Slide 19] From MODULE4 Topics Covered.
+
+[Slide 20] From MODULE4 Topics Covered.
+
+[Slide 21] From MODULE4 Topics Covered.
+
+[Slide 22] Hands-on examples
+
+[Slide 23] Run from course repository root.
+
+[Slide 24] Exercise scaffold The following command is shown on screen.
+
+[Slide 25] Hands-on: module4/examples/env_design/
+
+[Slide 26] Hands-on: module4/examples/checker_plan/
+
+[Slide 27] Hands-on: module4/examples/module_tb/
+
+[Slide 28] Hands-on: module4/examples/solutions/
+
+[Slide 29] Hands-on: module4/examples/validate/
+
+[Slide 30] Practice & assessment
+
+[Slide 31] Assessment checklist UVM env/agent architecture documented in `module4/ENV_DESIGN.md`. Transaction and sequence designs documented and aligned with `module2/TEST_PLAN.md`. Scoreboards and reference models specified in `module4/CHECKER_PLAN.md`. Key protocol/functional assertions listed and placed. At least one env/checker review (self or peer) completed; action items captured.
+
+[Slide 32] Summary & next steps Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale. Complete module4/CHECKLIST.md Run ./scripts/module4.sh --check Next: Next module in course

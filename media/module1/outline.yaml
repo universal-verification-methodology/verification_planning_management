@@ -1,0 +1,336 @@
+title: Module 1 — Verification Planning & Management Foundations (SV/UVM)
+course: verification_planning_management
+module: 1
+subtitle: Learn how to turn a DUT specification into a concrete verification plan,
+  with clear strategy, coverage intent, and regression approach, using Verilog DUTs
+  and SystemVerilog/UVM testbenches.
+footer: verification_planning_management / Module 1
+slides:
+- type: title
+  title: Module 1
+  subtitle: Verification Planning & Management Foundations (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Learn how to turn a DUT specification into a concrete verification plan, with
+    clear strategy, coverage intent, and regression approach, using Verilog DUTs and
+    SystemVerilog/UVM testbenches.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Learn how to turn a DUT specification into a concrete verification plan,
+    with clear strategy, coverage intent, and regression approach, using Verilog DUTs
+    and SystemVerilog/UVM testbenches.
+- type: bullets
+  title: Overview
+  bullets:
+  - "This module establishes the foundation for **verification planning and management**.\
+    \  \nInstead of starting from coding UVM components, you will start from the **specification\
+    \ and DUT** and learn how to:"
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Stream FIFO DUT (shared course RTL)
+  left:
+  - 'Course DUT: `common_dut/rtl/stream_fifo.sv` — parameterizable `DEPTH` and `DATA_WIDTH`.'
+  - 'Source interface: `s_valid`, `s_ready`, `s_data` (push when both valid and ready).'
+  - 'Sink interface: `m_valid`, `m_ready`, `m_data` (pop on handshake).'
+  - 'Internal storage: circular buffer (`mem`, `wr_ptr`, `rd_ptr`, `count`).'
+  - 'Status outputs: `level`, sticky `overflow` / `underflow` on illegal handshakes.'
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE1 Design Architecture.
+- type: two_column
+  title: 2. Planning-level verification view (Module 1)
+  left:
+  - No full UVM implementation required yet — document intended env boundaries in
+    `VERIFICATION_PLAN.md`.
+  - '`REQUIREMENTS_MATRIX.md` traces features → future tests and coverage bins.'
+  - '`common_dut/tb/` holds skeleton stubs so architecture decisions are concrete,
+    not abstract.'
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE1 Design Architecture.
+- type: code
+  title: DUT — stream_fifo ports
+  language: systemverilog
+  source_file: common_dut/rtl/stream_fifo.sv
+  code: "module stream_fifo #(\n  parameter int DATA_WIDTH = 8,\n  parameter int DEPTH\
+    \      = 16\n) (\n  input  logic                     clk,\n  input  logic    \
+    \                 rst_n,\n\n  // Source (input) interface\n  input  logic    \
+    \                 s_valid,\n  input  logic [DATA_WIDTH-1:0]    s_data,\n  output\
+    \ logic                     s_ready,\n\n  // Sink (output) interface\n  output\
+    \ logic                     m_valid,\n  output logic [DATA_WIDTH-1:0]    m_data,\n\
+    \  input  logic                     m_ready,\n\n  // Status\n// ..."
+- type: code
+  title: UVM env skeleton
+  language: systemverilog
+  source_file: common_dut/tb/stream_fifo_env_skeleton.sv
+  code: "class stream_fifo_env_skeleton extends uvm_env;\n\n  stream_fifo_agent_skeleton\
+    \ src_agent;\n  stream_fifo_agent_skeleton snk_agent;\n\n  `uvm_component_utils(stream_fifo_env_skeleton)\n\
+    \n  function new(string name = \"stream_fifo_env_skeleton\", uvm_component parent\
+    \ = null);\n    super.new(name, parent);\n  endfunction\n\n  function void build_phase(uvm_phase\
+    \ phase);\n    super.build_phase(phase);\n    src_agent = stream_fifo_agent_skeleton::type_id::create(\"\
+    src_agent\", this);\n    snk_agent = stream_fifo_agent_skeleton::type_id::create(\"\
+    snk_agent\", this);\n  endfunction\n\n  function void connect_phase(uvm_phase\
+    \ phase);\n// ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. Planning-first methodology
+  left:
+  - Start from spec → scope → strategy before writing large amounts of testbench code.
+  - Use risk-based prioritization to decide what to verify first in later modules.
+  - Separate verification objectives (quality/risk) from implementation details.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE1 Verification & Testing Methods.
+- type: bullets
+  title: 2. Test intent and validation (Module 1)
+  bullets:
+  - Capture test intents (names, goals, tiers) in the verification plan — not full
+    UVM tests yet.
+  - Directed vs constrained-random choices are documented with rationale for the FIFO
+    DUT.
+  - 'Self-check: `./scripts/module1.sh --check` validates planning artifacts; simulation
+    is optional.'
+  notes: From MODULE1 Verification & Testing Methods.
+- type: bullets
+  title: 3. Early closure thinking
+  bullets:
+  - Sketch functional coverage intent and regression tiers (sanity / nightly / full)
+    for later modules.
+  - Define sign-off preview criteria (coverage goals, bug bars) in the plan from day
+    one.
+  notes: From MODULE1 Verification & Testing Methods.
+- type: section
+  title: Syllabus topics
+- type: bullets
+  title: 1. Verification Mindset and Goals (1/2)
+  bullets:
+  - Design vs Verification
+  - What verification is responsible for (and what it is not).
+  - “Bug-finding” vs “quality and risk management”.
+  - Verification Objectives
+  - Proving conformance to spec (as far as practical).
+  - 'Managing risk: focusing on high-impact features and scenarios.'
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 1. Verification Mindset and Goals (2/2)
+  bullets:
+  - Balancing schedule, quality, and resources.
+  - UVM/SV Context
+  - Why constrained-random and coverage-driven verification (CDV) matter.
+  - Where SV/UVM and Verilog DUTs fit in the overall flow.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 2. From Specification to Verification Scope (1/2)
+  bullets:
+  - Requirements Intake
+  - Extracting verifiable requirements from a product/design spec.
+  - Identifying interfaces, modes, configurations, and corner cases.
+  - Capturing assumptions and dependencies (e.g., upstream/downstream blocks, firmware
+    behavior).
+  - In-Scope vs Out-of-Scope
+  - Deciding what this verification effort will and will not cover.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 2. From Specification to Verification Scope (2/2)
+  bullets:
+  - Handling legacy behavior, debug features, and low-priority modes.
+  - Risk-Based Prioritization
+  - High-risk vs low-risk features.
+  - Safety/criticality, complexity, novelty, and usage frequency.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 3. Verification Strategy (SV/UVM Focus) (1/2)
+  bullets:
+  - Strategy Dimensions
+  - Directed vs constrained-random vs scenario-based testing.
+  - Use of reference models, assertions, and protocol checkers.
+  - Layered testbench and reuse (block/IP → subsystem → SoC).
+  - UVM Testbench Architecture Concepts
+  - How your env/agent/sequence/scoreboard choices influence planning.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 3. Verification Strategy (SV/UVM Focus) (2/2)
+  bullets:
+  - Mapping features and scenarios to sequences and configuration knobs.
+  - Choosing Strategies for the DUT
+  - 'For a FIFO: corner-case heavy, error injection, stress tests.'
+  - 'For a bus/reg block: protocol correctness, access patterns, error responses.'
+  - 'For a UART: timing, framing/parity errors, flow control.'
+  notes: From MODULE1 Topics Covered.
+- type: image
+  title: 3. Verification flow
+  image: assets/diagrams/verification_architecture.png
+  caption: Stimulus, observation, and check strategy for this module.
+- type: bullets
+  title: 4. Test Planning and Test Catalogue Basics (1/2)
+  bullets:
+  - Test Intent vs Test Implementation
+  - Writing test descriptions at the intent level (what to prove).
+  - Mapping intents to one or more concrete UVM tests/sequences.
+  - Test Types and Tiers
+  - Smoke/sanity vs feature tests vs stress/error-injection.
+  - Nightly vs weekly regressions (preview; detailed in later modules).
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 4. Test Planning and Test Catalogue Basics (2/2)
+  bullets:
+  - Early Test Catalogue
+  - Building a first-pass list of 10–20 key tests/intents from the spec.
+  - Tagging each with requirements, priority, and expected coverage impact.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 5. Coverage Planning Primer (1/2)
+  bullets:
+  - Why Coverage is Central to Planning
+  - Functional vs code coverage and their roles.
+  - '“Coverage as a question”: what do you need to know to sleep at night?'
+  - Sketching Coverage Models
+  - Listing features, modes, and scenarios that deserve covergroups.
+  - Identifying important crosses (e.g., mode × error type, address ranges × operations).
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 5. Coverage Planning Primer (2/2)
+  bullets:
+  - Defining Initial Coverage Goals
+  - Setting measurable but realistic targets.
+  - Separating “must cover” from “nice to have”.
+  notes: From MODULE1 Topics Covered.
+- type: bullets
+  title: 6. Intro to Regression and Sign-off Thinking
+  bullets:
+  - Regression at a High Level
+  - Why we need repeatable, automated regressions.
+  - Basic tiers (sanity / nightly / full).
+  - Sign-off Preview
+  - 'Types of sign-off criteria: coverage, bug bars, waivers, stability.'
+  - Why it’s important to think about exit criteria from Day 1.
+  notes: From MODULE1 Topics Covered.
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 1 self-check
+  command: ./scripts/module1.sh --help
+  screenshot: assets/screenshots/module1_check.png
+  expect_stdout_contains: Module
+  notes: Run from course repository root.
+- type: code
+  title: Exercise scaffold
+  language: bash
+  source_file: scripts/module1.sh
+  code: ./scripts/module1.sh --scaffold
+- type: demo
+  title: 'Demo: Verification plan template'
+  command: head -30 module1/templates/VERIFICATION_PLAN.md
+  screenshot: assets/screenshots/ex01_plan_template.png
+  notes: 'Hands-on: module1/examples/plan_template/'
+- type: demo
+  title: 'Demo: Requirements matrix template'
+  command: head -25 module1/templates/REQUIREMENTS_MATRIX.md
+  screenshot: assets/screenshots/ex02_matrix_template.png
+  notes: 'Hands-on: module1/examples/matrix_template/'
+- type: demo
+  title: 'Demo: Reference solution'
+  command: head -20 module1/.solutions/VERIFICATION_PLAN.md
+  screenshot: assets/screenshots/ex03_solutions.png
+  notes: 'Hands-on: module1/examples/solutions/'
+- type: demo
+  title: 'Demo: Shared DUT RTL'
+  command: head -35 common_dut/rtl/stream_fifo.sv
+  screenshot: assets/screenshots/ex04_dut_rtl.png
+  notes: 'Hands-on: module1/examples/dut_rtl/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module1.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module1/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/6)
+  bullets:
+  - Explain the role of verification and its relationship to design.
+  - Turn a DUT specification into a verification scope with clear assumptions and
+    boundaries.
+  - Draft a verification strategy for a simple Verilog DUT and SV/UVM environment.
+  - Create an initial test catalogue (test intents) linked to requirements.
+  - Sketch a coverage plan (what to measure and rough coverage goals).
+  - Describe a basic regression concept and outline high-level sign-off ideas.
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/6)
+  bullets:
+  - 'Given a short DUT spec (e.g., FIFO or UART), list:'
+  - Functional requirements (what the DUT must do).
+  - Non-functional/quality requirements (throughput, latency constraints, etc.).
+  - Assumptions and environment constraints.
+  - Classify each requirement as must-have, nice-to-have, or future.
+  - Mark items explicitly as in-scope or out-of-scope for this project.
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: What you should know (3/6)
+  bullets:
+  - Choose your DUT (FIFO / UART / AXI-lite block / your own).
+  - 'In `module1/VERIFICATION_PLAN.md`, add sections for:'
+  - Objectives and success criteria.
+  - High-level SV/UVM environment concept (env, agents, scoreboard, reference model).
+  - Use of directed, random, and scenario-based tests.
+  - Planned use of assertions and protocol checkers.
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: What you should know (4/6)
+  bullets:
+  - Keep the strategy to 1–2 pages maximum.
+  - 'Create a table with columns:'
+  - Test ID
+  - Test name
+  - Intent / description
+  - Related requirement IDs
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: What you should know (5/6)
+  bullets:
+  - Priority (H/M/L)
+  - Type (smoke/feature/stress/error)
+  - Populate at least 10 test intents for your DUT.
+  - 'From your requirement list and test catalogue, identify:'
+  - Signals/fields that deserve coverpoints (e.g., addresses, opcodes, status flags,
+    error types).
+  - Crosses that matter (e.g., mode × error_type, burst_length × address_range).
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: What you should know (6/6)
+  bullets:
+  - 'Write a brief description (no code required yet) of:'
+  - Where each covergroup would live in the UVM testbench (monitor, scoreboard, etc.).
+  - What hitting those bins would tell you about verification completeness.
+  notes: From MODULE1 Learning Outcomes.
+- type: bullets
+  title: Exercises
+  bullets:
+  - Scope and Risk Matrix
+  - Assumption Log
+  - UVM Architecture Sketch
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - Can explain verification’s role and goals in the SV/UVM context.
+  - Has produced a written verification scope (in-scope, out-of-scope, assumptions).
+  - Has a concise verification strategy document for the chosen DUT.
+  - Has an initial test catalogue with traceability to requirements.
+  - Has a high-level coverage plan (what to cover and why).
+  - Can articulate a basic regression and sign-off concept, even if details come later.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Learn how to turn a DUT specification into a concrete verification plan, with
+    clear strategy, coverage intent, and regression approach, using Verilog DUTs and
+    SystemVerilog/UVM testbenches.
+  - Complete module1/CHECKLIST.md
+  - Review module1/EXAMPLES.md and run each lab
+  - 'Next: Test Planning & Strategy in Depth'

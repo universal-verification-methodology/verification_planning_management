@@ -1,0 +1,20 @@
+# Detailed Test Plan (Module 2)
+
+> **Purpose**: Refine and expand the test catalogue and test strategy for your DUT.  
+> **Module**: 2 – Test Planning & Strategy in Depth (SV/UVM)
+
+## 1. Context
+
+- **Project name**: Stream FIFO Verification  
+- **Block/DUT name**: `stream_fifo`  
+- **Module 1 artifacts**:
+  - Verification plan: `module1/VERIFICATION_PLAN.md`
+  - Requirements matrix: `module1/REQUIREMENTS_MATRIX.md`
+
+Summarize any key decisions from Module 1 that affect test planning:
+
+- DUT is a parameterizable streaming FIFO with ready/valid handshakes, supporting DATA_WIDTH=8 and DEPTH=16 by default.
+- Three core requirements identified: R1 (in-order transfer), R2 (overflow flag), R3 (underflow flag).
+- Initial test catalogue of 12 tests (T1-T12) established covering smoke, feature, stress, and error categories.
+- Coverage model planned with CG_LEVEL, CG_OPS, CG_FLAGS, and CROSS_LEVEL_FLAGS.
+- Scoreboard (SB_MAIN) and SVA assertions (A_OVERFLOW, A_UNDERFLOW) planned for checking.

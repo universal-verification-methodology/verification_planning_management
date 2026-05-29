@@ -1,0 +1,13 @@
+
+[0;36m========================================[0m
+[0;36mModule 3: Coverage Planning & Analysis in Practice[0m
+[0;36m========================================[0m
+
+Module 3: media self-check
+  OK: module3/ exists
+  OK: templates/ exists
+  OK: EXAMPLES.md exists
+  OK: docs/MODULE3.md exists
+  OK: common_dut/rtl/ exists
+
+All required checks passed.

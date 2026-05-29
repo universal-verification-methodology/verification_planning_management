@@ -54,6 +54,36 @@ All code (RTL, UVM, tests, scripts) can live in `common_dut/` or in dedicated pr
 4. Apply the full verification lifecycle (Modules 1–7) to your capstone.
 5. Use `module8/CHECKLIST.md` to track completion and readiness for delivery.
 
+## Design Architecture
+
+### 1. Capstone system architecture
+
+- `CAPSTONE_PROJECT.md` defines DUT hierarchy, interfaces, clocks, and verification scope.
+- Apply **Modules 1–7** artifacts: plans, env, VIP (if applicable), coverage, regression ops.
+- Deliverable layout: RTL, UVM env, tests, scripts, and user-facing documentation.
+
+### 2. End-to-end verification package
+
+- Single coherent **verification solution** or **VIP** another team can integrate.
+- Traceability matrix from requirements through tests, coverage, and sign-off criteria.
+
+## Verification & Testing Methods
+
+### 1. Full-lifecycle testing
+
+- Execute planned **regression tiers** with coverage merge and documented closure status.
+- Include negative, stress, and protocol/rule tests appropriate to your capstone DUT.
+
+### 2. Sign-off and delivery testing
+
+- Define explicit **exit criteria** (coverage %, bug bar, stability window).
+- Retrospective: what worked, gaps, and improvements for a real project review.
+
+### 3. Validation
+
+- `./scripts/module8.sh --check` validates capstone documentation and checklist completion.
+- Optional demo or walkthrough recorded as part of the deliverable.
+
 ## Learning Outcomes
 
 By the end of this module, you should be able to:

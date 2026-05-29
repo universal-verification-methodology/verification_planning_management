@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE2_DIR="$PROJECT_ROOT/module2"
+MODULE_DIR="$MODULE2_DIR"
+MODULE_NUM=2
 DOCS_DIR="$MODULE2_DIR"
 LOG_FILE="$MODULE2_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_TEST_PLAN_STATUS=true
@@ -57,6 +65,9 @@ OPTIONS:
     --checklist-status       Show status of checklist_module2.md only
     --structure-status       Show required-sections check only
     --summary                Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module2/ if missing
     --help, -h               Show this help message
 
 EXAMPLES:
@@ -74,6 +85,10 @@ EOF
 
 parse_args() {
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --test-plan-status)
                 RUN_TEST_PLAN_STATUS=true
@@ -330,6 +345,8 @@ main() {
     print_header "Module 2: Test Planning & Strategy in Depth"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

@@ -1,0 +1,183 @@
+1
+00:00:00,000 --> 00:00:06,000
+Verification Planning & Management Foundations (SV/UVM) Module 1
+
+2
+00:00:06,350 --> 00:00:21,326
+Learning objectives Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches.
+
+3
+00:00:21,676 --> 00:00:24,436
+Prerequisites See module README
+
+4
+00:00:24,786 --> 00:00:39,522
+Learning path Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches.
+
+5
+00:00:39,872 --> 00:00:52,712
+Overview This module establishes the foundation for **verification planning and management**.   Instead of starting from coding UVM components, you will start from the **specification and DUT** and learn how to:
+
+6
+00:00:53,062 --> 00:00:55,270
+Design architecture
+
+7
+00:00:55,620 --> 00:01:03,948
+RTL / block architecture Module 1: DUT / block hierarchy (see module1/examples/).
+
+8
+00:01:04,298 --> 00:01:11,618
+Verification environment architecture Module 1: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:11,968 --> 00:01:15,016
+From MODULE1 Design Architecture.
+
+10
+00:01:15,366 --> 00:01:18,414
+From MODULE1 Design Architecture.
+
+11
+00:01:18,764 --> 00:01:21,836
+Verification & testing methods
+
+12
+00:01:22,186 --> 00:01:29,050
+Testing and closure flow Module 1: how tests, checks, and metrics close verification goals.
+
+13
+00:01:29,400 --> 00:01:33,360
+From MODULE1 Verification & Testing Methods.
+
+14
+00:01:33,710 --> 00:01:37,670
+From MODULE1 Verification & Testing Methods.
+
+15
+00:01:38,020 --> 00:01:41,980
+From MODULE1 Verification & Testing Methods.
+
+16
+00:01:42,330 --> 00:01:44,586
+Syllabus topics
+
+17
+00:01:44,936 --> 00:01:47,744
+From MODULE1 Topics Covered.
+
+18
+00:01:48,094 --> 00:01:50,902
+From MODULE1 Topics Covered.
+
+19
+00:01:51,252 --> 00:01:54,060
+From MODULE1 Topics Covered.
+
+20
+00:01:54,410 --> 00:01:57,218
+From MODULE1 Topics Covered.
+
+21
+00:01:57,568 --> 00:02:00,376
+From MODULE1 Topics Covered.
+
+22
+00:02:00,726 --> 00:02:03,534
+From MODULE1 Topics Covered.
+
+23
+00:02:03,884 --> 00:02:10,100
+3. Verification flow Stimulus, observation, and check strategy for this module.
+
+24
+00:02:10,450 --> 00:02:13,258
+From MODULE1 Topics Covered.
+
+25
+00:02:13,608 --> 00:02:16,416
+From MODULE1 Topics Covered.
+
+26
+00:02:16,766 --> 00:02:19,574
+From MODULE1 Topics Covered.
+
+27
+00:02:19,924 --> 00:02:22,732
+From MODULE1 Topics Covered.
+
+28
+00:02:23,082 --> 00:02:25,890
+From MODULE1 Topics Covered.
+
+29
+00:02:26,240 --> 00:02:28,472
+Hands-on examples
+
+30
+00:02:28,822 --> 00:02:31,654
+Run from course repository root.
+
+31
+00:02:32,004 --> 00:02:36,012
+Exercise scaffold The following command is shown on screen.
+
+32
+00:02:36,362 --> 00:02:41,714
+Hands-on: module1/examples/plan_template/
+
+33
+00:02:42,064 --> 00:02:47,608
+Hands-on: module1/examples/matrix_template/
+
+34
+00:02:47,958 --> 00:02:52,734
+Hands-on: module1/examples/solutions/
+
+35
+00:02:53,084 --> 00:02:58,484
+Hands-on: module1/examples/dut_rtl/
+
+36
+00:02:58,834 --> 00:03:03,586
+Hands-on: module1/examples/validate/
+
+37
+00:03:03,936 --> 00:03:06,264
+Practice & assessment
+
+38
+00:03:06,614 --> 00:03:09,518
+From MODULE1 Learning Outcomes.
+
+39
+00:03:09,868 --> 00:03:12,772
+From MODULE1 Learning Outcomes.
+
+40
+00:03:13,122 --> 00:03:16,026
+From MODULE1 Learning Outcomes.
+
+41
+00:03:16,376 --> 00:03:19,280
+From MODULE1 Learning Outcomes.
+
+42
+00:03:19,630 --> 00:03:22,534
+From MODULE1 Learning Outcomes.
+
+43
+00:03:22,884 --> 00:03:25,788
+From MODULE1 Learning Outcomes.
+
+44
+00:03:26,138 --> 00:03:31,442
+Exercises Scope and Risk Matrix Assumption Log UVM Architecture Sketch
+
+45
+00:03:31,792 --> 00:04:02,368
+Assessment checklist Can explain verification’s role and goals in the SV/UVM context. Has produced a written verification scope (in-scope, out-of-scope, assumptions). Has a concise verification strategy document for the chosen DUT. Has an initial test catalogue with traceability to requirements. Has a high-level coverage plan (what to cover and why). Can articulate a basic regression and sign-off concept, even if details come later.
+
+46
+00:04:02,718 --> 00:04:27,798
+Summary & next steps Learn how to turn a DUT specification into a concrete verification plan, with clear strategy, coverage intent, and regression approach, using Verilog DUTs and SystemVerilog/UVM testbenches. Complete module1/CHECKLIST.md Review module1/EXAMPLES.md and run each lab Next: Test Planning & Strategy in Depth

@@ -56,6 +56,38 @@ common_dut/
 4. **Validate your progress**: Run `./scripts/module2.sh` from the repository root.
 5. Align your planned tests with concrete UVM artifacts in `common_dut/tb/`: tests, sequences, configuration knobs.
 
+## Design Architecture
+
+### 1. UVM environment skeleton
+
+- `common_dut/tb/stream_fifo_env_skeleton.sv` — env + agent **stubs** (source/sink agents).
+- Hierarchy: `uvm_test` → `stream_fifo_env` → agents → (future) driver, sequencer, monitor.
+- Interfaces tie to DUT ports via virtual interfaces or pin-level connections in the top testbench.
+
+### 2. Test-plan ↔ TB mapping
+
+- `TEST_PLAN.md` catalogue entries map to **UVM tests**, **sequences**, and **config** knobs.
+- `REGRESSION_PLAN.md` defines tiers that will eventually select subsets of tests.
+- Naming conventions (`SMK_`, `FTR_`, `ERR_`) link documentation to future `uvm_test` names.
+
+## Verification & Testing Methods
+
+### 1. Test taxonomy
+
+- **Smoke/sanity** — fast checks after every change; **feature** — per-requirement depth.
+- **Stress / long-run** — backlog pressure, sustained traffic; **error injection** — overflow, underflow, illegal sequences.
+- Each type documents expected runtime class and whether seeds are fixed or varied.
+
+### 2. Regression tiering (planning level)
+
+- Assign every catalogue test to **sanity**, **core**, **stress**, or **full** tiers.
+- Document pass/fail policy preview and which negative tests are safe for frequent runs.
+- `./scripts/module2.sh --check` verifies plan completeness and TB skeleton presence.
+
+### 3. Reproducibility
+
+- Plan **seed strategy**, constraint overrides, and plusargs per test for debuggable random runs.
+
 ## Topics Covered
 
 ### 1. Test Taxonomy and Structure

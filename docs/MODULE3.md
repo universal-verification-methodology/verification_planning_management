@@ -54,6 +54,35 @@ common_dut/
 5. Run a small **CORE-tier regression** and capture coverage reports.  
 6. Perform an initial **gap analysis** and record closure actions.
 
+## Design Architecture
+
+### 1. Coverage in the UVM environment
+
+- Functional coverage lives in `common_dut/tb/stream_fifo_coverage.sv` (covergroups, crosses).
+- Monitors/agents sample transactions that feed coverpoints (fill level, handshake patterns, errors).
+- `COVERAGE_DESIGN.md` is the authoritative map from requirements → coverpoints → tests.
+
+### 2. Code coverage integration
+
+- Simulator **line/branch/FSM** coverage configured in your run scripts (documented in `COVERAGE_RUN.md`).
+- Separate **functional** vs **code** coverage roles: intent vs implementation exercised.
+
+## Verification & Testing Methods
+
+### 1. Coverage-driven verification (CDV)
+
+- Run a **CORE-tier** regression subset, merge coverage, and compare against goals in `COVERAGE_PLAN.md`.
+- Use **gap analysis** to add targeted tests or relax/remove low-value bins — not blind random runs.
+
+### 2. Closure loop
+
+- Requirements → tests → coverpoints → measured bins → updated plan/tests.
+- `./scripts/module3.sh --check` expects covergroup references and coverage design docs.
+
+### 3. Reporting discipline
+
+- Log each run in `COVERAGE_RUN.md` with tool, seed, tier, and top uncovered items.
+
 ## Topics Covered
 
 ### 1. From Coverage Plan to Concrete Model

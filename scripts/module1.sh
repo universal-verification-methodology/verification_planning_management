@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE1_DIR="$PROJECT_ROOT/module1"
+MODULE_DIR="$MODULE1_DIR"
+MODULE_NUM=1
 DOCS_DIR="$MODULE1_DIR"
 LOG_FILE="$MODULE1_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_PLAN_STATUS=true
@@ -57,6 +65,9 @@ OPTIONS:
     --structure-status   Show required-sections check only
     --traceability-status  Show Req ID traceability check only
     --summary            Show all statuses (default)
+    --check              Media/CI self-check (structure only)
+    --demo               Print example commands from EXAMPLES.md
+    --scaffold           Copy templates/*.md into module1/ if missing
     --help, -h           Show this help message
 
 EXAMPLES:
@@ -75,6 +86,10 @@ EOF
 parse_args() {
     # Defaults already set to "summary" mode
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --plan-status)
                 RUN_PLAN_STATUS=true
@@ -336,6 +351,8 @@ main() {
     print_header "Module 1: Verification Planning & Management Foundations"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

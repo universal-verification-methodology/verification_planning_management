@@ -1,0 +1,28 @@
+
+[0;36m========================================[0m
+[0;36mModule 5: Regression Management & Advanced UVM Orchestration[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module5.sh [OPTIONS]
+
+Module 5: Regression Management & Advanced UVM Orchestration (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 5.
+
+OPTIONS:
+    --regression-status    Show status of regression_ops.md only
+    --uvm-status           Show status of advanced_uvm_plan.md only
+    --debug-status         Show status of debug_flake_plan.md only
+    --checklist-status     Show status of checklist_module5.md only
+    --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module5/ if missing
+    --help, -h             Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module5.sh
+
+    # Focus only on regression operations
+    ./scripts/module5.sh --regression-status
+

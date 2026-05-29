@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE8_DIR="$PROJECT_ROOT/module8"
+MODULE_DIR="$MODULE8_DIR"
+MODULE_NUM=8
 DOCS_DIR="$MODULE8_DIR"
 LOG_FILE="$MODULE8_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_CAPSTONE_STATUS=true
@@ -51,6 +59,9 @@ OPTIONS:
     --capstone-status      Show status of capstone_project.md only
     --checklist-status     Show status of checklist_module8.md only
     --summary              Show both statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module8/ if missing
     --help, -h             Show this help message
 
 EXAMPLES:
@@ -65,6 +76,10 @@ EOF
 
 parse_args() {
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --capstone-status)
                 RUN_CAPSTONE_STATUS=true
@@ -193,6 +208,8 @@ main() {
     print_header "Module 8: Capstone – End‑to‑End Verification & VIP Delivery"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

@@ -1,0 +1,7 @@
+flowchart TD
+  TESTS["Regression tests"] --> MERGE["Coverage merge"]
+  MERGE --> FUNC["Functional coverage report"]
+  MERGE --> CODE["Code coverage report"]
+  FUNC --> GAP["Identify holes / crosses"]
+  CODE --> GAP
+  GAP --> CLOSE["Targeted tests or constraints"]

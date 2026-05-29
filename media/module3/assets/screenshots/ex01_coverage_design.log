@@ -1,0 +1,30 @@
+# Coverage Design (Module 3)
+
+> **Purpose**: Define the concrete functional coverage model (covergroups/coverpoints/crosses) and how it is integrated into your UVM environment.  
+> **Module**: 3 – Coverage Planning & Analysis in Practice (SV/UVM)
+
+> **Instructions**: Fill in this document for your design. Copy from `module3/templates/` if needed, or edit the file in `module3/` directly. Reference: `module3/.solutions/`.
+
+## 1. Context and Scope
+
+<!-- TODO: DUT name, main interfaces, reference docs. Which features/requirements this coverage design targets. -->
+
+## 2. Coverage Components and Placement
+
+<!-- TODO: Table of Coverage ID, UVM Component/File, Sampling Event, Notes. Data source and shared trigger. -->
+
+## 3. Covergroup Specifications
+
+### 3.1 Operations Coverage
+
+<!-- TODO: Covergroup goal, coverpoints, crosses, requirements covered. -->
+
+### 3.2 Occupancy / Level Coverage
+
+<!-- TODO: Covergroup goal, coverpoints, crosses, requirements covered. -->
+
+### 3.3 Backpressure Coverage
+
+<!-- TODO: Covergroup goal, coverpoints, crosses, requirements covered. -->
+
+### 3.4 Error / Status Coverage

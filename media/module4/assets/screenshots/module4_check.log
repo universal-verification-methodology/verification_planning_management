@@ -1,0 +1,27 @@
+
+[0;36m========================================[0m
+[0;36mModule 4: UVM Environment & Checker Maturity[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module4.sh [OPTIONS]
+
+Module 4: UVM Environment & Checker Maturity (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 4.
+
+OPTIONS:
+    --env-status          Show status of env_design.md only
+    --checker-status      Show status of checker_plan.md only
+    --checklist-status    Show status of checklist_module4.md only
+    --summary             Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module4/ if missing
+    --help, -h            Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module4.sh
+
+    # Focus only on environment design
+    ./scripts/module4.sh --env-status
+

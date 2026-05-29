@@ -1,0 +1,203 @@
+title: Module 8 — Capstone – End‑to‑End Verification & VIP Delivery (SV/UVM)
+course: verification_planning_management
+module: 8
+subtitle: Plan and execute a **single, substantial capstone project** that exercises
+  the full verification lifecycle (Modules 1–7), from requirements and planning through
+  UVM environment, coverage, regressions, and delivery of a reusable **verification
+  solution or VIP**.
+footer: verification_planning_management / Module 8
+slides:
+- type: title
+  title: Module 8
+  subtitle: Capstone – End‑to‑End Verification & VIP Delivery (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Plan and execute a **single, substantial capstone project** that exercises the
+    full verification lifecycle (Modules 1–7), from requirements and planning through
+    UVM environment, coverage, regressions, and delivery of a reusable **verification
+    solution or VIP**.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Plan and execute a **single, substantial capstone project** that exercises
+    the full verification lifecycle (Modules 1–7), from requirements and planning
+    through UVM environment, coverage, regressions, and delivery of a reusable **verification
+    solution or VIP**.
+- type: bullets
+  title: Overview
+  bullets:
+  - 'Module 8 is not another theory module; it is a **major project** that ties everything
+    together:'
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Capstone system architecture
+  left:
+  - '`CAPSTONE_PROJECT.md` defines DUT hierarchy, interfaces, clocks, and verification
+    scope.'
+  - 'Apply Modules 1–7 artifacts: plans, env, VIP (if applicable), coverage, regression
+    ops.'
+  - 'Deliverable layout: RTL, UVM env, tests, scripts, and user-facing documentation.'
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE8 Design Architecture.
+- type: two_column
+  title: 2. End-to-end verification package
+  left:
+  - Single coherent verification solution or VIP another team can integrate.
+  - Traceability matrix from requirements through tests, coverage, and sign-off criteria.
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE8 Design Architecture.
+- type: code
+  title: Capstone project plan template
+  language: markdown
+  source_file: module8/templates/CAPSTONE_PROJECT.md
+  code: "# Capstone Project Plan (Module 8)\n\n> **Purpose**: Define and track your\
+    \ major end‑to‑end verification or VIP project.  \n> **Module**: 8 – Capstone:\
+    \ End‑to‑End Verification & VIP Delivery (SV/UVM)\n\n> **Instructions**: Fill\
+    \ in this document for your design. Copy from `module8/templates/` if needed,\
+    \ or edit the file in `module8/` directly. Reference: `module8/.solutions/`.\n\
+    \n## 1. Capstone Choice\n\n<!-- TODO: Project ID/Name, brief description, type\
+    \ (block/subsystem/VIP). -->\n\n## 2. Requirements and Goals\n\n### 2.1 Functional\
+    \ Requirements (Draft)\n\n<!-- TODO: Table of Req ID, Description, Priority, Notes.\
+    \ Link to REQUIREMENTS_MATRIX.md when used. -->\n\n### 2.2 Non‑Functional / Quality\
+    \ Goals\n// ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. Full-lifecycle testing
+  left:
+  - Execute planned regression tiers with coverage merge and documented closure status.
+  - Include negative, stress, and protocol/rule tests appropriate to your capstone
+    DUT.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE8 Verification & Testing Methods.
+- type: bullets
+  title: 2. Sign-off and delivery testing
+  bullets:
+  - Define explicit exit criteria (coverage %, bug bar, stability window).
+  - 'Retrospective: what worked, gaps, and improvements for a real project review.'
+  notes: From MODULE8 Verification & Testing Methods.
+- type: bullets
+  title: 3. Validation
+  bullets:
+  - '`./scripts/module8.sh --check` validates capstone documentation and checklist
+    completion.'
+  - Optional demo or walkthrough recorded as part of the deliverable.
+  notes: From MODULE8 Verification & Testing Methods.
+- type: code
+  title: Capstone checklist excerpt
+  language: markdown
+  source_file: module8/templates/CHECKLIST.md
+  code: '# Module 8 Checklist – Capstone: End‑to‑End Verification & VIP Delivery
+
+
+    > **Purpose**: Track completion of your major capstone project.
+
+
+    > **Instructions**: Check off items as you complete them. Copy from `module8/templates/`
+    if needed, or edit the file in `module8/` directly. Reference: `module8/.solutions/`.
+
+
+    ## 1. Capstone Definition
+
+
+    - [ ] Capstone project chosen and described in `CAPSTONE_PROJECT.md`.
+
+    - [ ] Key requirements and success criteria documented.
+
+    - [ ] Scope (block/subsystem/VIP) clearly defined and realistic for the time frame.
+
+
+    ## 2. Re‑use of Earlier Modules
+
+
+    - [ ] Existing plans (verification, test, coverage, regression) referenced and
+    extended, not reinvented.
+
+    - [ ] UVM env/checker designs from Modules 4–6 reused or evolved.
+
+    - [ ] Regression and orchestration concepts from Module 5 applied.
+
+
+    // ...'
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 8 self-check
+  command: ./scripts/module8.sh --capstone
+  screenshot: assets/screenshots/module8_check.png
+  expect_stdout_contains: completed successfully
+  notes: Run from course repository root.
+- type: demo
+  title: 'Demo: Capstone project template'
+  command: head -35 module8/templates/CAPSTONE_PROJECT.md
+  screenshot: assets/screenshots/ex01_capstone.png
+  notes: 'Hands-on: module8/examples/capstone/'
+- type: demo
+  title: 'Demo: Capstone checklist'
+  command: head -25 module8/templates/CHECKLIST.md
+  screenshot: assets/screenshots/ex02_checklist.png
+  notes: 'Hands-on: module8/examples/checklist/'
+- type: demo
+  title: 'Demo: Fill guides'
+  command: head -30 docs/FILL_GUIDES.md
+  screenshot: assets/screenshots/ex03_fill_guides.png
+  notes: 'Hands-on: module8/examples/fill_guides/'
+  expect_stdout_contains: Fill Guides
+- type: demo
+  title: 'Demo: Reference capstone'
+  command: head -20 module8/.solutions/CAPSTONE_PROJECT.md
+  screenshot: assets/screenshots/ex04_solutions.png
+  notes: 'Hands-on: module8/examples/solutions/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module8.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module8/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/2)
+  bullets:
+  - Drive an end‑to‑end verification effort from requirements → plan → env → tests
+    → coverage → regressions → sign‑off.
+  - Deliver a coherent, documented verification package or VIP that others can understand
+    and use.
+  - Reflect on trade‑offs and improvements as if you were preparing for a real project
+    review.
+  - A clearly defined capstone project documented in `capstone_project.md`.
+  - Evidence that Modules 1–7 have been applied (plans, env, tests, coverage, regressions).
+  - A “deliverable” verification solution or VIP (code + docs) that could be handed
+    to another team.
+  notes: From MODULE8 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/2)
+  bullets:
+  - A short written or presented retrospective on what worked, what didn’t, and what
+    you’d improve next.
+  notes: From MODULE8 Learning Outcomes.
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - A clearly defined capstone project documented in `capstone_project.md`.
+  - Evidence that Modules 1–7 have been applied (plans, env, tests, coverage, regressions).
+  - A “deliverable” verification solution or VIP (code + docs) that could be handed
+    to another team.
+  - A short written or presented retrospective on what worked, what didn’t, and what
+    you’d improve next.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Plan and execute a **single, substantial capstone project** that exercises the
+    full verification lifecycle (Modules 1–7), from requirements and planning through
+    UVM environment, coverage, regressions, and delivery of a reusable **verification
+    solution or VIP**.
+  - Complete module8/CHECKLIST.md
+  - Review module8/EXAMPLES.md and run each lab
+  - 'Next: Next module in course'

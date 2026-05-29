@@ -1,0 +1,78 @@
+[Slide 1] Regression Management & Advanced UVM Orchestration (SV/UVM) Module 5
+
+[Slide 2] Learning objectives Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+
+[Slide 5] Overview Modules 1–4 established **what to test**, **how to measure**, and **how to build a solid UVM environment**.  
+In Module 5, you focus on **running that environment at scale**:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 5: DUT structure and key interfaces (see common_dut/rtl/).
+
+[Slide 8] Verification environment architecture Module 5: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE5 Design Architecture.
+
+[Slide 10] From MODULE5 Design Architecture.
+
+[Slide 11] Verification & testing methods
+
+[Slide 12] Testing and closure flow Module 5: how tests, checks, and metrics close verification goals.
+
+[Slide 13] From MODULE5 Verification & Testing Methods.
+
+[Slide 14] From MODULE5 Verification & Testing Methods.
+
+[Slide 15] From MODULE5 Verification & Testing Methods.
+
+[Slide 16] Syllabus topics
+
+[Slide 17] From MODULE5 Topics Covered.
+
+[Slide 18] From MODULE5 Topics Covered.
+
+[Slide 19] From MODULE5 Topics Covered.
+
+[Slide 20] From MODULE5 Topics Covered.
+
+[Slide 21] From MODULE5 Topics Covered.
+
+[Slide 22] From MODULE5 Topics Covered.
+
+[Slide 23] From MODULE5 Topics Covered.
+
+[Slide 24] From MODULE5 Topics Covered.
+
+[Slide 25] From MODULE5 Topics Covered.
+
+[Slide 26] From MODULE5 Topics Covered.
+
+[Slide 27] From MODULE5 Topics Covered.
+
+[Slide 28] Hands-on examples
+
+[Slide 29] Run from course repository root.
+
+[Slide 30] Exercise scaffold The following command is shown on screen.
+
+[Slide 31] Hands-on: module5/examples/regression_ops/
+
+[Slide 32] Hands-on: module5/examples/debug_flake/
+
+[Slide 33] Hands-on: module5/examples/advanced_uvm/
+
+[Slide 34] Hands-on: module5/examples/solutions/
+
+[Slide 35] Hands-on: module5/examples/validate/
+
+[Slide 36] Practice & assessment
+
+[Slide 37] Exercises Runtime Tuning Coverage-Driven Job Resilience Drill
+
+[Slide 38] Assessment checklist Concrete regression jobs and commands captured in `module5/REGRESSION_OPS.md`. Virtual sequence and advanced UVM usage planned in `module5/ADVANCED_UVM_PLAN.md`. Flake and debug strategy documented in `module5/DEBUG_FLAKE_PLAN.md`. Regression flows demonstrably support coverage and sign-off goals.
+
+[Slide 39] Summary & next steps Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement. Complete module5/CHECKLIST.md Run ./scripts/module5.sh --check Next: Next module in course

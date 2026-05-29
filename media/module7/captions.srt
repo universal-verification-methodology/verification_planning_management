@@ -1,0 +1,119 @@
+1
+00:00:00,000 --> 00:00:06,528
+Real-World Verification Applications & VIP (SV/UVM) Module 7
+
+2
+00:00:06,878 --> 00:00:26,582
+Learning objectives Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+
+3
+00:00:26,932 --> 00:00:29,692
+Prerequisites See module README
+
+4
+00:00:30,042 --> 00:00:49,458
+Learning path Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+
+5
+00:00:49,808 --> 00:00:59,264
+Overview Modules 1–6 built up your **skills and infrastructure**.   Module 7 is about **applying** them to realistic verification challenges:
+
+6
+00:00:59,614 --> 00:01:01,822
+Design architecture
+
+7
+00:01:02,172 --> 00:01:11,172
+RTL / block architecture Module 7: DUT structure and key interfaces (see common_dut/rtl/).
+
+8
+00:01:11,522 --> 00:01:18,938
+Verification environment architecture Module 7: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:19,288 --> 00:01:22,432
+From MODULE7 Design Architecture.
+
+10
+00:01:22,782 --> 00:01:25,926
+From MODULE7 Design Architecture.
+
+11
+00:01:26,276 --> 00:01:29,420
+From MODULE7 Design Architecture.
+
+12
+00:01:29,770 --> 00:01:32,842
+Verification & testing methods
+
+13
+00:01:33,192 --> 00:01:40,176
+Testing and closure flow Module 7: how tests, checks, and metrics close verification goals.
+
+14
+00:01:40,526 --> 00:01:44,558
+From MODULE7 Verification & Testing Methods.
+
+15
+00:01:44,908 --> 00:01:48,940
+From MODULE7 Verification & Testing Methods.
+
+16
+00:01:49,290 --> 00:01:53,322
+From MODULE7 Verification & Testing Methods.
+
+17
+00:01:53,672 --> 00:01:55,928
+Syllabus topics
+
+18
+00:01:56,278 --> 00:01:59,158
+From MODULE7 Topics Covered.
+
+19
+00:01:59,508 --> 00:02:02,388
+From MODULE7 Topics Covered.
+
+20
+00:02:02,738 --> 00:02:05,618
+From MODULE7 Topics Covered.
+
+21
+00:02:05,968 --> 00:02:08,200
+Hands-on examples
+
+22
+00:02:08,550 --> 00:02:11,382
+Run from course repository root.
+
+23
+00:02:11,732 --> 00:02:17,324
+Hands-on: module7/examples/vip_design/
+
+24
+00:02:17,674 --> 00:02:22,474
+Hands-on: module7/examples/projects/
+
+25
+00:02:22,824 --> 00:02:28,416
+Hands-on: module7/examples/best_practices/
+
+26
+00:02:28,766 --> 00:02:33,590
+Hands-on: module7/examples/solutions/
+
+27
+00:02:33,940 --> 00:02:38,764
+Hands-on: module7/examples/validate/
+
+28
+00:02:39,114 --> 00:02:41,442
+Practice & assessment
+
+29
+00:02:41,792 --> 00:03:13,472
+Assessment checklist At least one substantial real-world style project is described and partially/fully implemented. VIP or environment design is documented in `module7/VIP_DESIGN.md` and `module7/PROJECTS.md`. Best-practices checklist largely satisfied (`module7/BEST_PRACTICES.md` / `module7/CHECKLIST.md`). You can explain your project and design decisions as if presenting to a review board.
+
+30
+00:03:13,822 --> 00:03:43,030
+Summary & next steps Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production. Complete module7/CHECKLIST.md Run ./scripts/module7.sh --check Next: Next module in course

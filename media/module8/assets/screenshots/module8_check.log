@@ -1,0 +1,27 @@
+
+[0;36m========================================[0m
+[0;36mModule 8: Capstone – End‑to‑End Verification & VIP Delivery[0m
+[0;36m========================================[0m
+
+[0;31m[2026-05-28 21:18:39] Unknown option: --capstone[0m
+Usage: ./scripts/module8.sh [OPTIONS]
+
+Module 8: Capstone – End‑to‑End Verification & VIP Delivery (SV/UVM)
+This script summarizes and checks the capstone planning artifacts for Module 8.
+
+OPTIONS:
+    --capstone-status      Show status of capstone_project.md only
+    --checklist-status     Show status of checklist_module8.md only
+    --summary              Show both statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module8/ if missing
+    --help, -h             Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module8.sh
+
+    # Focus only on capstone project plan
+    ./scripts/module8.sh --capstone-status
+

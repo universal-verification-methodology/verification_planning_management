@@ -1,0 +1,179 @@
+1
+00:00:00,000 --> 00:00:05,328
+Test Planning & Strategy in Depth (SV/UVM) Module 2
+
+2
+00:00:05,678 --> 00:00:22,070
+Learning objectives Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+
+3
+00:00:22,420 --> 00:00:25,180
+Prerequisites See module README
+
+4
+00:00:25,530 --> 00:00:41,730
+Learning path Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+
+5
+00:00:42,080 --> 00:00:51,032
+Overview Module 1 gave you a high-level verification plan, scope, and early test catalogue.   In this module, you will:
+
+6
+00:00:51,382 --> 00:00:53,590
+Design architecture
+
+7
+00:00:53,940 --> 00:01:02,196
+RTL / block architecture Module 2: DUT / block hierarchy (see module2/examples/).
+
+8
+00:01:02,546 --> 00:01:09,938
+Verification environment architecture Module 2: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:10,288 --> 00:01:13,312
+From MODULE2 Design Architecture.
+
+10
+00:01:13,662 --> 00:01:16,686
+From MODULE2 Design Architecture.
+
+11
+00:01:17,036 --> 00:01:20,108
+Verification & testing methods
+
+12
+00:01:20,458 --> 00:01:27,394
+Testing and closure flow Module 2: how tests, checks, and metrics close verification goals.
+
+13
+00:01:27,744 --> 00:01:31,656
+From MODULE2 Verification & Testing Methods.
+
+14
+00:01:32,006 --> 00:01:35,918
+From MODULE2 Verification & Testing Methods.
+
+15
+00:01:36,268 --> 00:01:40,180
+From MODULE2 Verification & Testing Methods.
+
+16
+00:01:40,530 --> 00:01:42,786
+Syllabus topics
+
+17
+00:01:43,136 --> 00:01:45,920
+From MODULE2 Topics Covered.
+
+18
+00:01:46,270 --> 00:01:49,054
+From MODULE2 Topics Covered.
+
+19
+00:01:49,404 --> 00:01:52,188
+From MODULE2 Topics Covered.
+
+20
+00:01:52,538 --> 00:01:55,322
+From MODULE2 Topics Covered.
+
+21
+00:01:55,672 --> 00:01:58,456
+From MODULE2 Topics Covered.
+
+22
+00:01:58,806 --> 00:02:01,590
+From MODULE2 Topics Covered.
+
+23
+00:02:01,940 --> 00:02:04,724
+From MODULE2 Topics Covered.
+
+24
+00:02:05,074 --> 00:02:07,858
+From MODULE2 Topics Covered.
+
+25
+00:02:08,208 --> 00:02:10,992
+From MODULE2 Topics Covered.
+
+26
+00:02:11,342 --> 00:02:14,126
+From MODULE2 Topics Covered.
+
+27
+00:02:14,476 --> 00:02:17,260
+From MODULE2 Topics Covered.
+
+28
+00:02:17,610 --> 00:02:19,842
+Hands-on examples
+
+29
+00:02:20,192 --> 00:02:23,024
+Run from course repository root.
+
+30
+00:02:23,374 --> 00:02:27,382
+Exercise scaffold The following command is shown on screen.
+
+31
+00:02:27,732 --> 00:02:32,940
+Hands-on: module2/examples/test_plan/
+
+32
+00:02:33,290 --> 00:02:38,690
+Hands-on: module2/examples/regression_plan/
+
+33
+00:02:39,040 --> 00:02:44,368
+Hands-on: module2/examples/coverage_plan/
+
+34
+00:02:44,718 --> 00:02:49,422
+Hands-on: module2/examples/solutions/
+
+35
+00:02:49,772 --> 00:02:54,476
+Hands-on: module2/examples/validate/
+
+36
+00:02:54,826 --> 00:02:57,154
+Practice & assessment
+
+37
+00:02:57,504 --> 00:03:00,384
+From MODULE2 Learning Outcomes.
+
+38
+00:03:00,734 --> 00:03:03,614
+From MODULE2 Learning Outcomes.
+
+39
+00:03:03,964 --> 00:03:06,844
+From MODULE2 Learning Outcomes.
+
+40
+00:03:07,194 --> 00:03:10,074
+From MODULE2 Learning Outcomes.
+
+41
+00:03:10,424 --> 00:03:13,304
+From MODULE2 Learning Outcomes.
+
+42
+00:03:13,654 --> 00:03:16,534
+From MODULE2 Learning Outcomes.
+
+43
+00:03:16,884 --> 00:03:21,852
+Exercises Runtime Budgeting Flake-Resistance Design Traceability Check
+
+44
+00:03:22,202 --> 00:03:49,058
+Assessment checklist Has a written test taxonomy and tier definition. Test catalogue expanded and de-duplicated with clear metadata. Negative, stress, and corner-case tests are explicitly planned. Seed and randomness policy is documented. A draft regression plan exists with test-to-tier mapping. Requirements and coverage implications are reflected in the updated plan/matrix.
+
+45
+00:03:49,408 --> 00:04:16,360
+Summary & next steps Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment. Complete module2/CHECKLIST.md Review module2/EXAMPLES.md and run each lab Next: Coverage Planning & Analysis in Practice

@@ -1,0 +1,25 @@
+# Module 8 Checklist – Capstone: End‑to‑End Verification & VIP Delivery
+
+> **Purpose**: Track completion of your major capstone project.
+
+> **Instructions**: Check off items as you complete them. Copy from `module8/templates/` if needed, or edit the file in `module8/` directly. Reference: `module8/.solutions/`.
+
+## 1. Capstone Definition
+
+- [ ] Capstone project chosen and described in `CAPSTONE_PROJECT.md`.
+- [ ] Key requirements and success criteria documented.
+- [ ] Scope (block/subsystem/VIP) clearly defined and realistic for the time frame.
+
+## 2. Re‑use of Earlier Modules
+
+- [ ] Existing plans (verification, test, coverage, regression) referenced and extended, not reinvented.
+- [ ] UVM env/checker designs from Modules 4–6 reused or evolved.
+- [ ] Regression and orchestration concepts from Module 5 applied.
+
+## 3. Implementation Progress (High‑Level)
+
+- [ ] Environment / VIP skeleton implemented in code.
+- [ ] Core tests running and passing on the chosen DUT/IP.
+- [ ] At least one coverage‑enabled regression run executed.
+
+## 4. Evidence of Full Lifecycle

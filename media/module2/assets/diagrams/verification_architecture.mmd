@@ -1,0 +1,11 @@
+flowchart TB
+  subgraph TB["UVM testbench (planned)"]
+    ENV["stream_fifo_env"]
+    A_S["source agent\n(driver, seq, mon)"]
+    A_M["sink agent"]
+    ENV --> A_S
+    ENV --> A_M
+  end
+  DUT["stream_fifo"] --- TB
+  PLAN["TEST_PLAN.md"] --> ENV
+  REG["REGRESSION_PLAN.md"] --> ENV

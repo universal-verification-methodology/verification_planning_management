@@ -1,0 +1,63 @@
+[Slide 1] Complex Multi-Agent & Protocol Testbenches (SV/UVM) Module 6
+
+[Slide 2] Learning objectives Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+
+[Slide 5] Overview By Module 6, you have:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 6: DUT structure and key interfaces (see common_dut/rtl/).
+
+[Slide 8] Verification environment architecture Module 6: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE6 Design Architecture.
+
+[Slide 10] From MODULE6 Design Architecture.
+
+[Slide 11] From MODULE6 Design Architecture.
+
+[Slide 12] Verification & testing methods
+
+[Slide 13] Testing and closure flow Module 6: how tests, checks, and metrics close verification goals.
+
+[Slide 14] From MODULE6 Verification & Testing Methods.
+
+[Slide 15] From MODULE6 Verification & Testing Methods.
+
+[Slide 16] From MODULE6 Verification & Testing Methods.
+
+[Slide 17] Syllabus topics
+
+[Slide 18] From MODULE6 Topics Covered.
+
+[Slide 19] From MODULE6 Topics Covered.
+
+[Slide 20] From MODULE6 Topics Covered.
+
+[Slide 21] From MODULE6 Topics Covered.
+
+[Slide 22] Hands-on examples
+
+[Slide 23] Run from course repository root.
+
+[Slide 24] Exercise scaffold The following command is shown on screen.
+
+[Slide 25] Hands-on: module6/examples/protocol_plan/
+
+[Slide 26] Hands-on: module6/examples/multi_agent/
+
+[Slide 27] Hands-on: module6/examples/integration/
+
+[Slide 28] Hands-on: module6/examples/solutions/
+
+[Slide 29] Hands-on: module6/examples/validate/
+
+[Slide 30] Practice & assessment
+
+[Slide 31] Assessment checklist Multi-agent/multi-channel environment design documented in `module6/MULTI_AGENT_ARCHITECTURE.md`. Protocol verification strategy documented in `module6/PROTOCOL_VERIFICATION_PLAN.md`. Integration patterns and system-level scenarios documented in `module6/INTEGRATION_PLAN.md`. Complex bench design reviewed; action items captured in the docs.
+
+[Slide 32] Summary & next steps Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability. Complete module6/CHECKLIST.md Run ./scripts/module6.sh --check Next: Next module in course

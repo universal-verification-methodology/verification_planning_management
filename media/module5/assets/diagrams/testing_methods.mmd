@@ -1,0 +1,7 @@
+flowchart TD
+  TIER["Regression tier"] --> RUN["Execute suite"]
+  RUN --> COV["Collect coverage + logs"]
+  RUN --> FLAKE["Flake detection"]
+  FLAKE --> DEBUG["DEBUG_FLAKE_PLAN.md triage"]
+  COV --> PRIOR["Prioritize gaps / failures"]
+  PRIOR --> REFINE["Refine tests & constraints"]

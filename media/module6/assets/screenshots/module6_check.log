@@ -1,0 +1,28 @@
+
+[0;36m========================================[0m
+[0;36mModule 6: Complex Multi-Agent & Protocol Testbenches[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module6.sh [OPTIONS]
+
+Module 6: Complex Multi-Agent & Protocol Testbenches (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 6.
+
+OPTIONS:
+    --multi-agent-status   Show status of multi_agent_architecture.md only
+    --protocol-status      Show status of protocol_verification_plan.md only
+    --integration-status   Show status of integration_plan.md only
+    --checklist-status     Show status of checklist_module6.md only
+    --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module6/ if missing
+    --help, -h             Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module6.sh
+
+    # Focus only on multi-agent architecture
+    ./scripts/module6.sh --multi-agent-status
+

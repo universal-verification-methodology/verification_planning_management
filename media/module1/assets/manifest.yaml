@@ -1,0 +1,81 @@
+module: 1
+course: verification_planning_management
+assets:
+- id: learning_path
+  type: diagram
+  file: assets/diagrams/learning_path.png
+  source: assets/diagrams/learning_path.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 4
+  - 4
+  license: verification_planning_management course materials
+- id: rtl_architecture
+  type: diagram
+  file: assets/diagrams/rtl_architecture.png
+  source: assets/diagrams/rtl_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 7
+  license: verification_planning_management course materials
+- id: verification_architecture
+  type: diagram
+  file: assets/diagrams/verification_architecture.png
+  source: assets/diagrams/verification_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 8
+  - 22
+  license: verification_planning_management course materials
+- id: testing_methods
+  type: diagram
+  file: assets/diagrams/testing_methods.png
+  source: assets/diagrams/testing_methods.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 12
+  license: verification_planning_management course materials
+- id: module1_check
+  type: screenshot
+  file: assets/screenshots/module1_check.png
+  capture_command: ./scripts/module1.sh --help
+  cwd: .
+  slides:
+  - 29
+  expect_stdout_contains: Module
+- id: ex01_plan_template
+  type: screenshot
+  file: assets/screenshots/ex01_plan_template.png
+  capture_command: head -30 module1/templates/VERIFICATION_PLAN.md
+  cwd: .
+  slides:
+  - 31
+- id: ex02_matrix_template
+  type: screenshot
+  file: assets/screenshots/ex02_matrix_template.png
+  capture_command: head -25 module1/templates/REQUIREMENTS_MATRIX.md
+  cwd: .
+  slides:
+  - 32
+- id: ex03_solutions
+  type: screenshot
+  file: assets/screenshots/ex03_solutions.png
+  capture_command: head -20 module1/.solutions/VERIFICATION_PLAN.md
+  cwd: .
+  slides:
+  - 33
+- id: ex04_dut_rtl
+  type: screenshot
+  file: assets/screenshots/ex04_dut_rtl.png
+  capture_command: head -35 common_dut/rtl/stream_fifo.sv
+  cwd: .
+  slides:
+  - 34
+- id: ex05_validate
+  type: screenshot
+  file: assets/screenshots/ex05_validate.png
+  capture_command: ./scripts/module1.sh --check
+  cwd: .
+  slides:
+  - 35
+  expect_stdout_contains: All required checks passed

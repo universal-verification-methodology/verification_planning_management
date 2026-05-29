@@ -1,0 +1,35 @@
+`timescale 1ns/1ps
+
+// Simple parameterizable streaming FIFO with ready/valid handshakes.
+//
+// This module is intended as a common DUT for the verification planning
+// exercises. It exposes:
+// - An input (source) interface: s_valid/s_ready/s_data
+// - An output (sink) interface: m_valid/m_ready/m_data
+// - Status: current fill level, sticky overflow/underflow flags
+//
+// Behavior:
+// - When s_valid && s_ready, s_data is written into the FIFO.
+// - s_ready is high when there is at least one free entry in the FIFO.
+// - When m_valid && m_ready, the oldest entry is popped.
+// - m_valid is high when there is at least one entry in the FIFO.
+// - If s_valid is high while FIFO is full (s_ready == 0), overflow is set.
+// - If m_ready is high while FIFO is empty (m_valid == 0), underflow is set.
+// - overflow/underflow are sticky until reset.
+//
+module stream_fifo #(
+  parameter int DATA_WIDTH = 8,
+  parameter int DEPTH      = 16
+) (
+  input  logic                     clk,
+  input  logic                     rst_n,
+
+  // Source (input) interface
+  input  logic                     s_valid,
+  input  logic [DATA_WIDTH-1:0]    s_data,
+  output logic                     s_ready,
+
+  // Sink (output) interface
+  output logic                     m_valid,
+  output logic [DATA_WIDTH-1:0]    m_data,
+  input  logic                     m_ready,

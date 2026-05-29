@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph SYS["Multi-agent / protocol TB"]
+    A1["Agent: channel A"]
+    A2["Agent: channel B"]
+    PC["Protocol checker"]
+    SB["System scoreboard"]
+  end
+  DUT["DUT + fabric"] --> A1
+  DUT --> A2
+  A1 --> PC
+  A2 --> PC
+  PC --> SB
+  ARCH["MULTI_AGENT_ARCHITECTURE.md"] --> SYS
+  PROTO["PROTOCOL_VERIFICATION_PLAN.md"] --> PC

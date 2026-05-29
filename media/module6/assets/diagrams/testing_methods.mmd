@@ -1,0 +1,6 @@
+flowchart LR
+  RULES["Protocol rules"] --> CHK["Checker / monitor"]
+  CHK --> COV["Protocol coverage"]
+  INT["Integration scenarios"] --> SYS["Multi-agent stimulus"]
+  SYS --> CHK
+  INT --> SB["End-to-end scoreboard"]

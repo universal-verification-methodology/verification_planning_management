@@ -1,0 +1,6 @@
+flowchart TD
+  REQ["Requirements intake"] --> SCOPE["Scope & risk prioritization"]
+  SCOPE --> STRAT["Strategy: directed / random / assertions"]
+  STRAT --> TESTS["Test intents catalogue"]
+  STRAT --> COV["Coverage intent sketch"]
+  TESTS --> VAL["./scripts/module1.sh --check"]

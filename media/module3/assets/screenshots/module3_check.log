@@ -1,0 +1,27 @@
+
+[0;36m========================================[0m
+[0;36mModule 3: Coverage Planning & Analysis in Practice[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module3.sh [OPTIONS]
+
+Module 3: Coverage Planning & Analysis in Practice (SV/UVM)
+This script summarizes and checks the coverage artifacts for Module 3.
+
+OPTIONS:
+    --design-status        Show status of coverage_design.md only
+    --runs-status          Show status of coverage_runs.md only
+    --checklist-status     Show status of checklist_module3.md only
+    --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module3/ if missing
+    --help, -h             Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module3.sh
+
+    # Focus only on coverage design
+    ./scripts/module3.sh --design-status
+

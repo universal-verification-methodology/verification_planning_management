@@ -1,0 +1,33 @@
+
+[0;36m========================================[0m
+[0;36mModule 2: Test Planning & Strategy in Depth[0m
+[0;36m========================================[0m
+
+[0;31m[2026-05-28 21:00:42] Unknown option: --test-plan[0m
+Usage: ./scripts/module2.sh [OPTIONS]
+
+Module 2: Test Planning & Strategy in Depth (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 2.
+
+OPTIONS:
+    --test-plan-status       Show status of test_plan.md only
+    --regression-status      Show status of regression_plan.md only
+    --coverage-status        Show status of coverage_plan.md only
+    --checklist-status       Show status of checklist_module2.md only
+    --structure-status       Show required-sections check only
+    --summary                Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module2/ if missing
+    --help, -h               Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module2.sh
+
+    # Focus only on test plan status
+    ./scripts/module2.sh --test-plan-status
+
+    # Focus only on regression plan
+    ./scripts/module2.sh --regression-status
+

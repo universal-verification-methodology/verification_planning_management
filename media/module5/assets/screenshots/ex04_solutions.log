@@ -1,0 +1,20 @@
+# Regression Operations (Module 5)
+
+> **Purpose**: Define concrete regression flows, commands, and CI/farm integration.  
+> **Module**: 5 – Regression Management & Advanced UVM Orchestration (SV/UVM)
+
+## 1. Context
+
+- **DUT / Project**: stream_fifo verification (Stream FIFO Verification); common_dut/rtl + module4/tb UVM env.  
+- **Primary simulator(s)**: Verilator (or VCS/Questa/Xcelium as available).  
+- **Earlier plans**:
+  - Tiers and goals: `module2/REGRESSION_PLAN.md`  
+  - Coverage & environment: `module3/COVERAGE_RUN.md`, `module4/ENV_DESIGN.md`  
+
+This document turns those plans into **concrete jobs and commands**.
+
+## 2. Regression Jobs
+
+Define named jobs that can be invoked locally or from CI.
+
+| Job Name        | Description                          | Tier(s)        | Approx Runtime | Intended Use          |

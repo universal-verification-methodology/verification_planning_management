@@ -1,0 +1,25 @@
+# Debug, Flakiness & Performance Plan (Module 5)
+
+> **Purpose**: Define how you will detect, debug, and manage flaky tests, as well as monitor and improve regression performance.  
+> **Module**: 5 – Regression Management & Advanced UVM Orchestration (SV/UVM)
+
+> **Instructions**: Fill in this document for your design. Copy from `module5/templates/` if needed, or edit the file in `module5/` directly. Reference: `module5/.solutions/`.
+
+## 1. Flake Definition and Detection
+
+### 1.1 What is a Flaky Test Here?
+
+<!-- TODO: Criteria for a test being considered flaky (same test+seed, intermittent, timeout). -->
+
+### 1.2 Detection Signals
+
+<!-- TODO: Signals/heuristics to detect flakiness; how they are monitored (CI, tracking, review). -->
+
+## 2. Rerun and Quarantine Policy
+
+### 2.1 Rerun Strategy
+
+<!-- TODO: How many reruns, under what conditions; decision rules (pass on rerun = flaky, etc.). -->
+
+### 2.2 Quarantine Rules
+

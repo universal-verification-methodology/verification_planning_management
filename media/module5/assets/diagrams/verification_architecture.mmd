@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph OPS["Regression operations"]
+    LOCAL["Local runs"]
+    CI["CI pipeline"]
+    FARM["Farm / batch (optional)"]
+  end
+  subgraph UVM["Advanced orchestration"]
+    VSQ["Virtual sequences"]
+    CB["Callbacks / config"]
+  end
+  ENV["Mature UVM env"] --> VSQ
+  VSQ --> LOCAL
+  ENV --> CI
+  REGOPS["REGRESSION_OPS.md"] --> OPS
+  ADV["ADVANCED_UVM_PLAN.md"] --> UVM

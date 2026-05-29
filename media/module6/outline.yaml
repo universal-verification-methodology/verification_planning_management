@@ -1,0 +1,200 @@
+title: Module 6 — Complex Multi-Agent & Protocol Testbenches (SV/UVM)
+course: verification_planning_management
+module: 6
+subtitle: Apply your planning, environment, and regression skills to **complex multi-agent,
+  protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing
+  on architecture, protocol checking, and maintainability.
+footer: verification_planning_management / Module 6
+slides:
+- type: title
+  title: Module 6
+  subtitle: Complex Multi-Agent & Protocol Testbenches (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Apply your planning, environment, and regression skills to **complex multi-agent,
+    protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing
+    on architecture, protocol checking, and maintainability.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Apply your planning, environment, and regression skills to **complex multi-agent,
+    protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing
+    on architecture, protocol checking, and maintainability.
+- type: bullets
+  title: Overview
+  bullets:
+  - 'By Module 6, you have:'
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Multi-agent / multi-channel TB
+  left:
+  - Multiple agents (per interface or channel) coordinated by env and virtual sequences.
+  - 'Layered architecture: block agents → fabric/scoreboard → subsystem scenarios
+    (`MULTI_AGENT_ARCHITECTURE.md`).'
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE6 Design Architecture.
+- type: two_column
+  title: 2. Protocol verification layer
+  left:
+  - Dedicated protocol checker (SVA or monitor-based) separate from scoreboard data
+    checks.
+  - '`PROTOCOL_VERIFICATION_PLAN.md` lists rules, coverage, and integration with agents.'
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE6 Design Architecture.
+- type: bullets
+  title: 3. System integration view
+  bullets:
+  - '`INTEGRATION_PLAN.md` describes how block-level env connects to subsystem tests.'
+  - Reuse agents/VIP across DUT variants via configuration and factory overrides.
+  notes: From MODULE6 Design Architecture.
+- type: code
+  title: Monitor observes transactions
+  language: systemverilog
+  source_file: module4/tb/stream_pkg.sv
+  code: "class stream_monitor extends uvm_component;\n\n  `uvm_component_utils(stream_monitor)\n\
+    \n  virtual stream_if.slave vif;\n  uvm_analysis_port #(stream_item) ap;\n\n \
+    \ function new(string name, uvm_component parent);\n    super.new(name, parent);\n\
+    \    ap = new(\"ap\", this);\n  endfunction\n\n  task run_phase(uvm_phase phase);\n\
+    \    stream_item tr;\n\n    if (vif == null) begin\n      `uvm_fatal(get_type_name(),\
+    \ \"vif is null; did you set it via config DB?\")\n    end\n// ..."
+- type: code
+  title: Multi-agent architecture template
+  language: markdown
+  source_file: module6/templates/MULTI_AGENT_ARCHITECTURE.md
+  code: "# Multi-Agent & Multi-Channel Architecture (Module 6)\n\n> **Purpose**: Describe\
+    \ the architecture and coordination of multi-agent, multi-channel UVM environments\
+    \ for your DUT.  \n> **Module**: 6 – Complex Multi-Agent & Protocol Testbenches\
+    \ (SV/UVM)\n\n> **Instructions**: Fill in this document for your design. Copy\
+    \ from `module6/templates/` if needed, or edit the file in `module6/` directly.\
+    \ Reference: `module6/.solutions/`.\n\n## 1. Context\n\n<!-- TODO: DUT/System,\
+    \ interfaces/channels, existing env. Why a multi-agent design is required. -->\n\
+    \n## 2. High-Level Environment Diagram\n\n<!-- TODO: Describe multi-agent env\
+    \ hierarchy (uvm_test_top, env, agents). Annotate agents, instances, coordination.\
+    \ -->\n\n## 3. Agent Inventory and Roles\n\n<!-- TODO: Table of Agent Name, Role\
+    \ (master/slave/passive), Interface/Channel(s), Active/Passive Modes, Notes. -->\n\
+    // ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. Protocol rule testing
+  left:
+  - Each protocol rule maps to checker fires, coverpoints, and at least one directed
+    or random test.
+  - Illegal sequences and corner timing documented with expected checker behavior.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE6 Verification & Testing Methods.
+- type: bullets
+  title: 2. Multi-agent scenario testing
+  bullets:
+  - Virtual sequences stress cross-agent ordering, arbitration, and backpressure.
+  - System scoreboard validates end-to-end data and sideband signals.
+  notes: From MODULE6 Verification & Testing Methods.
+- type: bullets
+  title: 3. Maintainability reviews
+  bullets:
+  - Architecture review before adding agents — avoid duplicate monitors and conflicting
+    checkers.
+  - '`./scripts/module6.sh --check` validates multi-agent and protocol planning artifacts.'
+  notes: From MODULE6 Verification & Testing Methods.
+- type: section
+  title: Syllabus topics
+- type: bullets
+  title: 1. Multi-Agent Environment Design
+  bullets:
+  - Multi-agent and multi-channel environment design.
+  - Layered and reusable testbench architecture patterns.
+  notes: From MODULE6 Topics Covered.
+- type: bullets
+  title: 2. Protocol Agents and Checkers
+  bullets:
+  - Protocol agent and protocol checker design.
+  notes: From MODULE6 Topics Covered.
+- type: bullets
+  title: 3. Scoreboards and Integration
+  bullets:
+  - Integration of complex scoreboards and time-based matching.
+  notes: From MODULE6 Topics Covered.
+- type: bullets
+  title: 4. Debug and Analysis
+  bullets:
+  - Debugging and analyzing complex, protocol-heavy simulations.
+  notes: From MODULE6 Topics Covered.
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 6 self-check
+  command: ./scripts/module6.sh --help
+  screenshot: assets/screenshots/module6_check.png
+  expect_stdout_contains: Module
+  notes: Run from course repository root.
+- type: code
+  title: Exercise scaffold
+  language: bash
+  source_file: scripts/module6.sh
+  code: ./scripts/module6.sh --scaffold
+- type: demo
+  title: 'Demo: Protocol verification plan'
+  command: head -30 module6/templates/PROTOCOL_VERIFICATION_PLAN.md
+  screenshot: assets/screenshots/ex01_protocol_plan.png
+  notes: 'Hands-on: module6/examples/protocol_plan/'
+- type: demo
+  title: 'Demo: Multi-agent architecture'
+  command: head -25 module6/templates/MULTI_AGENT_ARCHITECTURE.md
+  screenshot: assets/screenshots/ex02_multi_agent.png
+  notes: 'Hands-on: module6/examples/multi_agent/'
+- type: demo
+  title: 'Demo: Integration plan'
+  command: head -25 module6/templates/INTEGRATION_PLAN.md
+  screenshot: assets/screenshots/ex03_integration.png
+  notes: 'Hands-on: module6/examples/integration/'
+- type: demo
+  title: 'Demo: Reference protocol plan'
+  command: head -20 module6/.solutions/PROTOCOL_VERIFICATION_PLAN.md
+  screenshot: assets/screenshots/ex04_solutions.png
+  notes: 'Hands-on: module6/examples/solutions/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module6.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module6/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/2)
+  bullets:
+  - Design and document multi-agent UVM environments for protocol-based DUTs.
+  - Implement and integrate protocol agents and protocol checkers.
+  - Apply layered architecture patterns to keep complex benches maintainable.
+  - Analyze and debug multi-channel, protocol-level behavior in simulations.
+  - Multi-agent/multi-channel environment design documented in `module6/MULTI_AGENT_ARCHITECTURE.md`.
+  - Protocol verification strategy documented in `module6/PROTOCOL_VERIFICATION_PLAN.md`.
+  notes: From MODULE6 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/2)
+  bullets:
+  - Integration patterns and system-level scenarios documented in `module6/INTEGRATION_PLAN.md`.
+  - Complex bench design reviewed; action items captured in the docs.
+  notes: From MODULE6 Learning Outcomes.
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - Multi-agent/multi-channel environment design documented in `module6/MULTI_AGENT_ARCHITECTURE.md`.
+  - Protocol verification strategy documented in `module6/PROTOCOL_VERIFICATION_PLAN.md`.
+  - Integration patterns and system-level scenarios documented in `module6/INTEGRATION_PLAN.md`.
+  - Complex bench design reviewed; action items captured in the docs.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Apply your planning, environment, and regression skills to **complex multi-agent,
+    protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing
+    on architecture, protocol checking, and maintainability.
+  - Complete module6/CHECKLIST.md
+  - Review module6/EXAMPLES.md and run each lab
+  - 'Next: Next module in course'

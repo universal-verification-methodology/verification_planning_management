@@ -1,0 +1,60 @@
+[Slide 1] Real-World Verification Applications & VIP (SV/UVM) Module 7
+
+[Slide 2] Learning objectives Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+
+[Slide 5] Overview Modules 1–6 built up your **skills and infrastructure**.  
+Module 7 is about **applying** them to realistic verification challenges:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 7: DUT structure and key interfaces (see common_dut/rtl/).
+
+[Slide 8] Verification environment architecture Module 7: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE7 Design Architecture.
+
+[Slide 10] From MODULE7 Design Architecture.
+
+[Slide 11] From MODULE7 Design Architecture.
+
+[Slide 12] Verification & testing methods
+
+[Slide 13] Testing and closure flow Module 7: how tests, checks, and metrics close verification goals.
+
+[Slide 14] From MODULE7 Verification & Testing Methods.
+
+[Slide 15] From MODULE7 Verification & Testing Methods.
+
+[Slide 16] From MODULE7 Verification & Testing Methods.
+
+[Slide 17] Syllabus topics
+
+[Slide 18] From MODULE7 Topics Covered.
+
+[Slide 19] From MODULE7 Topics Covered.
+
+[Slide 20] From MODULE7 Topics Covered.
+
+[Slide 21] Hands-on examples
+
+[Slide 22] Run from course repository root.
+
+[Slide 23] Hands-on: module7/examples/vip_design/
+
+[Slide 24] Hands-on: module7/examples/projects/
+
+[Slide 25] Hands-on: module7/examples/best_practices/
+
+[Slide 26] Hands-on: module7/examples/solutions/
+
+[Slide 27] Hands-on: module7/examples/validate/
+
+[Slide 28] Practice & assessment
+
+[Slide 29] Assessment checklist At least one substantial real-world style project is described and partially/fully implemented. VIP or environment design is documented in `module7/VIP_DESIGN.md` and `module7/PROJECTS.md`. Best-practices checklist largely satisfied (`module7/BEST_PRACTICES.md` / `module7/CHECKLIST.md`). You can explain your project and design decisions as if presenting to a review board.
+
+[Slide 30] Summary & next steps Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production. Complete module7/CHECKLIST.md Run ./scripts/module7.sh --check Next: Next module in course

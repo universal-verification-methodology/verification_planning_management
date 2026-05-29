@@ -1,0 +1,32 @@
+
+[0;36m========================================[0m
+[0;36mModule 1: Verification Planning & Management Foundations[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module1.sh [OPTIONS]
+
+Module 1: Verification Planning & Management Foundations (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 1.
+
+OPTIONS:
+    --plan-status        Show status of verification_plan.md only
+    --matrix-status      Show status of requirements_matrix.md only
+    --checklist-status   Show status of checklist_module1.md only
+    --structure-status   Show required-sections check only
+    --traceability-status  Show Req ID traceability check only
+    --summary            Show all statuses (default)
+    --check              Media/CI self-check (structure only)
+    --demo               Print example commands from EXAMPLES.md
+    --scaffold           Copy templates/*.md into module1/ if missing
+    --help, -h           Show this help message
+
+EXAMPLES:
+    # Full summary (plan, matrix, checklist)
+    ./scripts/module1.sh
+
+    # Focus only on plan status
+    ./scripts/module1.sh --plan-status
+
+    # Focus only on traceability matrix
+    ./scripts/module1.sh --matrix-status
+

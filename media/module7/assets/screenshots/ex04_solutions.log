@@ -1,0 +1,20 @@
+# Verification IP (VIP) Design Plan (Module 7)
+
+> **Purpose**: Design and document a reusable Verification IP (VIP) for a chosen protocol or IP block.  
+> **Module**: 7 – Real-World Verification Applications & VIP (SV/UVM)
+
+## 1. VIP Overview
+
+- **Protocol / IP**: Ready/valid streaming protocol — single-beat handshake (valid && ready) for push and pop; used by stream_fifo and other FIFO-like or streaming blocks.  
+- **Intended Use**:
+  - Block-level verification (stream_fifo and similar DUTs).  
+  - Subsystem/system integration (reuse stream_if and agents where streaming interfaces appear).  
+  - Internal reuse first; can be packaged for wider reuse with documentation.  
+
+Summarize what this VIP should enable users to do:
+
+- **Drive** source-side traffic (push) via UVM driver and sequences.  
+- **Observe** sink-side traffic (pop) via UVM monitor and analysis port.  
+- **Check** in-order correctness via scoreboard and protocol rules (overflow/underflow) via assertions.  
+- **Measure** functional coverage (operations, level, flags, backpressure).  
+- **Configure** virtual interfaces, seed, coverage enable; integrate into any env that provides vif.  

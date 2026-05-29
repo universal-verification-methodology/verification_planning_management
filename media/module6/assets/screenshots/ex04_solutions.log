@@ -1,0 +1,20 @@
+# Protocol Verification Plan (Module 6)
+
+> **Purpose**: Define how you will verify protocol correctness (e.g., AXI-like, custom bus) using agents, checkers, coverage, and tests.  
+> **Module**: 6 – Complex Multi-Agent & Protocol Testbenches (SV/UVM)
+
+## 1. Protocol Overview
+
+- **Protocol Name**: Ready/Valid streaming (source and sink).  
+- **Key Characteristics**:
+  - **Channels**: Source (s_valid, s_ready, s_data); sink (m_valid, m_ready, m_data).  
+  - **Handshakes**: Transfer on clock edge when valid && ready; one beat per handshake.  
+  - **Ordering**: FIFO order — first-in first-out.  
+  - **Error/response semantics**: Overflow (write when full) and underflow (read when empty) set sticky flags; flags clear on reset.  
+
+Summarize how the protocol is used by the DUT (roles, typical traffic patterns):
+
+- **DUT roles**: stream_fifo is sink on source interface (accepts push) and source on sink interface (drives pop). TB driver is master on source (drives s_valid, s_data); TB drives m_ready on sink. Monitor observes m_valid, m_ready, m_data and samples on handshake.  
+- **Traffic**: Single-beat transfers; backpressure via ready deassertion; typical patterns = sustained push, sustained pop, simultaneous push+pop, fill-then-drain.  
+
+## 2. Protocol Agent Strategy

@@ -1,0 +1,80 @@
+module: 5
+course: verification_planning_management
+assets:
+- id: learning_path
+  type: diagram
+  file: assets/diagrams/learning_path.png
+  source: assets/diagrams/learning_path.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 4
+  - 4
+  license: verification_planning_management course materials
+- id: rtl_architecture
+  type: diagram
+  file: assets/diagrams/rtl_architecture.png
+  source: assets/diagrams/rtl_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 7
+  license: verification_planning_management course materials
+- id: verification_architecture
+  type: diagram
+  file: assets/diagrams/verification_architecture.png
+  source: assets/diagrams/verification_architecture.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 8
+  license: verification_planning_management course materials
+- id: testing_methods
+  type: diagram
+  file: assets/diagrams/testing_methods.png
+  source: assets/diagrams/testing_methods.mmd
+  generator: render_diagrams.sh
+  slides:
+  - 12
+  license: verification_planning_management course materials
+- id: module5_check
+  type: screenshot
+  file: assets/screenshots/module5_check.png
+  capture_command: ./scripts/module5.sh --help
+  cwd: .
+  slides:
+  - 28
+  expect_stdout_contains: Module
+- id: ex01_regression_ops
+  type: screenshot
+  file: assets/screenshots/ex01_regression_ops.png
+  capture_command: head -30 module5/templates/REGRESSION_OPS.md
+  cwd: .
+  slides:
+  - 30
+- id: ex02_debug_flake
+  type: screenshot
+  file: assets/screenshots/ex02_debug_flake.png
+  capture_command: head -25 module5/templates/DEBUG_FLAKE_PLAN.md
+  cwd: .
+  slides:
+  - 31
+- id: ex03_advanced_uvm
+  type: screenshot
+  file: assets/screenshots/ex03_advanced_uvm.png
+  capture_command: head -25 module5/templates/ADVANCED_UVM_PLAN.md
+  cwd: .
+  slides:
+  - 32
+- id: ex04_solutions
+  type: screenshot
+  file: assets/screenshots/ex04_solutions.png
+  capture_command: head -20 module5/.solutions/REGRESSION_OPS.md
+  cwd: .
+  slides:
+  - 33
+- id: ex05_validate
+  type: screenshot
+  file: assets/screenshots/ex05_validate.png
+  capture_command: ./scripts/module5.sh --check
+  cwd: .
+  slides:
+  - 34
+  expect_stdout_contains: All required checks passed

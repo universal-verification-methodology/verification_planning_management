@@ -56,6 +56,41 @@ common_dut/
 6. **Validate your progress**: Run `./scripts/module1.sh` from the repository root to check structure and completeness.
 7. Review and refine before moving to detailed coverage and regression planning.
 
+## Design Architecture
+
+### 1. Stream FIFO DUT (shared course RTL)
+
+- Course DUT: `common_dut/rtl/stream_fifo.sv` — parameterizable `DEPTH` and `DATA_WIDTH`.
+- **Source interface**: `s_valid`, `s_ready`, `s_data` (push when both valid and ready).
+- **Sink interface**: `m_valid`, `m_ready`, `m_data` (pop on handshake).
+- **Internal storage**: circular buffer (`mem`, `wr_ptr`, `rd_ptr`, `count`).
+- **Status outputs**: `level`, sticky `overflow` / `underflow` on illegal handshakes.
+
+### 2. Planning-level verification view (Module 1)
+
+- No full UVM implementation required yet — document **intended** env boundaries in `VERIFICATION_PLAN.md`.
+- `REQUIREMENTS_MATRIX.md` traces features → future tests and coverage bins.
+- `common_dut/tb/` holds skeleton stubs so architecture decisions are concrete, not abstract.
+
+## Verification & Testing Methods
+
+### 1. Planning-first methodology
+
+- Start from **spec → scope → strategy** before writing large amounts of testbench code.
+- Use **risk-based prioritization** to decide what to verify first in later modules.
+- Separate **verification objectives** (quality/risk) from implementation details.
+
+### 2. Test intent and validation (Module 1)
+
+- Capture **test intents** (names, goals, tiers) in the verification plan — not full UVM tests yet.
+- **Directed vs constrained-random** choices are documented with rationale for the FIFO DUT.
+- **Self-check**: `./scripts/module1.sh --check` validates planning artifacts; simulation is optional.
+
+### 3. Early closure thinking
+
+- Sketch **functional coverage intent** and **regression tiers** (sanity / nightly / full) for later modules.
+- Define **sign-off preview** criteria (coverage goals, bug bars) in the plan from day one.
+
 ## Topics Covered
 
 ### 1. Verification Mindset and Goals

@@ -1,0 +1,13 @@
+
+[0;36m========================================[0m
+[0;36mModule 8: Capstone – End‑to‑End Verification & VIP Delivery[0m
+[0;36m========================================[0m
+
+Module 8: media self-check
+  OK: module8/ exists
+  OK: templates/ exists
+  OK: EXAMPLES.md exists
+  OK: docs/MODULE8.md exists
+  OK: common_dut/rtl/ exists
+
+All required checks passed.

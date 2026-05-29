@@ -1,0 +1,10 @@
+flowchart TB
+  subgraph DUT["stream_fifo (common_dut/rtl)"]
+    SRC["Source interface\ns_valid / s_ready / s_data"]
+    MEM["Circular buffer\nmem[DEPTH], wr_ptr, rd_ptr"]
+    SNK["Sink interface\nm_valid / m_ready / m_data"]
+    STS["Status\nlevel, overflow, underflow"]
+    SRC --> MEM --> SNK
+    MEM --> STS
+  end
+  CLK["clk, rst_n"] --> DUT

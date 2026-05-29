@@ -1,0 +1,90 @@
+[Slide 1] Test Planning & Strategy in Depth (SV/UVM) Module 2
+
+[Slide 2] Learning objectives Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+
+[Slide 5] Overview Module 1 gave you a high-level verification plan, scope, and early test catalogue.  
+In this module, you will:
+
+[Slide 6] Design architecture
+
+[Slide 7] RTL / block architecture Module 2: DUT / block hierarchy (see module2/examples/).
+
+[Slide 8] Verification environment architecture Module 2: UVM layers, agents, and checkers for this phase.
+
+[Slide 9] From MODULE2 Design Architecture.
+
+[Slide 10] From MODULE2 Design Architecture.
+
+[Slide 11] Verification & testing methods
+
+[Slide 12] Testing and closure flow Module 2: how tests, checks, and metrics close verification goals.
+
+[Slide 13] From MODULE2 Verification & Testing Methods.
+
+[Slide 14] From MODULE2 Verification & Testing Methods.
+
+[Slide 15] From MODULE2 Verification & Testing Methods.
+
+[Slide 16] Syllabus topics
+
+[Slide 17] From MODULE2 Topics Covered.
+
+[Slide 18] From MODULE2 Topics Covered.
+
+[Slide 19] From MODULE2 Topics Covered.
+
+[Slide 20] From MODULE2 Topics Covered.
+
+[Slide 21] From MODULE2 Topics Covered.
+
+[Slide 22] From MODULE2 Topics Covered.
+
+[Slide 23] From MODULE2 Topics Covered.
+
+[Slide 24] From MODULE2 Topics Covered.
+
+[Slide 25] From MODULE2 Topics Covered.
+
+[Slide 26] From MODULE2 Topics Covered.
+
+[Slide 27] From MODULE2 Topics Covered.
+
+[Slide 28] Hands-on examples
+
+[Slide 29] Run from course repository root.
+
+[Slide 30] Exercise scaffold The following command is shown on screen.
+
+[Slide 31] Hands-on: module2/examples/test_plan/
+
+[Slide 32] Hands-on: module2/examples/regression_plan/
+
+[Slide 33] Hands-on: module2/examples/coverage_plan/
+
+[Slide 34] Hands-on: module2/examples/solutions/
+
+[Slide 35] Hands-on: module2/examples/validate/
+
+[Slide 36] Practice & assessment
+
+[Slide 37] From MODULE2 Learning Outcomes.
+
+[Slide 38] From MODULE2 Learning Outcomes.
+
+[Slide 39] From MODULE2 Learning Outcomes.
+
+[Slide 40] From MODULE2 Learning Outcomes.
+
+[Slide 41] From MODULE2 Learning Outcomes.
+
+[Slide 42] From MODULE2 Learning Outcomes.
+
+[Slide 43] Exercises Runtime Budgeting Flake-Resistance Design Traceability Check
+
+[Slide 44] Assessment checklist Has a written test taxonomy and tier definition. Test catalogue expanded and de-duplicated with clear metadata. Negative, stress, and corner-case tests are explicitly planned. Seed and randomness policy is documented. A draft regression plan exists with test-to-tier mapping. Requirements and coverage implications are reflected in the updated plan/matrix.
+
+[Slide 45] Summary & next steps Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment. Complete module2/CHECKLIST.md Review module2/EXAMPLES.md and run each lab Next: Coverage Planning & Analysis in Practice

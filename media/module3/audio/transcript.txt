@@ -1,0 +1,88 @@
+[Slide 1] Coverage Planning & Analysis in Practice (SV/UVM) Module 3
+
+[Slide 2] Learning objectives Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT.
+
+[Slide 3] Prerequisites See module README
+
+[Slide 4] Learning path Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT.
+
+[Slide 5] Overview Modules 1–2 focused on **what to test** and **how to structure tests and regressions**.  
+Module 3 turns coverage from a conceptual plan into a **measured, actionable signal**:
+
+[Slide 6] Design architecture
+
+[Slide 7] From MODULE3 Design Architecture.
+
+[Slide 8] From MODULE3 Design Architecture.
+
+[Slide 9] Coverage model — covergroups The following command is shown on screen.
+
+[Slide 10] Verification & testing methods
+
+[Slide 11] From MODULE3 Verification & Testing Methods.
+
+[Slide 12] From MODULE3 Verification & Testing Methods.
+
+[Slide 13] From MODULE3 Verification & Testing Methods.
+
+[Slide 14] sample() integration point The following command is shown on screen.
+
+[Slide 15] Syllabus topics
+
+[Slide 16] From MODULE3 Topics Covered.
+
+[Slide 17] From MODULE3 Topics Covered.
+
+[Slide 18] From MODULE3 Topics Covered.
+
+[Slide 19] From MODULE3 Topics Covered.
+
+[Slide 20] From MODULE3 Topics Covered.
+
+[Slide 21] From MODULE3 Topics Covered.
+
+[Slide 22] From MODULE3 Topics Covered.
+
+[Slide 23] From MODULE3 Topics Covered.
+
+[Slide 24] From MODULE3 Topics Covered.
+
+[Slide 25] From MODULE3 Topics Covered.
+
+[Slide 26] From MODULE3 Topics Covered.
+
+[Slide 27] From MODULE3 Topics Covered.
+
+[Slide 28] Hands-on examples
+
+[Slide 29] Run from course repository root.
+
+[Slide 30] Exercise scaffold The following command is shown on screen.
+
+[Slide 31] Hands-on: module3/examples/coverage_design/
+
+[Slide 32] Hands-on: module3/examples/coverage_run/
+
+[Slide 33] Hands-on: module3/examples/tb_coverage/
+
+[Slide 34] Hands-on: module3/examples/solutions/
+
+[Slide 35] Hands-on: module3/examples/validate/
+
+[Slide 36] Practice & assessment
+
+[Slide 37] From MODULE3 Learning Outcomes.
+
+[Slide 38] From MODULE3 Learning Outcomes.
+
+[Slide 39] From MODULE3 Learning Outcomes.
+
+[Slide 40] From MODULE3 Learning Outcomes.
+
+[Slide 41] From MODULE3 Learning Outcomes.
+
+[Slide 42] Exercises Over-Coverage vs Under-Coverage Coverage vs Bug History (if available) Tooling Experiment
+
+[Slide 43] Assessment checklist Functional coverage model implemented for key features/interfaces. Code coverage successfully enabled and reports generated. At least one coverage run documented in `COVERAGE_RUN.md`. Coverage gaps identified and categorized (test/constraint/model/waiver). Closure actions planned and reflected in test/coverage/requirements docs.
+
+[Slide 44] Summary & next steps Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT. Complete module3/CHECKLIST.md Review module3/EXAMPLES.md and run each lab Next: UVM Environment and Checker Maturity

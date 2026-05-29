@@ -1,0 +1,8 @@
+flowchart LR
+  STIM["Sequences → driver"] --> DUT["DUT"]
+  DUT --> MON["Monitor"]
+  MON --> SB["Scoreboard compare"]
+  MON --> SVA["Assertion fire"]
+  SB --> PASS["Test pass/fail"]
+  SVA --> PASS
+  TB["module4/tb/tb_stream_fifo_uvm.sv"] --> STIM

@@ -1,0 +1,6 @@
+flowchart TD
+  PLAN["Project test plan"] --> ENV["Full UVM env"]
+  ENV --> REG["Production regressions"]
+  REG --> CLOSE["Coverage closure"]
+  CLOSE --> SIGN["Sign-off criteria"]
+  BP["BEST_PRACTICES.md"] --> ENV

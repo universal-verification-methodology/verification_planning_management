@@ -56,14 +56,61 @@ common_dut/
 4. Implement or refine the corresponding SV/UVM components in `common_dut/tb/`.  
 5. Use `module4/CHECKLIST.md` to track progress and review readiness.
 
+## Design Architecture
+
+### 1. Mature UVM environment (stream_fifo)
+
+- **Env** (`stream_fifo_env`): connects source/sink agents, scoreboard, coverage subscribers.
+- **Agents**: driver + sequencer + monitor per interface; active vs passive roles documented in `ENV_DESIGN.md`.
+- **Transactions**: item fields mirror DUT handshake semantics (data, valid/ready timing).
+- Reference implementation sketch: `module4/tb/tb_stream_fifo_uvm.sv` and `stream_pkg.sv` patterns.
+
+### 2. Checking architecture
+
+- **Scoreboard / reference model** — golden data path and ordering checks (`CHECKER_PLAN.md`).
+- **SVA** — protocol and functional assertions on interfaces and internal flags.
+- Clear split: what is checked in **SVA** vs **scoreboard** vs **test self-check**.
+
+## Verification & Testing Methods
+
+### 1. Stimulus and checking flow
+
+- Sequences → driver → DUT → monitor → scoreboard compare and assertion sampling.
+- Reset, backpressure, and error-injection scenarios exercised per `TEST_PLAN.md`.
+
+### 2. Assertion-based verification (ABV)
+
+- Place assertions close to interfaces; use `assert`/`assume` policy consistent with your simulator flow.
+- Document waiver and severity policy for known benign cases.
+
+### 3. Environment review
+
+- Peer/self review of `ENV_DESIGN.md` and `CHECKER_PLAN.md` before expanding regression scope.
+- `./scripts/module4.sh --check` validates design docs and TB file presence.
+
 ## Topics Covered
 
+### 1. Environment and Agent Architecture
+
 - Environment and agent architecture (env vs agents vs tests).  
+- Layered testbench structure and reuse across tiers and DUT variants.
+
+### 2. Transactions and Sequences
+
 - Transaction and sequence design aligned with your test plan.  
-- Driver and monitor behavior, including resets, backpressure, and error handling.  
-- Scoreboard and reference model design.  
-- Assertion strategy: what to check with SVA vs scoreboards vs tests.  
-- Environment configuration and reuse across tiers and DUT variants.
+- Mapping test intents to UVM sequences and configuration.
+
+### 3. Drivers and Monitors
+
+- Driver and monitor behavior, including resets, backpressure, and error handling.
+
+### 4. Scoreboards and Reference Models
+
+- Scoreboard and reference model design.
+
+### 5. Assertions and Checking Strategy
+
+- Assertion strategy: what to check with SVA vs scoreboards vs tests.
 
 ## Learning Outcomes
 

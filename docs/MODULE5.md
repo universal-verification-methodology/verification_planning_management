@@ -58,6 +58,36 @@ common_dut/
 4. Implement the necessary UVM features and regression scripts in your codebase (`common_dut/tb/`).  
 5. Use `module5/CHECKLIST.md` to track progress.
 
+## Design Architecture
+
+### 1. Regression system architecture
+
+- **Local** quick loops, **CI** gated merges, optional **farm** for long suites (`REGRESSION_OPS.md`).
+- Regression launcher selects tier → test list → seeds → coverage merge → report artifacts.
+
+### 2. Advanced UVM orchestration
+
+- **Virtual sequences** coordinate multiple agents (e.g., concurrent source/sink traffic).
+- **Callbacks** and **config DB** patterns for mode switches without rewriting tests.
+- Documented in `ADVANCED_UVM_PLAN.md`; implemented under `common_dut/tb/`.
+
+## Verification & Testing Methods
+
+### 1. Operational regression testing
+
+- Every tier has target runtime, pass criteria, and artifact retention (logs, waves, coverage DB).
+- Failures triaged with reproducible seeds and minimized waveforms.
+
+### 2. Flake and performance management
+
+- `DEBUG_FLAKE_PLAN.md` — detect flaky tests, quarantine policy, timeout budgets.
+- Performance tuning: parallel jobs, test ordering, and dropping redundant long tests.
+
+### 3. Data-driven refinement
+
+- Use regression + coverage history to prioritize new tests and retire low-value ones.
+- `./scripts/module5.sh --check` validates ops and advanced-UVM planning docs.
+
 ## Topics Covered
 
 ### 1. Concrete Regression Flows

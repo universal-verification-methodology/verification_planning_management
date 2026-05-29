@@ -1,0 +1,127 @@
+1
+00:00:00,000 --> 00:00:06,264
+Complex Multi-Agent & Protocol Testbenches (SV/UVM) Module 6
+
+2
+00:00:06,614 --> 00:00:22,310
+Learning objectives Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+
+3
+00:00:22,660 --> 00:00:25,420
+Prerequisites See module README
+
+4
+00:00:25,770 --> 00:00:41,202
+Learning path Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+
+5
+00:00:41,552 --> 00:00:44,768
+Overview By Module 6, you have:
+
+6
+00:00:45,118 --> 00:00:47,326
+Design architecture
+
+7
+00:00:47,676 --> 00:00:56,652
+RTL / block architecture Module 6: DUT structure and key interfaces (see common_dut/rtl/).
+
+8
+00:00:57,002 --> 00:01:04,370
+Verification environment architecture Module 6: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:04,720 --> 00:01:07,864
+From MODULE6 Design Architecture.
+
+10
+00:01:08,214 --> 00:01:11,358
+From MODULE6 Design Architecture.
+
+11
+00:01:11,708 --> 00:01:14,852
+From MODULE6 Design Architecture.
+
+12
+00:01:15,202 --> 00:01:18,274
+Verification & testing methods
+
+13
+00:01:18,624 --> 00:01:25,680
+Testing and closure flow Module 6: how tests, checks, and metrics close verification goals.
+
+14
+00:01:26,030 --> 00:01:30,086
+From MODULE6 Verification & Testing Methods.
+
+15
+00:01:30,436 --> 00:01:34,492
+From MODULE6 Verification & Testing Methods.
+
+16
+00:01:34,842 --> 00:01:38,898
+From MODULE6 Verification & Testing Methods.
+
+17
+00:01:39,248 --> 00:01:41,504
+Syllabus topics
+
+18
+00:01:41,854 --> 00:01:44,710
+From MODULE6 Topics Covered.
+
+19
+00:01:45,060 --> 00:01:47,916
+From MODULE6 Topics Covered.
+
+20
+00:01:48,266 --> 00:01:51,122
+From MODULE6 Topics Covered.
+
+21
+00:01:51,472 --> 00:01:54,328
+From MODULE6 Topics Covered.
+
+22
+00:01:54,678 --> 00:01:56,910
+Hands-on examples
+
+23
+00:01:57,260 --> 00:02:00,092
+Run from course repository root.
+
+24
+00:02:00,442 --> 00:02:04,450
+Exercise scaffold The following command is shown on screen.
+
+25
+00:02:04,800 --> 00:02:10,224
+Hands-on: module6/examples/protocol_plan/
+
+26
+00:02:10,574 --> 00:02:15,926
+Hands-on: module6/examples/multi_agent/
+
+27
+00:02:16,276 --> 00:02:21,124
+Hands-on: module6/examples/integration/
+
+28
+00:02:21,474 --> 00:02:26,226
+Hands-on: module6/examples/solutions/
+
+29
+00:02:26,576 --> 00:02:31,328
+Hands-on: module6/examples/validate/
+
+30
+00:02:31,678 --> 00:02:34,006
+Practice & assessment
+
+31
+00:02:34,356 --> 00:03:03,660
+Assessment checklist Multi-agent/multi-channel environment design documented in `module6/MULTI_AGENT_ARCHITECTURE.md`. Protocol verification strategy documented in `module6/PROTOCOL_VERIFICATION_PLAN.md`. Integration patterns and system-level scenarios documented in `module6/INTEGRATION_PLAN.md`. Complex bench design reviewed; action items captured in the docs.
+
+32
+00:03:04,010 --> 00:03:29,066
+Summary & next steps Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability. Complete module6/CHECKLIST.md Run ./scripts/module6.sh --check Next: Next module in course

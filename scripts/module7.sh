@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE7_DIR="$PROJECT_ROOT/module7"
+MODULE_DIR="$MODULE7_DIR"
+MODULE_NUM=7
 DOCS_DIR="$MODULE7_DIR"
 LOG_FILE="$MODULE7_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_PROJECTS_STATUS=true
@@ -55,6 +63,9 @@ OPTIONS:
     --best-practices       Show status of best_practices.md only
     --checklist-status     Show status of checklist_module7.md only
     --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module7/ if missing
     --help, -h             Show this help message
 
 EXAMPLES:
@@ -69,6 +80,10 @@ EOF
 
 parse_args() {
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --projects-status)
                 RUN_PROJECTS_STATUS=true
@@ -265,6 +280,8 @@ main() {
     print_header "Module 7: Real-World Verification Applications & VIP"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

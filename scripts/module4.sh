@@ -18,8 +18,16 @@ NC='\033[0m' # No Color
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE4_DIR="$PROJECT_ROOT/module4"
+MODULE_DIR="$MODULE4_DIR"
+MODULE_NUM=4
 DOCS_DIR="$MODULE4_DIR"
 LOG_FILE="$MODULE4_DIR/run.log"
+
+MEDIA_RUN_CHECK=false
+MEDIA_RUN_DEMO=false
+MEDIA_RUN_SCAFFOLD=false
+# shellcheck source=_media_modes.inc.sh
+source "$SCRIPT_DIR/_media_modes.inc.sh"
 
 # Options
 RUN_ENV_DESIGN_STATUS=true
@@ -53,6 +61,9 @@ OPTIONS:
     --checker-status      Show status of checker_plan.md only
     --checklist-status    Show status of checklist_module4.md only
     --summary             Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module4/ if missing
     --help, -h            Show this help message
 
 EXAMPLES:
@@ -67,6 +78,10 @@ EOF
 
 parse_args() {
     while [[ $# -gt 0 ]]; do
+        if media_parse_arg "$1"; then
+            shift
+            continue
+        fi
         case $1 in
             --env-status)
                 RUN_ENV_DESIGN_STATUS=true
@@ -228,6 +243,8 @@ main() {
     print_header "Module 4: UVM Environment & Checker Maturity"
 
     parse_args "$@"
+    media_handle_early_exit
+
     check_structure
 
     local errors=0

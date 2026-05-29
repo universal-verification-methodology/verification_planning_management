@@ -1,0 +1,175 @@
+1
+00:00:00,000 --> 00:00:05,688
+Coverage Planning & Analysis in Practice (SV/UVM) Module 3
+
+2
+00:00:06,038 --> 00:00:20,054
+Learning objectives Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT.
+
+3
+00:00:20,404 --> 00:00:23,164
+Prerequisites See module README
+
+4
+00:00:23,514 --> 00:00:37,242
+Learning path Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT.
+
+5
+00:00:37,592 --> 00:00:49,304
+Overview Modules 1–2 focused on **what to test** and **how to structure tests and regressions**.   Module 3 turns coverage from a conceptual plan into a **measured, actionable signal**:
+
+6
+00:00:49,654 --> 00:00:51,862
+Design architecture
+
+7
+00:00:52,212 --> 00:00:55,284
+From MODULE3 Design Architecture.
+
+8
+00:00:55,634 --> 00:00:58,706
+From MODULE3 Design Architecture.
+
+9
+00:00:59,056 --> 00:01:03,688
+Coverage model — covergroups The following command is shown on screen.
+
+10
+00:01:04,038 --> 00:01:07,110
+Verification & testing methods
+
+11
+00:01:07,460 --> 00:01:11,444
+From MODULE3 Verification & Testing Methods.
+
+12
+00:01:11,794 --> 00:01:15,778
+From MODULE3 Verification & Testing Methods.
+
+13
+00:01:16,128 --> 00:01:20,112
+From MODULE3 Verification & Testing Methods.
+
+14
+00:01:20,462 --> 00:01:25,022
+sample() integration point The following command is shown on screen.
+
+15
+00:01:25,372 --> 00:01:27,628
+Syllabus topics
+
+16
+00:01:27,978 --> 00:01:30,786
+From MODULE3 Topics Covered.
+
+17
+00:01:31,136 --> 00:01:33,944
+From MODULE3 Topics Covered.
+
+18
+00:01:34,294 --> 00:01:37,102
+From MODULE3 Topics Covered.
+
+19
+00:01:37,452 --> 00:01:40,260
+From MODULE3 Topics Covered.
+
+20
+00:01:40,610 --> 00:01:43,418
+From MODULE3 Topics Covered.
+
+21
+00:01:43,768 --> 00:01:46,576
+From MODULE3 Topics Covered.
+
+22
+00:01:46,926 --> 00:01:49,734
+From MODULE3 Topics Covered.
+
+23
+00:01:50,084 --> 00:01:52,892
+From MODULE3 Topics Covered.
+
+24
+00:01:53,242 --> 00:01:56,050
+From MODULE3 Topics Covered.
+
+25
+00:01:56,400 --> 00:01:59,208
+From MODULE3 Topics Covered.
+
+26
+00:01:59,558 --> 00:02:02,366
+From MODULE3 Topics Covered.
+
+27
+00:02:02,716 --> 00:02:05,524
+From MODULE3 Topics Covered.
+
+28
+00:02:05,874 --> 00:02:08,106
+Hands-on examples
+
+29
+00:02:08,456 --> 00:02:11,288
+Run from course repository root.
+
+30
+00:02:11,638 --> 00:02:15,646
+Exercise scaffold The following command is shown on screen.
+
+31
+00:02:15,996 --> 00:02:21,420
+Hands-on: module3/examples/coverage_design/
+
+32
+00:02:21,770 --> 00:02:27,146
+Hands-on: module3/examples/coverage_run/
+
+33
+00:02:27,496 --> 00:02:32,944
+Hands-on: module3/examples/tb_coverage/
+
+34
+00:02:33,294 --> 00:02:38,046
+Hands-on: module3/examples/solutions/
+
+35
+00:02:38,396 --> 00:02:43,148
+Hands-on: module3/examples/validate/
+
+36
+00:02:43,498 --> 00:02:45,826
+Practice & assessment
+
+37
+00:02:46,176 --> 00:02:49,128
+From MODULE3 Learning Outcomes.
+
+38
+00:02:49,478 --> 00:02:52,430
+From MODULE3 Learning Outcomes.
+
+39
+00:02:52,780 --> 00:02:55,732
+From MODULE3 Learning Outcomes.
+
+40
+00:02:56,082 --> 00:02:59,034
+From MODULE3 Learning Outcomes.
+
+41
+00:02:59,384 --> 00:03:02,336
+From MODULE3 Learning Outcomes.
+
+42
+00:03:02,686 --> 00:03:10,126
+Exercises Over-Coverage vs Under-Coverage Coverage vs Bug History (if available) Tooling Experiment
+
+43
+00:03:10,476 --> 00:03:37,020
+Assessment checklist Functional coverage model implemented for key features/interfaces. Code coverage successfully enabled and reports generated. At least one coverage run documented in `COVERAGE_RUN.md`. Coverage gaps identified and categorized (test/constraint/model/waiver). Closure actions planned and reflected in test/coverage/requirements docs.
+
+44
+00:03:37,370 --> 00:04:01,778
+Summary & next steps Design and implement a practical **coverage model** (functional + code), connect it to your UVM environment and test plan, and perform first real **coverage analysis and gap-closing** cycles on your Verilog DUT. Complete module3/CHECKLIST.md Review module3/EXAMPLES.md and run each lab Next: UVM Environment and Checker Maturity

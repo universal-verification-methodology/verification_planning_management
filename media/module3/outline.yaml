@@ -1,0 +1,316 @@
+title: Module 3 — Coverage Planning & Analysis in Practice (SV/UVM)
+course: verification_planning_management
+module: 3
+subtitle: Design and implement a practical **coverage model** (functional + code),
+  connect it to your UVM environment and test plan, and perform first real **coverage
+  analysis and gap-closing** cycles on your Verilog DUT.
+footer: verification_planning_management / Module 3
+slides:
+- type: title
+  title: Module 3
+  subtitle: Coverage Planning & Analysis in Practice (SV/UVM)
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Design and implement a practical **coverage model** (functional + code), connect
+    it to your UVM environment and test plan, and perform first real **coverage analysis
+    and gap-closing** cycles on your Verilog DUT.
+- type: bullets
+  title: Prerequisites
+  bullets:
+  - See module README
+- type: image
+  title: Learning path
+  image: assets/diagrams/learning_path.png
+  caption: Design and implement a practical **coverage model** (functional + code),
+    connect it to your UVM environment and test plan, and perform first real **coverage
+    analysis and gap-closing** cycles on your Verilog DUT.
+- type: bullets
+  title: Overview
+  bullets:
+  - "Modules 1–2 focused on **what to test** and **how to structure tests and regressions**.\
+    \  \nModule 3 turns coverage from a conceptual plan into a **measured, actionable\
+    \ signal**:"
+- type: section
+  title: Design architecture
+- type: two_column
+  title: 1. Coverage in the UVM environment
+  left:
+  - Functional coverage lives in `common_dut/tb/stream_fifo_coverage.sv` (covergroups,
+    crosses).
+  - Monitors/agents sample transactions that feed coverpoints (fill level, handshake
+    patterns, errors).
+  - '`COVERAGE_DESIGN.md` is the authoritative map from requirements → coverpoints
+    → tests.'
+  right: assets/diagrams/rtl_architecture.png
+  notes: From MODULE3 Design Architecture.
+- type: two_column
+  title: 2. Code coverage integration
+  left:
+  - Simulator line/branch/FSM coverage configured in your run scripts (documented
+    in `COVERAGE_RUN.md`).
+  - 'Separate functional vs code coverage roles: intent vs implementation exercised.'
+  right: assets/diagrams/verification_architecture.png
+  notes: From MODULE3 Design Architecture.
+- type: code
+  title: Coverage model — covergroups
+  language: systemverilog
+  source_file: common_dut/tb/stream_fifo_coverage.sv
+  code: "  covergroup cg_ops;\n    option.per_instance = 1;\n    cp_op_type: coverpoint\
+    \ op_type {\n      bins idle          = { 0 };\n      bins push_only     = { 1\
+    \ };\n      bins pop_only      = { 2 };\n      bins push_and_pop  = { 3 };\n \
+    \   }\n  endgroup\n\n  // -------------------------------------------------------------------------\n\
+    \  // CG_LEVEL: Occupancy levels (empty / low / mid / high / full)\n  // -------------------------------------------------------------------------\n\
+    \  covergroup cg_level;\n    option.per_instance = 1;\n    cp_level: coverpoint\
+    \ level {\n      bins empty = { 0 };\n      bins low   = { [1 : (depth*25)/100]\
+    \ };\n// ..."
+- type: section
+  title: Verification & testing methods
+- type: two_column
+  title: 1. Coverage-driven verification (CDV)
+  left:
+  - Run a CORE-tier regression subset, merge coverage, and compare against goals in
+    `COVERAGE_PLAN.md`.
+  - Use gap analysis to add targeted tests or relax/remove low-value bins — not blind
+    random runs.
+  right: assets/diagrams/testing_methods.png
+  notes: From MODULE3 Verification & Testing Methods.
+- type: bullets
+  title: 2. Closure loop
+  bullets:
+  - Requirements → tests → coverpoints → measured bins → updated plan/tests.
+  - '`./scripts/module3.sh --check` expects covergroup references and coverage design
+    docs.'
+  notes: From MODULE3 Verification & Testing Methods.
+- type: bullets
+  title: 3. Reporting discipline
+  bullets:
+  - Log each run in `COVERAGE_RUN.md` with tool, seed, tier, and top uncovered items.
+  notes: From MODULE3 Verification & Testing Methods.
+- type: code
+  title: sample() integration point
+  language: systemverilog
+  source_file: common_dut/tb/stream_fifo_coverage.sv
+  code: "  function new(int depth_param = 16);\n    depth = depth_param;\n    cg_ops\
+    \   = new();\n    cg_level = new();\n    cg_flags = new();\n  endfunction\n\n\
+    \  // Call from monitor on posedge clk after driving level, op_type, overflow,\
+    \ underflow\n  function void sample();\n    cg_ops.sample();\n    cg_level.sample();\n\
+    \    cg_flags.sample();\n  endfunction"
+- type: section
+  title: Syllabus topics
+- type: bullets
+  title: 1. From Coverage Plan to Concrete Model
+  bullets:
+  - Refinement of Coverage Goals
+  - Translating high-level goals into specific covergroups and bins.
+  - Deciding which metrics are *must-hit* vs *nice-to-have*.
+  - Coverage Model Structure
+  - Organizing covergroups by feature, interface, or component.
+  - Choosing the right placement (agent monitor, scoreboard, reference model, etc.).
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 2. Functional Coverage Implementation (SV/UVM) (1/2)
+  bullets:
+  - Covergroup Basics
+  - '`covergroup` declaration, sampling events (`@`), and options.'
+  - 'Coverpoints: bins, ranges, wildcards, ignore/illegal bins.'
+  - 'Cross coverage: when and how to cross (and when not to).'
+  - Sampling Strategy
+  - Sampling on transactions vs clocks vs protocol events.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 2. Functional Coverage Implementation (SV/UVM) (2/2)
+  bullets:
+  - Avoiding oversampling/undersampling.
+  - Integration with UVM Components
+  - Embedding covergroups in monitors/scoreboards.
+  - Using analysis ports/exports for coverage sampling.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 3. Code Coverage Setup and Interpretation (1/2)
+  bullets:
+  - Enabling Code Coverage
+  - Turning on statement/branch/toggle coverage in your simulator.
+  - Handling compile-time options and run-time switches.
+  - Interpreting Results
+  - Reading coverage reports and understanding common metrics.
+  - Distinguishing real gaps from unreachable or out-of-scope code.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 3. Code Coverage Setup and Interpretation (2/2)
+  bullets:
+  - Managing Exclusions
+  - Identifying truly unreachable code.
+  - Documenting exclusions and waivers with rationale.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 4. Running Coverage-Enabled Regressions (1/2)
+  bullets:
+  - Pilot Regressions
+  - Start with a modest CORE-tier run (not full regression).
+  - Ensure coverage data collection is working end-to-end.
+  - Merging Coverage
+  - Combining coverage from multiple tests/regressions.
+  - Understanding how your tool merges coverage across runs and seeds.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 4. Running Coverage-Enabled Regressions (2/2)
+  bullets:
+  - Automating Coverage Collection
+  - Hooks in your regression/CI scripts to generate coverage databases/reports.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 5. Coverage Analysis and Gap Closure (1/3)
+  bullets:
+  - Gap Identification
+  - Finding unhit or low-hit coverpoints and crosses.
+  - Detecting missing or ineffective coverage (bins that never can be hit).
+  - Root-Cause Analysis
+  - 'Is the gap due to:'
+  - Missing or mis-specified tests?
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 5. Coverage Analysis and Gap Closure (2/3)
+  bullets:
+  - Overly tight constraints?
+  - Incomplete coverage model?
+  - Truly unreachable or out-of-scope functionality?
+  - Closure Actions
+  - Adding or modifying tests (directed or constrained-random).
+  - Adjusting constraints or sequences.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 5. Coverage Analysis and Gap Closure (3/3)
+  bullets:
+  - Refining or pruning coverage points.
+  - Documenting waivers where appropriate.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 6. Connecting Coverage to Requirements and Sign-off (1/2)
+  bullets:
+  - Traceability
+  - Ensuring high-priority requirements are covered by both tests and coverage.
+  - Updating `REQUIREMENTS_MATRIX.md` with coverage IDs and status.
+  - Interpreting Coverage for Sign-off
+  - Understanding when “100% coverage” is meaningful (and when it isn’t).
+  - Combining coverage with bug metrics and expert judgment.
+  notes: From MODULE3 Topics Covered.
+- type: bullets
+  title: 6. Connecting Coverage to Requirements and Sign-off (2/2)
+  bullets:
+  - Preparing for Later Modules
+  - How coverage insights will influence later regression and sign-off modules.
+  notes: From MODULE3 Topics Covered.
+- type: section
+  title: Hands-on examples
+- type: demo
+  title: Module 3 self-check
+  command: ./scripts/module3.sh --help
+  screenshot: assets/screenshots/module3_check.png
+  expect_stdout_contains: Module
+  notes: Run from course repository root.
+- type: code
+  title: Exercise scaffold
+  language: bash
+  source_file: scripts/module3.sh
+  code: ./scripts/module3.sh --scaffold
+- type: demo
+  title: 'Demo: Coverage design template'
+  command: head -30 module3/templates/COVERAGE_DESIGN.md
+  screenshot: assets/screenshots/ex01_coverage_design.png
+  notes: 'Hands-on: module3/examples/coverage_design/'
+- type: demo
+  title: 'Demo: Coverage run log template'
+  command: head -25 module3/templates/COVERAGE_RUN.md
+  screenshot: assets/screenshots/ex02_coverage_run.png
+  notes: 'Hands-on: module3/examples/coverage_run/'
+- type: demo
+  title: 'Demo: TB coverage skeleton'
+  command: head -40 common_dut/tb/stream_fifo_coverage.sv
+  screenshot: assets/screenshots/ex03_tb_coverage.png
+  notes: 'Hands-on: module3/examples/tb_coverage/'
+  expect_stdout_contains: covergroup
+- type: demo
+  title: 'Demo: Reference coverage design'
+  command: head -20 module3/.solutions/COVERAGE_DESIGN.md
+  screenshot: assets/screenshots/ex04_solutions.png
+  notes: 'Hands-on: module3/examples/solutions/'
+- type: demo
+  title: 'Demo: Module validation'
+  command: ./scripts/module3.sh --check
+  screenshot: assets/screenshots/ex05_validate.png
+  notes: 'Hands-on: module3/examples/validate/'
+  expect_stdout_contains: All required checks passed
+- type: section
+  title: Practice & assessment
+- type: bullets
+  title: What you should know (1/5)
+  bullets:
+  - Design and implement a concrete functional coverage model for your DUT.
+  - Enable and collect code coverage from your simulator.
+  - Run coverage-enabled regressions and interpret coverage reports.
+  - Perform a structured coverage gap analysis and plan closure actions.
+  - Tie coverage results back to requirements and sign-off criteria.
+  - Choose 2–4 key features or interfaces.
+  notes: From MODULE3 Learning Outcomes.
+- type: bullets
+  title: What you should know (2/5)
+  bullets:
+  - 'For each, implement:'
+  - At least one covergroup with meaningful coverpoints.
+  - At least one useful cross (if warranted).
+  - Integrate sampling into your UVM monitor/scoreboard.
+  - Verify that bins are being hit in basic tests (e.g., SANITY/CORE tests).
+  - Enable statement/branch coverage in your simulator build/run scripts.
+  notes: From MODULE3 Learning Outcomes.
+- type: bullets
+  title: What you should know (3/5)
+  bullets:
+  - Run a small set of tests (e.g., SANITY or a subset of CORE).
+  - Generate and inspect the coverage report.
+  - 'Identify:'
+  - Any obvious coverage gaps in well-understood code.
+  - Any code that appears to be unreachable or out-of-scope.
+  - 'In `module3/COVERAGE_RUN.md`, record at least one coverage run:'
+  notes: From MODULE3 Learning Outcomes.
+- type: bullets
+  title: What you should know (4/5)
+  bullets:
+  - Date, DUT version, test set/tier, seed policy, simulator version.
+  - Key coverage metrics (summary) and major observations.
+  - List at least 5 concrete coverage gaps and your initial hypotheses.
+  - 'For at least 3 significant gaps:'
+  - 'Decide whether to: add tests, tune constraints, refine coverage, or waive.'
+  - Document the chosen action and expected impact.
+  notes: From MODULE3 Learning Outcomes.
+- type: bullets
+  title: What you should know (5/5)
+  bullets:
+  - 'Update:'
+  - '`module2/TEST_PLAN.md` (new/updated tests).'
+  - '`module2/COVERAGE_PLAN.md` / `module3/COVERAGE_DESIGN.md`.'
+  - '`module1/REQUIREMENTS_MATRIX.md` (coverage mappings, waivers).'
+  notes: From MODULE3 Learning Outcomes.
+- type: bullets
+  title: Exercises
+  bullets:
+  - Over-Coverage vs Under-Coverage
+  - Coverage vs Bug History (if available)
+  - Tooling Experiment
+- type: bullets
+  title: Assessment checklist
+  bullets:
+  - Functional coverage model implemented for key features/interfaces.
+  - Code coverage successfully enabled and reports generated.
+  - At least one coverage run documented in `COVERAGE_RUN.md`.
+  - Coverage gaps identified and categorized (test/constraint/model/waiver).
+  - Closure actions planned and reflected in test/coverage/requirements docs.
+- type: bullets
+  title: Summary & next steps
+  bullets:
+  - Design and implement a practical **coverage model** (functional + code), connect
+    it to your UVM environment and test plan, and perform first real **coverage analysis
+    and gap-closing** cycles on your Verilog DUT.
+  - Complete module3/CHECKLIST.md
+  - Review module3/EXAMPLES.md and run each lab
+  - 'Next: UVM Environment and Checker Maturity'

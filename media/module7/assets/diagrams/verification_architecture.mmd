@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph VIP["Reusable VIP package"]
+    AGT["Agent"]
+    CHK["Checker"]
+    COV["Coverage"]
+    DOC["Documentation"]
+  end
+  subgraph IP["Target DUT / protocol"]
+    RTL["RTL block"]
+    TB["Integrator testbench"]
+  end
+  VIP --> TB
+  TB --> RTL
+  VIP_DESIGN["VIP_DESIGN.md"] --> VIP
+  PROJECTS["PROJECTS.md"] --> IP

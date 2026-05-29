@@ -60,12 +60,57 @@ common_dut/
 4. Implement/refine corresponding UVM components and protocol checkers in your testbench code (`common_dut/tb/`).  
 5. Use `module6/CHECKLIST.md` to track progress.
 
+## Design Architecture
+
+### 1. Multi-agent / multi-channel TB
+
+- Multiple **agents** (per interface or channel) coordinated by env and virtual sequences.
+- **Layered architecture**: block agents → fabric/scoreboard → subsystem scenarios (`MULTI_AGENT_ARCHITECTURE.md`).
+
+### 2. Protocol verification layer
+
+- Dedicated **protocol checker** (SVA or monitor-based) separate from scoreboard data checks.
+- `PROTOCOL_VERIFICATION_PLAN.md` lists rules, coverage, and integration with agents.
+
+### 3. System integration view
+
+- `INTEGRATION_PLAN.md` describes how block-level env connects to subsystem tests.
+- Reuse agents/VIP across DUT variants via configuration and factory overrides.
+
+## Verification & Testing Methods
+
+### 1. Protocol rule testing
+
+- Each protocol rule maps to checker fires, coverpoints, and at least one directed or random test.
+- Illegal sequences and corner timing documented with expected checker behavior.
+
+### 2. Multi-agent scenario testing
+
+- Virtual sequences stress **cross-agent** ordering, arbitration, and backpressure.
+- System scoreboard validates end-to-end data and sideband signals.
+
+### 3. Maintainability reviews
+
+- Architecture review before adding agents — avoid duplicate monitors and conflicting checkers.
+- `./scripts/module6.sh --check` validates multi-agent and protocol planning artifacts.
+
 ## Topics Covered
 
+### 1. Multi-Agent Environment Design
+
 - Multi-agent and multi-channel environment design.  
-- Protocol agent and protocol checker design.  
-- Layered and reusable testbench architecture patterns.  
-- Integration of complex scoreboards and time-based matching.  
+- Layered and reusable testbench architecture patterns.
+
+### 2. Protocol Agents and Checkers
+
+- Protocol agent and protocol checker design.
+
+### 3. Scoreboards and Integration
+
+- Integration of complex scoreboards and time-based matching.
+
+### 4. Debug and Analysis
+
 - Debugging and analyzing complex, protocol-heavy simulations.
 
 ## Learning Outcomes

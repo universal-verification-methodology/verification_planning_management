@@ -1,0 +1,28 @@
+
+[0;36m========================================[0m
+[0;36mModule 7: Real-World Verification Applications & VIP[0m
+[0;36m========================================[0m
+
+Usage: ./scripts/module7.sh [OPTIONS]
+
+Module 7: Real-World Verification Applications & VIP (SV/UVM)
+This script summarizes and checks the planning artifacts for Module 7.
+
+OPTIONS:
+    --projects-status      Show status of projects.md only
+    --vip-status           Show status of vip_design.md only
+    --best-practices       Show status of best_practices.md only
+    --checklist-status     Show status of checklist_module7.md only
+    --summary              Show all statuses (default)
+    --check                  Media/CI self-check (structure only)
+    --demo                   Print example commands from EXAMPLES.md
+    --scaffold               Copy templates/*.md into module7/ if missing
+    --help, -h             Show this help message
+
+EXAMPLES:
+    # Full summary
+    ./scripts/module7.sh
+
+    # Focus only on VIP design
+    ./scripts/module7.sh --vip-status
+

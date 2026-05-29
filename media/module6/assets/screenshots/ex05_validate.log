@@ -1,0 +1,13 @@
+
+[0;36m========================================[0m
+[0;36mModule 6: Complex Multi-Agent & Protocol Testbenches[0m
+[0;36m========================================[0m
+
+Module 6: media self-check
+  OK: module6/ exists
+  OK: templates/ exists
+  OK: EXAMPLES.md exists
+  OK: docs/MODULE6.md exists
+  OK: common_dut/rtl/ exists
+
+All required checks passed.

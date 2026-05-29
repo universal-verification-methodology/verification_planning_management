@@ -1,0 +1,6 @@
+flowchart LR
+  SMK["Smoke / sanity"] --> CORE["Core feature"]
+  CORE --> STR["Stress / long-run"]
+  STR --> ERR["Error injection"]
+  ERR --> REG["Regression tiers\nsanity → nightly → full"]
+  REG --> META["Test metadata:\nID, seed, runtime class"]

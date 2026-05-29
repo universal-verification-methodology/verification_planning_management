@@ -1,0 +1,127 @@
+1
+00:00:00,000 --> 00:00:05,592
+UVM Environment & Checker Maturity (SV/UVM) Module 4
+
+2
+00:00:05,942 --> 00:00:25,214
+Learning objectives Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+
+3
+00:00:25,564 --> 00:00:28,324
+Prerequisites See module README
+
+4
+00:00:28,674 --> 00:00:47,682
+Learning path Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+
+5
+00:00:48,032 --> 00:01:01,616
+Overview Modules 1–3 focused on planning (scope, tests, regressions) and measurement (coverage).   In Module 4, you focus on the **quality and structure of the verification environment itself**:
+
+6
+00:01:01,966 --> 00:01:04,174
+Design architecture
+
+7
+00:01:04,524 --> 00:01:13,596
+RTL / block architecture Module 4: DUT structure and key interfaces (see common_dut/rtl/).
+
+8
+00:01:13,946 --> 00:01:21,410
+Verification environment architecture Module 4: UVM layers, agents, and checkers for this phase.
+
+9
+00:01:21,760 --> 00:01:24,856
+From MODULE4 Design Architecture.
+
+10
+00:01:25,206 --> 00:01:28,302
+From MODULE4 Design Architecture.
+
+11
+00:01:28,652 --> 00:01:31,724
+Verification & testing methods
+
+12
+00:01:32,074 --> 00:01:39,130
+Testing and closure flow Module 4: how tests, checks, and metrics close verification goals.
+
+13
+00:01:39,480 --> 00:01:43,440
+From MODULE4 Verification & Testing Methods.
+
+14
+00:01:43,790 --> 00:01:47,750
+From MODULE4 Verification & Testing Methods.
+
+15
+00:01:48,100 --> 00:01:52,060
+From MODULE4 Verification & Testing Methods.
+
+16
+00:01:52,410 --> 00:01:54,666
+Syllabus topics
+
+17
+00:01:55,016 --> 00:01:57,824
+From MODULE4 Topics Covered.
+
+18
+00:01:58,174 --> 00:02:00,982
+From MODULE4 Topics Covered.
+
+19
+00:02:01,332 --> 00:02:04,140
+From MODULE4 Topics Covered.
+
+20
+00:02:04,490 --> 00:02:07,298
+From MODULE4 Topics Covered.
+
+21
+00:02:07,648 --> 00:02:10,456
+From MODULE4 Topics Covered.
+
+22
+00:02:10,806 --> 00:02:13,038
+Hands-on examples
+
+23
+00:02:13,388 --> 00:02:16,220
+Run from course repository root.
+
+24
+00:02:16,570 --> 00:02:20,578
+Exercise scaffold The following command is shown on screen.
+
+25
+00:02:20,928 --> 00:02:26,424
+Hands-on: module4/examples/env_design/
+
+26
+00:02:26,774 --> 00:02:32,054
+Hands-on: module4/examples/checker_plan/
+
+27
+00:02:32,404 --> 00:02:37,828
+Hands-on: module4/examples/module_tb/
+
+28
+00:02:38,178 --> 00:02:42,930
+Hands-on: module4/examples/solutions/
+
+29
+00:02:43,280 --> 00:02:48,032
+Hands-on: module4/examples/validate/
+
+30
+00:02:48,382 --> 00:02:50,710
+Practice & assessment
+
+31
+00:02:51,060 --> 00:03:22,956
+Assessment checklist UVM env/agent architecture documented in `module4/ENV_DESIGN.md`. Transaction and sequence designs documented and aligned with `module2/TEST_PLAN.md`. Scoreboards and reference models specified in `module4/CHECKER_PLAN.md`. Key protocol/functional assertions listed and placed. At least one env/checker review (self or peer) completed; action items captured.
+
+32
+00:03:23,306 --> 00:03:51,794
+Summary & next steps Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale. Complete module4/CHECKLIST.md Run ./scripts/module4.sh --check Next: Next module in course
