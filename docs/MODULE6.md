@@ -60,6 +60,38 @@ common_dut/
 4. Implement/refine corresponding UVM components and protocol checkers in your testbench code (`common_dut/tb/`).  
 5. Use `module6/CHECKLIST.md` to track progress.
 
+## Before You Start
+
+1. Re-read `module4/ENV_DESIGN.md` and `module5/REGRESSION_OPS.md`.
+2. Scaffold Module 6 workspace: `./scripts/module6.sh --scaffold`
+3. Complete `MULTI_AGENT_ARCHITECTURE.md`, `PROTOCOL_VERIFICATION_PLAN.md`, and `INTEGRATION_PLAN.md`.
+4. Add or refine multi-agent and protocol checker components in `common_dut/tb/`.
+5. Validate: `./scripts/module6.sh --check`
+
+## Key files to study
+
+- `module6/MULTI_AGENT_ARCHITECTURE.md` — multi-channel env and virtual sequence coordination
+- `module6/PROTOCOL_VERIFICATION_PLAN.md` — protocol rules, checkers, and coverage
+- `module6/INTEGRATION_PLAN.md` — block-to-subsystem integration strategy
+- `module4/tb/stream_pkg.sv` — monitor and agent patterns to extend
+- `scripts/module6.sh` — multi-agent and protocol doc checks
+
+## Command Reference
+
+### Scaffold and validate Module 6
+
+```bash
+./scripts/module6.sh --scaffold
+./scripts/module6.sh --check
+```
+
+### Review multi-agent architecture template
+
+```bash
+head -40 module6/templates/MULTI_AGENT_ARCHITECTURE.md
+head -35 module6/templates/PROTOCOL_VERIFICATION_PLAN.md
+```
+
 ## Design Architecture
 
 ### 1. Multi-agent / multi-channel TB

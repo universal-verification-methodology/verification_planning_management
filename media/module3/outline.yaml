@@ -32,6 +32,22 @@ slides:
     \  \nModule 3 turns coverage from a conceptual plan into a **measured, actionable\
     \ signal**:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path (1/2)
+  bullets:
+  - Re-open `module2/TEST_PLAN.md` and `module2/COVERAGE_PLAN.md`.
+  - 'Scaffold Module 3 workspace: `./scripts/module3.sh --scaffold`'
+  - Design covergroups in `module3/COVERAGE_DESIGN.md` and plan runs in `COVERAGE_RUN.md`.
+  - Implement or review `common_dut/tb/stream_fifo_coverage.sv` covergroup definitions.
+  - Run a small CORE-tier regression and capture coverage (document in `COVERAGE_RUN.md`).
+  notes: From docs/MODULE3.md — read guides before running demos.
+- type: bullets
+  title: Suggested learning path (2/2)
+  bullets:
+  - 'Validate: `./scripts/module3.sh --check`'
+  notes: From docs/MODULE3.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Coverage in the UVM environment
@@ -52,6 +68,17 @@ slides:
   - 'Separate functional vs code coverage roles: intent vs implementation exercised.'
   right: assets/diagrams/verification_architecture.png
   notes: From MODULE3 Design Architecture.
+- type: bullets
+  title: 3. Coverage run and merge pipeline
+  bullets:
+  - 'Run: select CORE-tier tests → enable functional + code coverage in simulator
+    → save per-test databases.'
+  - 'Merge: combine run databases into a session or regression snapshot for analysis.'
+  - 'Analyze: compare merged coverage against goals in `COVERAGE_PLAN.md`; record
+    gaps in `COVERAGE_RUN.md`.'
+  - 'Close: add targeted tests or refine coverpoints; re-run until must-cover bins
+    are hit.'
+  notes: From MODULE3 Design Architecture.
 - type: code
   title: Coverage model — covergroups
   language: systemverilog
@@ -64,6 +91,17 @@ slides:
     \  covergroup cg_level;\n    option.per_instance = 1;\n    cp_level: coverpoint\
     \ level {\n      bins empty = { 0 };\n      bins low   = { [1 : (depth*25)/100]\
     \ };\n// ..."
+- type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module3/COVERAGE_DESIGN.md` — coverpoints, crosses, and requirement mapping'
+  - '`module3/COVERAGE_RUN.md` — run logs, merge steps, and gap analysis notes'
+  - '`common_dut/tb/stream_fifo_coverage.sv` — functional coverage implementation'
+  - '`module2/COVERAGE_PLAN.md` — coverage goals and tier linkage'
+  - '`scripts/module3.sh` — coverage design and TB presence checks'
+  notes: Trace while running module3/EXAMPLES.md labs.
 - type: section
   title: Verification & testing methods
 - type: two_column
@@ -96,6 +134,30 @@ slides:
     \  // Call from monitor on posedge clk after driving level, op_type, overflow,\
     \ underflow\n  function void sample();\n    cg_ops.sample();\n    cg_level.sample();\n\
     \    cg_flags.sample();\n  endfunction"
+- type: code
+  title: Module 3 — coverage checks
+  language: bash
+  source_file: scripts/module3.sh
+  code: '#!/usr/bin/env bash
+
+
+    # Module 3: Coverage Planning & Analysis Orchestrator
+
+    # This script summarizes and checks the coverage artifacts for Module 3.
+
+    # Usage: ./scripts/module3.sh [OPTIONS]
+
+
+    set -euo pipefail
+
+
+    # Colors for output
+
+    RED=''\033[0;31m''
+
+    GREEN=''\033[0;32m''
+
+    YELLOW=''\033[1;33m'''
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -201,6 +263,18 @@ slides:
   - Preparing for Later Modules
   - How coverage insights will influence later regression and sign-off modules.
   notes: From MODULE3 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 3
+  bullets:
+  - ./scripts/module3.sh --scaffold
+  notes: Full detail in docs/MODULE3.md command reference.
+- type: bullets
+  title: Inspect coverage model in TB
+  bullets:
+  - head -60 common_dut/tb/stream_fifo_coverage.sv
+  notes: Full detail in docs/MODULE3.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

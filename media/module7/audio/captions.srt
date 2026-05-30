@@ -1,119 +1,155 @@
 1
-00:00:00,000 --> 00:00:06,528
-Real-World Verification Applications & VIP (SV/UVM) Module 7
+00:00:00,000 --> 00:00:26,400
+Welcome to module 7, Real-World Verification Applications & VIP (SV/UVM). In this module you will apply the full methodology (planning, uvm env, coverage, regressions) to real-world style blocks and protocols (e.g., dma, uart/spi/i2c, custom ip) and design reusable verification ip (vip) ready for production..
 
 2
-00:00:06,878 --> 00:00:26,582
-Learning objectives Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+00:00:26,750 --> 00:00:42,566
+Here is what you will learn in this module. Apply the full methodology (planning, UVM env, coverage, regressions) to real-world style blocks and protocols (e.g., DMA, UART/SPI/I2C...
 
 3
-00:00:26,932 --> 00:00:29,692
-Prerequisites See module README
+00:00:42,916 --> 00:00:48,964
+Before you start, make sure you have these prerequisites. See module README
 
 4
-00:00:30,042 --> 00:00:49,458
-Learning path Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production.
+00:00:49,314 --> 00:01:09,162
+Learning path. Apply the full methodology (planning, UVM env, coverage, regressions) to real-world style blocks and protocols (e.g., DMA, UART/SPI/I2C, custom IP) and design reusable verification IP (VIP) ready...
 
 5
-00:00:49,808 --> 00:00:59,264
-Overview Modules 1–6 built up your **skills and infrastructure**.   Module 7 is about **applying** them to realistic verification challenges:
+00:01:09,512 --> 00:01:20,024
+Overview. Modules 1–6 built up your skills and infrastructure. Module 7 is about applying them to realistic verification challenges:
 
 6
-00:00:59,614 --> 00:01:01,822
-Design architecture
+00:01:20,374 --> 00:01:23,710
+Next section: How to learn this module.
 
 7
-00:01:02,172 --> 00:01:11,172
-RTL / block architecture Module 7: DUT structure and key interfaces (see common_dut/rtl/).
+00:01:24,060 --> 00:01:59,508
+Follow this learning path. Read the guides before running the labs. Choose a real-world DUT or subsystem scope in module7/PROJECTS.md. Scaffold Module 7 workspace: ./scripts/module7.sh --scaffold Design reusable VIP structure in module7/VIP_DESIGN.md. Apply best practices from module7/BEST_PRACTICES.md to naming, docs, and API boundaries. Validate: ./scripts/module7.sh --check From...
 
 8
-00:01:11,522 --> 00:01:18,938
-Verification environment architecture Module 7: UVM layers, agents, and checkers for this phase.
+00:01:59,858 --> 00:02:03,098
+Next section: Design architecture.
 
 9
-00:01:19,288 --> 00:01:22,432
-From MODULE7 Design Architecture.
+00:02:03,448 --> 00:02:26,416
+1. Real-world DUT / subsystem. Choose DMA-style block, bus/register IP, or protocol DUT (UART/SPI/I2C/AXI-lite style). Document block diagram, clocks/resets, and interface contracts in PROJECTS.md. Refer to the diagram on the right.
 
 10
-00:01:22,782 --> 00:01:25,926
-From MODULE7 Design Architecture.
+00:02:26,766 --> 00:02:53,502
+2. VIP package architecture. Reusable VIP: agent, sequencer, driver, monitor, checker, coverage, config objects. VIP_DESIGN.md defines public API, sequences, and integration guide for adopters. Package boundaries: what integrators configure vs what VIP owns internally. Refer to the diagram on the right.
 
 11
-00:01:26,276 --> 00:01:29,420
-From MODULE7 Design Architecture.
+00:02:53,852 --> 00:03:04,412
+3. Production layout. Separate rtl/, tb/, tests/, docs/ with consistent naming for handoff to another team.
 
 12
-00:01:29,770 --> 00:01:32,842
-Verification & testing methods
+00:03:04,762 --> 00:03:11,386
+VIP design template. Review the code on screen and match it to files in the repository.
 
 13
-00:01:33,192 --> 00:01:40,176
-Testing and closure flow Module 7: how tests, checks, and metrics close verification goals.
+00:03:11,736 --> 00:03:14,928
+Next section: Key files to study.
 
 14
-00:01:40,526 --> 00:01:44,558
-From MODULE7 Verification & Testing Methods.
+00:03:15,278 --> 00:03:48,758
+Open these in the repo. module7/PROJECTS.md — DUT scope, interfaces, and verification goals module7/VIP_DESIGN.md — VIP package architecture and public API module7/BEST_PRACTICES.md — production-quality verification and delivery standards module6/MULTI_AGENT_ARCHITECTURE.md — prior multi-agent patterns to reuse scripts/module7.sh — project and VIP design doc checks Trace while running...
 
 15
-00:01:44,908 --> 00:01:48,940
-From MODULE7 Verification & Testing Methods.
+00:03:49,108 --> 00:03:53,212
+Next section: Verification & testing methods.
 
 16
-00:01:49,290 --> 00:01:53,322
-From MODULE7 Verification & Testing Methods.
+00:03:53,562 --> 00:04:09,690
+1. End-to-end IP verification. Full lifecycle: requirements → env → tests → coverage → regressions → sign-off preview. Regression tiers and coverage goals match production expectations. Refer to the diagram on the right.
 
 17
-00:01:53,672 --> 00:01:55,928
-Syllabus topics
+00:04:10,040 --> 00:04:24,176
+2. VIP validation. Self-test environment for the VIP plus integrator tests on a reference DUT. Documentation-driven review: another engineer can adopt VIP from docs alone.
 
 18
-00:01:56,278 --> 00:01:59,158
-From MODULE7 Topics Covered.
+00:04:24,526 --> 00:04:40,822
+3. Quality bar. BEST_PRACTICES.md — coding standards, review checklist, maintenance and versioning. ./scripts/module7.sh --check validates project and VIP design documentation.
 
 19
-00:01:59,508 --> 00:02:02,388
-From MODULE7 Topics Covered.
+00:04:41,172 --> 00:04:47,676
+Project scope template. Review the code on screen and match it to files in the repository.
 
 20
-00:02:02,738 --> 00:02:05,618
-From MODULE7 Topics Covered.
+00:04:48,026 --> 00:04:55,274
+VIP best practices excerpt. Review the code on screen and match it to files in the repository.
 
 21
-00:02:05,968 --> 00:02:08,200
-Hands-on examples
+00:04:55,624 --> 00:04:58,888
+Next section: Syllabus topics.
 
 22
-00:02:08,550 --> 00:02:11,382
-Run from course repository root.
+00:04:59,238 --> 00:05:13,014
+1. End-to-End IP Verification. Applying planning + UVM + coverage + regression to realistic IP. Realistic test planning, coverage closure, and regression operation.
 
 23
-00:02:11,732 --> 00:02:17,324
-Hands-on: module7/examples/vip_design/
+00:05:13,364 --> 00:05:22,892
+2. VIP Design and Reuse. Designing and documenting verification IP (VIP) for protocols or blocks.
 
 24
-00:02:17,674 --> 00:02:22,474
-Hands-on: module7/examples/projects/
+00:05:23,242 --> 00:05:32,242
+3. Production Quality and Maintenance. Best practices for project structure, code quality, docs, and maintenance.
 
 25
-00:02:22,824 --> 00:02:28,416
-Hands-on: module7/examples/best_practices/
+00:05:32,592 --> 00:05:36,144
+Next section: Command reference highlights.
 
 26
-00:02:28,766 --> 00:02:33,590
-Hands-on: module7/examples/solutions/
+00:05:36,494 --> 00:05:47,246
+Scaffold and validate Module 7. ./scripts/module7.sh --scaffold Full detail in docs/MODULE7.md command reference.
 
 27
-00:02:33,940 --> 00:02:38,764
-Hands-on: module7/examples/validate/
+00:05:47,596 --> 00:06:00,364
+Review VIP and project templates. head -40 module7/templates/VIP_DESIGN.md Full detail in docs/MODULE7.md command reference.
 
 28
-00:02:39,114 --> 00:02:41,442
-Practice & assessment
+00:06:00,714 --> 00:06:03,954
+Next section: Hands-on examples.
 
 29
-00:02:41,792 --> 00:03:13,472
-Assessment checklist At least one substantial real-world style project is described and partially/fully implemented. VIP or environment design is documented in `module7/VIP_DESIGN.md` and `module7/PROJECTS.md`. Best-practices checklist largely satisfied (`module7/BEST_PRACTICES.md` / `module7/CHECKLIST.md`). You can explain your project and design decisions as if presenting to a review board.
+00:06:04,304 --> 00:06:11,432
+Module 7 self-check. Watch the terminal output and confirm you see the expected pass message.
 
 30
-00:03:13,822 --> 00:03:43,030
-Summary & next steps Apply the full methodology (planning, UVM env, coverage, regressions) to **real-world style blocks and protocols** (e.g., DMA, UART/SPI/I2C, custom IP) and design **reusable verification IP (VIP)** ready for production. Complete module7/CHECKLIST.md Run ./scripts/module7.sh --check Next: Next module in course
+00:06:11,782 --> 00:06:19,534
+Demo: VIP design template. Watch the terminal output and confirm you see the expected pass message.
+
+31
+00:06:19,884 --> 00:06:27,276
+Demo: Projects overview. Watch the terminal output and confirm you see the expected pass message.
+
+32
+00:06:27,626 --> 00:06:35,090
+Demo: Best practices. Watch the terminal output and confirm you see the expected pass message.
+
+33
+00:06:35,440 --> 00:06:43,168
+Demo: Reference VIP design. Watch the terminal output and confirm you see the expected pass message.
+
+34
+00:06:43,518 --> 00:06:51,006
+Demo: Module validation. Watch the terminal output and confirm you see the expected pass message.
+
+35
+00:06:51,356 --> 00:06:54,740
+Next section: Practice & assessment.
+
+36
+00:06:55,090 --> 00:07:21,586
+By now you should be able to explain the following. Design and implement a complete verification environment for a realistic DUT. Create and document reusable VIP that others could adopt. Operate regressions and coverage closure as you would in a real team. Maintain production-quality code, docs, and tests over the lifetime of a project. At least one substantial real-world style project is...
+
+37
+00:07:21,936 --> 00:07:42,768
+By now you should be able to explain the following. Best-practices checklist largely satisfied (module7/BEST_PRACTICES.md / module7/CHECKLIST.md). You can explain your project and design decisions as if presenting to a review board. From MODULE7 Learning Outcomes.
+
+38
+00:07:43,118 --> 00:08:15,494
+Assessment checklist. At least one substantial real-world style project is described and partially/fully implemented. VIP or environment design is documented in module7/VIP_DESIGN.md and module7/PROJECTS.md. Best-practices checklist largely satisfied (module7/BEST_PRACTICES.md / module7/CHECKLIST.md). You can explain your project and design decisions as if presenting to a review board.
+
+39
+00:08:15,844 --> 00:08:51,460
+In summary: Apply the full methodology (planning, UVM env, coverage, regressions) to real-world style blocks and protocols (e.g., DMA, UART/SPI/I2C, custom IP) and design reusable verification IP (VIP) ready for production. Next up: Next module in course. Apply the full methodology (planning, UVM env, coverage, regressions) to real-world style blocks and protocols (e.g., DMA, UART/SPI/I2C...

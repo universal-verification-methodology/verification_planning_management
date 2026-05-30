@@ -58,6 +58,40 @@ common_dut/
 4. Implement the necessary UVM features and regression scripts in your codebase (`common_dut/tb/`).  
 5. Use `module5/CHECKLIST.md` to track progress.
 
+## Before You Start
+
+1. Re-read `module2/REGRESSION_PLAN.md` and `module4/ENV_DESIGN.md`.
+2. Scaffold Module 5 workspace: `./scripts/module5.sh --scaffold`
+3. Document regression ops in `module5/REGRESSION_OPS.md` and advanced UVM in `ADVANCED_UVM_PLAN.md`.
+4. Plan flake handling in `DEBUG_FLAKE_PLAN.md`.
+5. Implement virtual sequences, callbacks, or config patterns in `common_dut/tb/`.
+6. Validate: `./scripts/module5.sh --check`
+
+## Key files to study
+
+- `module5/REGRESSION_OPS.md` — tiers, launchers, CI/farm integration
+- `module5/ADVANCED_UVM_PLAN.md` — virtual sequences, callbacks, config DB usage
+- `module5/DEBUG_FLAKE_PLAN.md` — flake detection, quarantine, debug workflow
+- `module4/tb/stream_pkg.sv` — monitor, test, and sequence patterns to extend
+- `scripts/module5.sh` — regression and advanced-UVM doc checks
+
+## Command Reference
+
+### Scaffold and validate Module 5
+
+```bash
+./scripts/module5.sh --scaffold
+./scripts/module5.sh --check
+```
+
+### Inspect test run_phase and monitor hooks
+
+```bash
+grep -n "class stream_test" module4/tb/stream_pkg.sv
+grep -n run_phase module4/tb/stream_pkg.sv
+grep -n analysis_port module4/tb/stream_pkg.sv
+```
+
 ## Design Architecture
 
 ### 1. Regression system architecture
@@ -70,6 +104,14 @@ common_dut/
 - **Virtual sequences** coordinate multiple agents (e.g., concurrent source/sink traffic).
 - **Callbacks** and **config DB** patterns for mode switches without rewriting tests.
 - Documented in `ADVANCED_UVM_PLAN.md`; implemented under `common_dut/tb/`.
+
+### 3. Regression launch and triage pipeline
+
+- **Launch**: tier script selects test list, seeds, plusargs, and parallelism level.
+- **Execute**: each test produces log, optional waveform, and coverage database.
+- **Collect**: merge coverage, aggregate pass/fail, and flag timeouts or assertion failures.
+- **Triage**: reproduce with saved seed; use `DEBUG_FLAKE_PLAN.md` for intermittent failures.
+- **Report**: publish tier summary for sign-off review and nightly dashboard consumption.
 
 ## Verification & Testing Methods
 

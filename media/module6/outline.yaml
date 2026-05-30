@@ -30,6 +30,17 @@ slides:
   bullets:
   - 'By Module 6, you have:'
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path
+  bullets:
+  - Re-read `module4/ENV_DESIGN.md` and `module5/REGRESSION_OPS.md`.
+  - 'Scaffold Module 6 workspace: `./scripts/module6.sh --scaffold`'
+  - Complete `MULTI_AGENT_ARCHITECTURE.md`, `PROTOCOL_VERIFICATION_PLAN.md`, and `INTEGRATION_PLAN.md`.
+  - Add or refine multi-agent and protocol checker components in `common_dut/tb/`.
+  - 'Validate: `./scripts/module6.sh --check`'
+  notes: From docs/MODULE6.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Multi-agent / multi-channel TB
@@ -80,6 +91,18 @@ slides:
     \ (master/slave/passive), Interface/Channel(s), Active/Passive Modes, Notes. -->\n\
     // ..."
 - type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module6/MULTI_AGENT_ARCHITECTURE.md` — multi-channel env and virtual sequence
+    coordination'
+  - '`module6/PROTOCOL_VERIFICATION_PLAN.md` — protocol rules, checkers, and coverage'
+  - '`module6/INTEGRATION_PLAN.md` — block-to-subsystem integration strategy'
+  - '`module4/tb/stream_pkg.sv` — monitor and agent patterns to extend'
+  - '`scripts/module6.sh` — multi-agent and protocol doc checks'
+  notes: Trace while running module6/EXAMPLES.md labs.
+- type: section
   title: Verification & testing methods
 - type: two_column
   title: 1. Protocol rule testing
@@ -102,6 +125,21 @@ slides:
     checkers.
   - '`./scripts/module6.sh --check` validates multi-agent and protocol planning artifacts.'
   notes: From MODULE6 Verification & Testing Methods.
+- type: code
+  title: Protocol verification plan excerpt
+  language: markdown
+  source_file: module6/templates/PROTOCOL_VERIFICATION_PLAN.md
+  code: "# Protocol Verification Plan (Module 6)\n\n> **Purpose**: Define how you\
+    \ will verify protocol correctness (e.g., AXI-like, custom bus) using agents,\
+    \ checkers, coverage, and tests.  \n> **Module**: 6 – Complex Multi-Agent & Protocol\
+    \ Testbenches (SV/UVM)\n\n> **Instructions**: Fill in this document for your design.\
+    \ Copy from `module6/templates/` if needed, or edit the file in `module6/` directly.\
+    \ Reference: `module6/.solutions/`.\n\n## 1. Protocol Overview\n\n<!-- TODO: Protocol\
+    \ name, key characteristics (channels, handshakes, ordering, error/response semantics).\
+    \ How the protocol is used by the DUT (roles, traffic patterns). -->\n\n## 2.\
+    \ Protocol Agent Strategy\n\n<!-- TODO: Table of Agent Name, Role (master/slave/passive),\
+    \ Channels Handled, Notes. Active vs passive; reuse. -->\n\n## 3. Protocol Rules\
+    \ and Checkers\n\n### 3.1 Rule Inventory\n// ..."
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -125,6 +163,18 @@ slides:
   bullets:
   - Debugging and analyzing complex, protocol-heavy simulations.
   notes: From MODULE6 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 6
+  bullets:
+  - ./scripts/module6.sh --scaffold
+  notes: Full detail in docs/MODULE6.md command reference.
+- type: bullets
+  title: Review multi-agent architecture template
+  bullets:
+  - head -40 module6/templates/MULTI_AGENT_ARCHITECTURE.md
+  notes: Full detail in docs/MODULE6.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

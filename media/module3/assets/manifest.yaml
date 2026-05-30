@@ -16,7 +16,7 @@ assets:
   source: assets/diagrams/rtl_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 7
+  - 10
   license: verification_planning_management course materials
 - id: verification_architecture
   type: diagram
@@ -24,7 +24,7 @@ assets:
   source: assets/diagrams/verification_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 8
+  - 11
   license: verification_planning_management course materials
 - id: testing_methods
   type: diagram
@@ -32,7 +32,7 @@ assets:
   source: assets/diagrams/testing_methods.mmd
   generator: render_diagrams.sh
   slides:
-  - 11
+  - 17
   license: verification_planning_management course materials
 - id: module3_check
   type: screenshot
@@ -40,7 +40,7 @@ assets:
   capture_command: ./scripts/module3.sh --help
   cwd: .
   slides:
-  - 29
+  - 39
   expect_stdout_contains: Module
 - id: ex01_coverage_design
   type: screenshot
@@ -48,21 +48,21 @@ assets:
   capture_command: head -30 module3/templates/COVERAGE_DESIGN.md
   cwd: .
   slides:
-  - 31
+  - 41
 - id: ex02_coverage_run
   type: screenshot
   file: assets/screenshots/ex02_coverage_run.png
   capture_command: head -25 module3/templates/COVERAGE_RUN.md
   cwd: .
   slides:
-  - 32
+  - 42
 - id: ex03_tb_coverage
   type: screenshot
   file: assets/screenshots/ex03_tb_coverage.png
   capture_command: head -40 common_dut/tb/stream_fifo_coverage.sv
   cwd: .
   slides:
-  - 33
+  - 43
   expect_stdout_contains: covergroup
 - id: ex04_solutions
   type: screenshot
@@ -70,12 +70,12 @@ assets:
   capture_command: head -20 module3/.solutions/COVERAGE_DESIGN.md
   cwd: .
   slides:
-  - 34
+  - 44
 - id: ex05_validate
   type: screenshot
   file: assets/screenshots/ex05_validate.png
   capture_command: ./scripts/module3.sh --check
   cwd: .
   slides:
-  - 35
+  - 45
   expect_stdout_contains: All required checks passed

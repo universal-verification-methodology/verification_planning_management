@@ -32,6 +32,24 @@ slides:
     \  \nInstead of starting from coding UVM components, you will start from the **specification\
     \ and DUT** and learn how to:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path (1/2)
+  bullets:
+  - Read this module doc and `module1/README.md` for objectives and workspace layout.
+  - 'Scaffold planning files if needed: `./scripts/module1.sh --scaffold`'
+  - Edit `module1/VERIFICATION_PLAN.md` and `module1/REQUIREMENTS_MATRIX.md` from
+    templates.
+  - Inspect shared DUT RTL at `common_dut/rtl/stream_fifo.sv` and the TB skeleton
+    under `common_dut/tb/`.
+  - 'Validate planning artifacts: `./scripts/module1.sh --check`'
+  notes: From docs/MODULE1.md — read guides before running demos.
+- type: bullets
+  title: Suggested learning path (2/2)
+  bullets:
+  - Complete `module1/CHECKLIST.md` before starting Module 2.
+  notes: From docs/MODULE1.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Stream FIFO DUT (shared course RTL)
@@ -52,6 +70,18 @@ slides:
   - '`common_dut/tb/` holds skeleton stubs so architecture decisions are concrete,
     not abstract.'
   right: assets/diagrams/verification_architecture.png
+  notes: From MODULE1 Design Architecture.
+- type: bullets
+  title: 3. Repository layout and planning workflow
+  bullets:
+  - 'Inputs: DUT spec, course README, Module 1 templates and optional solutions.'
+  - 'Workspace: edit `module1/*.md` planning documents directly in the repository.'
+  - 'Shared RTL/TB: `common_dut/` holds the physical DUT and skeleton env reused in
+    later modules.'
+  - 'Validation loop: edit plan → run `./scripts/module1.sh --check` → fix TODOs →
+    checklist sign-off.'
+  - 'Outputs: verification scope, strategy, test catalogue intents, and coverage sketch
+    for Module 2.'
   notes: From MODULE1 Design Architecture.
 - type: code
   title: DUT — stream_fifo ports
@@ -76,6 +106,23 @@ slides:
     src_agent\", this);\n    snk_agent = stream_fifo_agent_skeleton::type_id::create(\"\
     snk_agent\", this);\n  endfunction\n\n  function void connect_phase(uvm_phase\
     \ phase);\n// ..."
+- type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo (1/2)
+  bullets:
+  - '`module1/VERIFICATION_PLAN.md` — verification strategy, scope, and test intents'
+  - '`module1/REQUIREMENTS_MATRIX.md` — requirements-to-test traceability'
+  - '`module1/templates/` — empty templates for a fresh start'
+  - '`module1/.solutions/` — reference solutions (optional comparison)'
+  - '`common_dut/rtl/stream_fifo.sv` — shared course DUT (stream FIFO)'
+  - '`common_dut/tb/stream_fifo_env_skeleton.sv` — UVM env stub hierarchy'
+  notes: Trace while running module1/EXAMPLES.md labs.
+- type: bullets
+  title: Open these in the repo (2/2)
+  bullets:
+  - '`scripts/module1.sh` — validation and scaffold orchestrator'
+  notes: Trace while running module1/EXAMPLES.md labs.
 - type: section
   title: Verification & testing methods
 - type: two_column
@@ -104,6 +151,13 @@ slides:
   - Define sign-off preview criteria (coverage goals, bug bars) in the plan from day
     one.
   notes: From MODULE1 Verification & Testing Methods.
+- type: code
+  title: Module 1 — validation commands
+  language: bash
+  source_file: scripts/module1.sh
+  code: "EXAMPLES:\n    # Full summary (plan, matrix, checklist)\n    $0\n\n    #\
+    \ Focus only on plan status\n    $0 --plan-status\n\n    # Focus only on traceability\
+    \ matrix\n    $0 --matrix-status\n\nEOF\n}"
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -210,6 +264,23 @@ slides:
   - 'Types of sign-off criteria: coverage, bug bars, waivers, stability.'
   - Why it’s important to think about exit criteria from Day 1.
   notes: From MODULE1 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold planning workspace
+  bullets:
+  - ./scripts/module1.sh --scaffold
+  notes: Full detail in docs/MODULE1.md command reference.
+- type: bullets
+  title: Validate Module 1 artifacts
+  bullets:
+  - ./scripts/module1.sh --check
+  notes: Full detail in docs/MODULE1.md command reference.
+- type: bullets
+  title: Inspect templates and shared DUT
+  bullets:
+  - head -30 module1/templates/VERIFICATION_PLAN.md
+  notes: Full detail in docs/MODULE1.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

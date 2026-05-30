@@ -16,7 +16,7 @@ assets:
   source: assets/diagrams/rtl_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 7
+  - 10
   license: verification_planning_management course materials
 - id: verification_architecture
   type: diagram
@@ -24,7 +24,7 @@ assets:
   source: assets/diagrams/verification_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 8
+  - 11
   license: verification_planning_management course materials
 - id: testing_methods
   type: diagram
@@ -32,49 +32,49 @@ assets:
   source: assets/diagrams/testing_methods.mmd
   generator: render_diagrams.sh
   slides:
-  - 12
+  - 18
   license: verification_planning_management course materials
 - id: module2_check
   type: screenshot
   file: assets/screenshots/module2_check.png
-  capture_command: ./scripts/module2.sh --test-plan
+  capture_command: ./scripts/module2.sh --help
   cwd: .
   slides:
-  - 28
-  expect_stdout_contains: completed successfully
+  - 38
+  expect_stdout_contains: Module
 - id: ex01_test_plan
   type: screenshot
   file: assets/screenshots/ex01_test_plan.png
   capture_command: head -30 module2/templates/TEST_PLAN.md
   cwd: .
   slides:
-  - 30
+  - 40
 - id: ex02_regression_plan
   type: screenshot
   file: assets/screenshots/ex02_regression_plan.png
   capture_command: head -25 module2/templates/REGRESSION_PLAN.md
   cwd: .
   slides:
-  - 31
+  - 41
 - id: ex03_coverage_plan
   type: screenshot
   file: assets/screenshots/ex03_coverage_plan.png
   capture_command: head -25 module2/templates/COVERAGE_PLAN.md
   cwd: .
   slides:
-  - 32
+  - 42
 - id: ex04_solutions
   type: screenshot
   file: assets/screenshots/ex04_solutions.png
   capture_command: head -20 module2/.solutions/TEST_PLAN.md
   cwd: .
   slides:
-  - 33
+  - 43
 - id: ex05_validate
   type: screenshot
   file: assets/screenshots/ex05_validate.png
   capture_command: ./scripts/module2.sh --check
   cwd: .
   slides:
-  - 34
+  - 44
   expect_stdout_contains: All required checks passed

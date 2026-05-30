@@ -1,179 +1,215 @@
 1
-00:00:00,000 --> 00:00:05,328
-Test Planning & Strategy in Depth (SV/UVM) Module 2
+00:00:00,000 --> 00:00:22,008
+Welcome to module 2, Test Planning & Strategy in Depth (SV/UVM). In this module you will turn your initial verification plan into a detailed, reviewable test strategy, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your verilog dut and sv/uvm environment..
 
 2
-00:00:05,678 --> 00:00:22,070
-Learning objectives Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+00:00:22,358 --> 00:00:34,142
+Here is what you will learn in this module. Turn your initial verification plan into a detailed, reviewable test strategy, with a structured test catalogue, negative/stress...
 
 3
-00:00:22,420 --> 00:00:25,180
-Prerequisites See module README
+00:00:34,492 --> 00:00:40,540
+Before you start, make sure you have these prerequisites. See module README
 
 4
-00:00:25,530 --> 00:00:41,730
-Learning path Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment.
+00:00:40,890 --> 00:00:54,858
+Learning path. Turn your initial verification plan into a detailed, reviewable test strategy, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your...
 
 5
-00:00:42,080 --> 00:00:51,032
-Overview Module 1 gave you a high-level verification plan, scope, and early test catalogue.   In this module, you will:
+00:00:55,208 --> 00:01:05,216
+Overview. Module 1 gave you a high-level verification plan, scope, and early test catalogue. In this module, you will:
 
 6
-00:00:51,382 --> 00:00:53,590
-Design architecture
+00:01:05,566 --> 00:01:08,902
+Next section: How to learn this module.
 
 7
-00:00:53,940 --> 00:01:02,196
-RTL / block architecture Module 2: DUT / block hierarchy (see module2/examples/).
+00:01:09,252 --> 00:01:45,204
+Follow this learning path. Read the guides before running the labs. Re-read module1/VERIFICATION_PLAN.md and module1/REQUIREMENTS_MATRIX.md. Scaffold Module 2 workspace if needed: ./scripts/module2.sh --scaffold Fill module2/TEST_PLAN.md, REGRESSION_PLAN.md, and optionally refine COVERAGE_PLAN.md. Map each test intent to a future UVM test name, sequence, and regression tier. Validate...
 
 8
-00:01:02,546 --> 00:01:09,938
-Verification environment architecture Module 2: UVM layers, agents, and checkers for this phase.
+00:01:45,554 --> 00:02:00,722
+Follow this learning path. Read the guides before running the labs. Complete module2/CHECKLIST.md before Module 3. From docs/MODULE2.md — read guides before running demos.
 
 9
-00:01:10,288 --> 00:01:13,312
-From MODULE2 Design Architecture.
+00:02:01,072 --> 00:02:04,312
+Next section: Design architecture.
 
 10
-00:01:13,662 --> 00:01:16,686
-From MODULE2 Design Architecture.
+00:02:04,662 --> 00:02:36,462
+1. UVM environment skeleton. common_dut/tb/stream_fifo_env_skeleton.sv — env + agent stubs (source/sink agents). Hierarchy: uvm_test → stream_fifo_env → agents → (future) driver, sequencer, monitor. Interfaces tie to DUT ports via virtual interfaces or pin-level connections in the top testbench. Refer to the diagram on the right.
 
 11
-00:01:17,036 --> 00:01:20,108
-Verification & testing methods
+00:02:36,812 --> 00:03:06,212
+2. Test-plan ↔ TB mapping. TEST_PLAN.md catalogue entries map to UVM tests, sequences, and config knobs. REGRESSION_PLAN.md defines tiers that will eventually select subsets of tests. Naming conventions (SMK_, FTR_, ERR_) link documentation to future uvm_test names. Refer to the diagram on the right.
 
 12
-00:01:20,458 --> 00:01:27,394
-Testing and closure flow Module 2: how tests, checks, and metrics close verification goals.
+00:03:06,562 --> 00:03:37,978
+3. Test execution mapping (planning level). Each catalogue row specifies: UVM test class, base sequence, plusargs/seeds, and regression tier. Smoke tests map to short directed sequences; stress tests map to long-run or backpressure scenarios. Error-injection tests document illegal handshake or overflow/underflow stimulus intent. ./scripts/module2.sh --check confirms test plan sections and TB...
 
 13
-00:01:27,744 --> 00:01:31,656
-From MODULE2 Verification & Testing Methods.
+00:03:38,328 --> 00:03:45,648
+Handshake logic (push/pop). Review the code on screen and match it to files in the repository.
 
 14
-00:01:32,006 --> 00:01:35,918
-From MODULE2 Verification & Testing Methods.
+00:03:45,998 --> 00:03:53,390
+Agent stub — build_phase. Review the code on screen and match it to files in the repository.
 
 15
-00:01:36,268 --> 00:01:40,180
-From MODULE2 Verification & Testing Methods.
+00:03:53,740 --> 00:03:56,932
+Next section: Key files to study.
 
 16
-00:01:40,530 --> 00:01:42,786
-Syllabus topics
+00:03:57,282 --> 00:04:32,226
+Open these in the repo. module2/TEST_PLAN.md — detailed test catalogue and taxonomy module2/REGRESSION_PLAN.md — tier definitions and pass/fail policy module2/COVERAGE_PLAN.md — coverage intent linked to tests common_dut/tb/stream_fifo_env_skeleton.sv — env hierarchy your tests will target common_dut/rtl/stream_fifo.sv — handshake and status behavior to test Trace while running...
 
 17
-00:01:43,136 --> 00:01:45,920
-From MODULE2 Topics Covered.
+00:04:32,576 --> 00:04:36,680
+Next section: Verification & testing methods.
 
 18
-00:01:46,270 --> 00:01:49,054
-From MODULE2 Topics Covered.
+00:04:37,030 --> 00:05:02,758
+1. Test taxonomy. Smoke/sanity — fast checks after every change; feature — per-requirement depth. Stress / long-run — backlog pressure, sustained traffic; error injection — overflow, underflow, illegal sequences. Each type documents expected runtime class and whether seeds are fixed or varied. Refer to the diagram on the right.
 
 19
-00:01:49,404 --> 00:01:52,188
-From MODULE2 Topics Covered.
+00:05:03,108 --> 00:05:25,572
+2. Regression tiering (planning level). Assign every catalogue test to sanity, core, stress, or full tiers. Document pass/fail policy preview and which negative tests are safe for frequent runs. ./scripts/module2.sh --check verifies plan completeness and TB skeleton presence.
 
 20
-00:01:52,538 --> 00:01:55,322
-From MODULE2 Topics Covered.
+00:05:25,922 --> 00:05:35,162
+3. Reproducibility. Plan seed strategy, constraint overrides, and plusargs per test for debuggable random runs.
 
 21
-00:01:55,672 --> 00:01:58,456
-From MODULE2 Topics Covered.
+00:05:35,512 --> 00:05:42,808
+Module 2 — scaffold and check. Review the code on screen and match it to files in the repository.
 
 22
-00:01:58,806 --> 00:02:01,590
-From MODULE2 Topics Covered.
+00:05:43,158 --> 00:05:46,422
+Next section: Syllabus topics.
 
 23
-00:02:01,940 --> 00:02:04,724
-From MODULE2 Topics Covered.
+00:05:46,772 --> 00:06:06,236
+1. Test Taxonomy and Structure (1/2). Test Types Smoke/sanity vs feature vs stress vs error-injection vs performance (if applicable). Directed vs constrained-random vs scenario-based tests. Tiers and Frequency Per-commit / pre-push tests.
 
 24
-00:02:05,074 --> 00:02:07,858
-From MODULE2 Topics Covered.
+00:06:06,586 --> 00:06:25,090
+1. Test Taxonomy and Structure (2/2). Weekly full or long-running suites. Mapping to UVM How test types relate to UVM tests and sequences. Using configuration objects / plusargs / factory overrides to specialize tests.
 
 25
-00:02:08,208 --> 00:02:10,992
-From MODULE2 Topics Covered.
+00:06:25,440 --> 00:06:50,160
+2. Test Catalogue Refinement (1/2). From List to Catalogue Expanding the initial 10–20 test intents into a more complete catalogue. Grouping tests by feature, interface, or requirement group. Naming and Metadata Test ID conventions (e.g., SMK_, FTR_, STR_, ERR_ prefixes).
 
 26
-00:02:11,342 --> 00:02:14,126
-From MODULE2 Topics Covered.
+00:06:50,510 --> 00:07:04,910
+2. Test Catalogue Refinement (2/2). Redundancy and Value Identifying overlapping tests and merging where reasonable. Distinguishing “coverage-driving” tests vs “regression guardrail” tests.
 
 27
-00:02:14,476 --> 00:02:17,260
-From MODULE2 Topics Covered.
+00:07:05,260 --> 00:07:26,140
+3. Negative, Stress, and Corner-Case Planning (1/2). Negative Testing Illegal sequences, protocol violations, out-of-range values. Malformed packets/transactions, timing violations (where meaningful). Stress and Long-Run Scenarios High-load / long-duration tests.
 
 28
-00:02:17,610 --> 00:02:19,842
-Hands-on examples
+00:07:26,490 --> 00:07:44,754
+3. Negative, Stress, and Corner-Case Planning (2/2). Corner Cases Boundary values, wrap-around conditions, reset-in-the-middle, mode transitions. Instrumentation Needs What additional checks, monitors, or assertions are needed to support these tests.
 
 29
-00:02:20,192 --> 00:02:23,024
-Run from course repository root.
+00:07:45,104 --> 00:08:04,760
+4. Seeds, Constraints, and Reproducibility (1/2). Seed Strategy When to fix seeds vs vary them. How to record seeds for debugging and reproducibility. Constraints and Randomization Control High-level constraints in sequences vs constraint overrides per test.
 
 30
-00:02:23,374 --> 00:02:27,382
-Exercise scaffold The following command is shown on screen.
+00:08:05,110 --> 00:08:22,798
+4. Seeds, Constraints, and Reproducibility (2/2). Test Parameters and Configurations Using UVM configuration database, plusargs, or config files. Planning for parametrization (e.g., data width, depth, mode).
 
 31
-00:02:27,732 --> 00:02:32,940
-Hands-on: module2/examples/test_plan/
+00:08:23,148 --> 00:08:44,268
+5. Regression Tiering and Policies (Planning Level) (1/2). Regression Tiers Tier definitions (e.g., sanity, core_feature, stress, full). Target runtimes and approximate test counts for each tier. Test Assignment Mapping each test in the catalogue to one or more tiers.
 
 32
-00:02:33,290 --> 00:02:38,690
-Hands-on: module2/examples/regression_plan/
+00:08:44,618 --> 00:09:00,866
+5. Regression Tiering and Policies (Planning Level) (2/2). Pass/Fail Policies (Preview) What counts as a pass, fail, flake. Basic quarantine strategy for flaky tests (details in later modules).
 
 33
-00:02:39,040 --> 00:02:44,368
-Hands-on: module2/examples/coverage_plan/
+00:09:01,216 --> 00:09:22,456
+6. Coordination with Coverage and Requirements. Closing Loops with Requirements Ensuring each high-priority requirement has enough tests (not just one). Verifying that tests exercise planned coverage points. Coverage-Driven Test Gaps Identifying missing tests from coverage perspective (e.g., unhit bins).
 
 34
-00:02:44,718 --> 00:02:49,422
-Hands-on: module2/examples/solutions/
+00:09:22,806 --> 00:09:26,358
+Next section: Command reference highlights.
 
 35
-00:02:49,772 --> 00:02:54,476
-Hands-on: module2/examples/validate/
+00:09:26,708 --> 00:09:37,172
+Scaffold and validate Module 2. ./scripts/module2.sh --scaffold Full detail in docs/MODULE2.md command reference.
 
 36
-00:02:54,826 --> 00:02:57,154
-Practice & assessment
+00:09:37,522 --> 00:09:49,714
+Review test and regression templates. head -40 module2/templates/TEST_PLAN.md Full detail in docs/MODULE2.md command reference.
 
 37
-00:02:57,504 --> 00:03:00,384
-From MODULE2 Learning Outcomes.
+00:09:50,064 --> 00:09:53,304
+Next section: Hands-on examples.
 
 38
-00:03:00,734 --> 00:03:03,614
-From MODULE2 Learning Outcomes.
+00:09:53,654 --> 00:10:00,686
+Module 2 self-check. Watch the terminal output and confirm you see the expected pass message.
 
 39
-00:03:03,964 --> 00:03:06,844
-From MODULE2 Learning Outcomes.
+00:10:01,036 --> 00:10:07,420
+Exercise scaffold. Review the code on screen and match it to files in the repository.
 
 40
-00:03:07,194 --> 00:03:10,074
-From MODULE2 Learning Outcomes.
+00:10:07,770 --> 00:10:15,258
+Demo: Test plan template. Watch the terminal output and confirm you see the expected pass message.
 
 41
-00:03:10,424 --> 00:03:13,304
-From MODULE2 Learning Outcomes.
+00:10:15,608 --> 00:10:23,312
+Demo: Regression plan template. Watch the terminal output and confirm you see the expected pass message.
 
 42
-00:03:13,654 --> 00:03:16,534
-From MODULE2 Learning Outcomes.
+00:10:23,662 --> 00:10:31,246
+Demo: Coverage plan template. Watch the terminal output and confirm you see the expected pass message.
 
 43
-00:03:16,884 --> 00:03:21,852
-Exercises Runtime Budgeting Flake-Resistance Design Traceability Check
+00:10:31,596 --> 00:10:39,132
+Demo: Reference test plan. Watch the terminal output and confirm you see the expected pass message.
 
 44
-00:03:22,202 --> 00:03:49,058
-Assessment checklist Has a written test taxonomy and tier definition. Test catalogue expanded and de-duplicated with clear metadata. Negative, stress, and corner-case tests are explicitly planned. Seed and randomness policy is documented. A draft regression plan exists with test-to-tier mapping. Requirements and coverage implications are reflected in the updated plan/matrix.
+00:10:39,482 --> 00:10:46,970
+Demo: Module validation. Watch the terminal output and confirm you see the expected pass message.
 
 45
-00:03:49,408 --> 00:04:16,360
-Summary & next steps Turn your initial verification plan into a detailed, reviewable **test strategy**, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment. Complete module2/CHECKLIST.md Review module2/EXAMPLES.md and run each lab Next: Coverage Planning & Analysis in Practice
+00:10:47,320 --> 00:10:50,704
+Next section: Practice & assessment.
+
+46
+00:10:51,054 --> 00:11:19,134
+By now you should be able to explain the following. Design a structured test taxonomy tailored to your DUT and UVM environment. Maintain a rich test catalogue with clear metadata and priorities. Plan explicit negative, stress, and corner-case tests. Define initial regression tiers and assign tests to them. Explain how your test plan supports requirements coverage and coverage closure. From...
+
+47
+00:11:19,484 --> 00:11:46,364
+By now you should be able to explain the following. Test types with definitions and examples. Tiers (sanity, core, stress, full) with expected runtime budgets. For at least 10 existing tests from Module 1, assign: Type, tier, and expected runtime. Grow your catalogue to 25–40 tests (intents), focusing on: From MODULE2 Learning Outcomes.
+
+48
+00:11:46,714 --> 00:12:06,826
+By now you should be able to explain the following. Interface/protocol scenarios. Mode and configuration combinations. Identify at least 3 redundant or low-value tests and: Merge or remove them, documenting the decision. Add at least: From MODULE2 Learning Outcomes.
+
+49
+00:12:07,176 --> 00:12:27,864
+By now you should be able to explain the following. 3 stress or long-run tests. For each, define: Preconditions and exact stimuli. Expected behavior (including assertions/flags). Special logging or debug support needed. From MODULE2 Learning Outcomes.
+
+50
+00:12:28,214 --> 00:13:01,310
+By now you should be able to explain the following. Which tests will run with fixed vs varying seeds. How seeds will be passed (e.g., plusargs, config). Document this in module2/TEST_PLAN.md and update module1/REQUIREMENTS_MATRIX.md if needed. In module2/REGRESSION_PLAN.md, define: Tier names, cadence (per-commit, nightly, weekly), and runtime targets. From MODULE2 Learning Outcomes.
+
+51
+00:13:01,660 --> 00:13:13,516
+By now you should be able to explain the following. For each test in your catalogue, add a column indicating: Primary tier(s) it belongs to. From MODULE2 Learning Outcomes.
+
+52
+00:13:13,866 --> 00:13:20,034
+Exercises. Runtime Budgeting Flake-Resistance Design Traceability Check
+
+53
+00:13:20,384 --> 00:13:42,584
+Assessment checklist. Has a written test taxonomy and tier definition. Test catalogue expanded and de-duplicated with clear metadata. Negative, stress, and corner-case tests are explicitly planned. Seed and randomness policy is documented. A draft regression plan exists with test-to-tier mapping.
+
+54
+00:13:42,934 --> 00:14:10,198
+In summary: Turn your initial verification plan into a detailed, reviewable test strategy, with a structured test catalogue, negative/stress planning, and an initial regression tiering concept for your Verilog DUT and SV/UVM environment. Next up: Coverage Planning & Analysis in Practice. Turn your initial verification plan into a detailed, reviewable test strategy, with a structured test...

@@ -54,6 +54,39 @@ common_dut/
 5. Run a small **CORE-tier regression** and capture coverage reports.  
 6. Perform an initial **gap analysis** and record closure actions.
 
+## Before You Start
+
+1. Re-open `module2/TEST_PLAN.md` and `module2/COVERAGE_PLAN.md`.
+2. Scaffold Module 3 workspace: `./scripts/module3.sh --scaffold`
+3. Design covergroups in `module3/COVERAGE_DESIGN.md` and plan runs in `COVERAGE_RUN.md`.
+4. Implement or review `common_dut/tb/stream_fifo_coverage.sv` covergroup definitions.
+5. Run a small CORE-tier regression and capture coverage (document in `COVERAGE_RUN.md`).
+6. Validate: `./scripts/module3.sh --check`
+
+## Key files to study
+
+- `module3/COVERAGE_DESIGN.md` — coverpoints, crosses, and requirement mapping
+- `module3/COVERAGE_RUN.md` — run logs, merge steps, and gap analysis notes
+- `common_dut/tb/stream_fifo_coverage.sv` — functional coverage implementation
+- `module2/COVERAGE_PLAN.md` — coverage goals and tier linkage
+- `scripts/module3.sh` — coverage design and TB presence checks
+
+## Command Reference
+
+### Scaffold and validate Module 3
+
+```bash
+./scripts/module3.sh --scaffold
+./scripts/module3.sh --check
+```
+
+### Inspect coverage model in TB
+
+```bash
+head -60 common_dut/tb/stream_fifo_coverage.sv
+grep -n covergroup common_dut/tb/stream_fifo_coverage.sv
+```
+
 ## Design Architecture
 
 ### 1. Coverage in the UVM environment
@@ -66,6 +99,13 @@ common_dut/
 
 - Simulator **line/branch/FSM** coverage configured in your run scripts (documented in `COVERAGE_RUN.md`).
 - Separate **functional** vs **code** coverage roles: intent vs implementation exercised.
+
+### 3. Coverage run and merge pipeline
+
+- **Run**: select CORE-tier tests → enable functional + code coverage in simulator → save per-test databases.
+- **Merge**: combine run databases into a session or regression snapshot for analysis.
+- **Analyze**: compare merged coverage against goals in `COVERAGE_PLAN.md`; record gaps in `COVERAGE_RUN.md`.
+- **Close**: add targeted tests or refine coverpoints; re-run until must-cover bins are hit.
 
 ## Verification & Testing Methods
 

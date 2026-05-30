@@ -34,6 +34,18 @@ slides:
   - 'Module 8 is not another theory module; it is a **major project** that ties everything
     together:'
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path
+  bullets:
+  - Select capstone DUT and scope in `module8/CAPSTONE_PROJECT.md`.
+  - 'Scaffold Module 8 workspace: `./scripts/module8.sh --scaffold`'
+  - 'Assemble artifacts from Modules 1–7: plans, env, coverage, regression ops, VIP
+    (if applicable).'
+  - Run full regression tiers and document sign-off status in the capstone checklist.
+  - 'Validate deliverable completeness: `./scripts/module8.sh --check`'
+  notes: From docs/MODULE8.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Capstone system architecture
@@ -52,6 +64,18 @@ slides:
   - Traceability matrix from requirements through tests, coverage, and sign-off criteria.
   right: assets/diagrams/verification_architecture.png
   notes: From MODULE8 Design Architecture.
+- type: bullets
+  title: 3. Capstone delivery and handoff workflow
+  bullets:
+  - 'Plan: consolidate Modules 1–2 plans into capstone scope and test/regression strategy.'
+  - 'Build: mature env, checkers, coverage, and VIP (Module 4–7 artifacts) under `rtl/`
+    and `tb/`.'
+  - 'Execute: run sanity → core → stress tiers; merge coverage; triage failures with
+    saved seeds.'
+  - 'Sign off: meet exit criteria in `CAPSTONE_PROJECT.md`; complete `CHECKLIST.md`.'
+  - 'Deliver: package RTL, UVM env, tests, scripts, and user docs for another team
+    to integrate.'
+  notes: From MODULE8 Design Architecture.
 - type: code
   title: Capstone project plan template
   language: markdown
@@ -66,6 +90,17 @@ slides:
     \ Requirements (Draft)\n\n<!-- TODO: Table of Req ID, Description, Priority, Notes.\
     \ Link to REQUIREMENTS_MATRIX.md when used. -->\n\n### 2.2 Non‑Functional / Quality\
     \ Goals\n// ..."
+- type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module8/CAPSTONE_PROJECT.md` — end-to-end project definition and deliverables'
+  - '`module8/CHECKLIST.md` — capstone sign-off and delivery checklist'
+  - '`docs/FILL_GUIDES.md` — guidance for completing planning artifacts'
+  - Prior module workspaces (`module1/` … `module7/`) — reusable verification assets
+  - '`scripts/module8.sh` — capstone documentation and checklist validation'
+  notes: Trace while running module8/EXAMPLES.md labs.
 - type: section
   title: Verification & testing methods
 - type: two_column
@@ -125,13 +160,49 @@ slides:
 
 
     // ...'
+- type: code
+  title: Capstone validation script
+  language: bash
+  source_file: scripts/module8.sh
+  code: '#!/usr/bin/env bash
+
+
+    # Module 8: Capstone Orchestrator
+
+    # This script summarizes and checks the artifacts for the Module 8 capstone.
+
+    # Usage: ./scripts/module8.sh [OPTIONS]
+
+
+    set -euo pipefail
+
+
+    # Colors for output
+
+    RED=''\033[0;31m''
+
+    GREEN=''\033[0;32m''
+
+    YELLOW=''\033[1;33m'''
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate capstone
+  bullets:
+  - ./scripts/module8.sh --scaffold
+  notes: Full detail in docs/MODULE8.md command reference.
+- type: bullets
+  title: Review capstone templates
+  bullets:
+  - head -45 module8/templates/CAPSTONE_PROJECT.md
+  notes: Full detail in docs/MODULE8.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo
   title: Module 8 self-check
-  command: ./scripts/module8.sh --capstone
+  command: ./scripts/module8.sh --help
   screenshot: assets/screenshots/module8_check.png
-  expect_stdout_contains: completed successfully
+  expect_stdout_contains: Module
   notes: Run from course repository root.
 - type: demo
   title: 'Demo: Capstone project template'

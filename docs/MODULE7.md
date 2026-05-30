@@ -56,6 +56,38 @@ common_dut/
 3. **Validate your progress**: Run `./scripts/module7.sh` from the repository root.
 4. Use `module7/CHECKLIST.md` to keep the implementation aligned with industry-quality standards.
 
+## Before You Start
+
+1. Choose a real-world DUT or subsystem scope in `module7/PROJECTS.md`.
+2. Scaffold Module 7 workspace: `./scripts/module7.sh --scaffold`
+3. Design reusable VIP structure in `module7/VIP_DESIGN.md`.
+4. Apply best practices from `module7/BEST_PRACTICES.md` to naming, docs, and API boundaries.
+5. Validate: `./scripts/module7.sh --check`
+
+## Key files to study
+
+- `module7/PROJECTS.md` — DUT scope, interfaces, and verification goals
+- `module7/VIP_DESIGN.md` — VIP package architecture and public API
+- `module7/BEST_PRACTICES.md` — production-quality verification and delivery standards
+- `module6/MULTI_AGENT_ARCHITECTURE.md` — prior multi-agent patterns to reuse
+- `scripts/module7.sh` — project and VIP design doc checks
+
+## Command Reference
+
+### Scaffold and validate Module 7
+
+```bash
+./scripts/module7.sh --scaffold
+./scripts/module7.sh --check
+```
+
+### Review VIP and project templates
+
+```bash
+head -40 module7/templates/VIP_DESIGN.md
+head -35 module7/templates/PROJECTS.md
+```
+
 ## Design Architecture
 
 ### 1. Real-world DUT / subsystem

@@ -3,7 +3,6 @@
 [0;36mModule 2: Test Planning & Strategy in Depth[0m
 [0;36m========================================[0m
 
-[0;31m[2026-05-28 21:00:42] Unknown option: --test-plan[0m
 Usage: ./scripts/module2.sh [OPTIONS]
 
 Module 2: Test Planning & Strategy in Depth (SV/UVM)

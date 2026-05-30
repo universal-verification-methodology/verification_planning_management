@@ -15,6 +15,11 @@ module1:
       source_file: common_dut/tb/stream_fifo_env_skeleton.sv
       start_line: 51
       end_line: 71
+    method_code:
+      title: "Module 1 — validation commands"
+      source_file: scripts/module1.sh
+      start_line: 73
+      end_line: 84
   demos:
     solutions:
       expect: ""
@@ -35,6 +40,11 @@ module2:
       source_file: common_dut/tb/stream_fifo_env_skeleton.sv
       start_line: 23
       end_line: 45
+    method_code:
+      title: "Module 2 — scaffold and check"
+      source_file: scripts/module2.sh
+      start_line: 1
+      end_line: 12
   demos:
     validate:
       command: "./scripts/module2.sh --check"
@@ -53,6 +63,11 @@ module3:
       source_file: common_dut/tb/stream_fifo_coverage.sv
       start_line: 59
       end_line: 71
+    method_code:
+      title: "Module 3 — coverage checks"
+      source_file: scripts/module3.sh
+      start_line: 1
+      end_line: 12
   demos:
     tb_coverage:
       expect: "covergroup"
@@ -78,6 +93,11 @@ module4:
       source_file: module4/tb/stream_pkg.sv
       start_line: 151
       end_line: 174
+    method_code:
+      title: "stream_test — run_phase"
+      source_file: module4/tb/stream_pkg.sv
+      start_line: 218
+      end_line: 246
   demos:
     module_tb:
       expect: "module"
@@ -98,6 +118,11 @@ module5:
       source_file: module4/tb/stream_pkg.sv
       start_line: 218
       end_line: 246
+    method_code:
+      title: "Module 5 — regression validation"
+      source_file: scripts/module5.sh
+      start_line: 1
+      end_line: 12
   demos:
     validate:
       command: "./scripts/module5.sh --check"
@@ -116,6 +141,11 @@ module6:
       source_file: module6/templates/MULTI_AGENT_ARCHITECTURE.md
       start_line: 1
       end_line: 28
+    method_code:
+      title: "Protocol verification plan excerpt"
+      source_file: module6/templates/PROTOCOL_VERIFICATION_PLAN.md
+      start_line: 1
+      end_line: 25
   demos:
     validate:
       command: "./scripts/module6.sh --check"
@@ -134,6 +164,11 @@ module7:
       source_file: module7/templates/PROJECTS.md
       start_line: 1
       end_line: 30
+    method_code:
+      title: "VIP best practices excerpt"
+      source_file: module7/templates/BEST_PRACTICES.md
+      start_line: 1
+      end_line: 25
   demos:
     validate:
       command: "./scripts/module7.sh --check"
@@ -152,6 +187,11 @@ module8:
       source_file: module8/templates/CHECKLIST.md
       start_line: 1
       end_line: 25
+    method_code:
+      title: "Capstone validation script"
+      source_file: scripts/module8.sh
+      start_line: 1
+      end_line: 12
   demos:
     fill_guides:
       expect: "Fill Guides"

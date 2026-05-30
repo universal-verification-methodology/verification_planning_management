@@ -54,6 +54,39 @@ All code (RTL, UVM, tests, scripts) can live in `common_dut/` or in dedicated pr
 4. Apply the full verification lifecycle (Modules 1–7) to your capstone.
 5. Use `module8/CHECKLIST.md` to track completion and readiness for delivery.
 
+## Before You Start
+
+1. Select capstone DUT and scope in `module8/CAPSTONE_PROJECT.md`.
+2. Scaffold Module 8 workspace: `./scripts/module8.sh --scaffold`
+3. Assemble artifacts from Modules 1–7: plans, env, coverage, regression ops, VIP (if applicable).
+4. Run full regression tiers and document sign-off status in the capstone checklist.
+5. Validate deliverable completeness: `./scripts/module8.sh --check`
+
+## Key files to study
+
+- `module8/CAPSTONE_PROJECT.md` — end-to-end project definition and deliverables
+- `module8/CHECKLIST.md` — capstone sign-off and delivery checklist
+- `docs/FILL_GUIDES.md` — guidance for completing planning artifacts
+- Prior module workspaces (`module1/` … `module7/`) — reusable verification assets
+- `scripts/module8.sh` — capstone documentation and checklist validation
+
+## Command Reference
+
+### Scaffold and validate capstone
+
+```bash
+./scripts/module8.sh --scaffold
+./scripts/module8.sh --check
+./scripts/module8.sh --capstone
+```
+
+### Review capstone templates
+
+```bash
+head -45 module8/templates/CAPSTONE_PROJECT.md
+head -30 module8/templates/CHECKLIST.md
+```
+
 ## Design Architecture
 
 ### 1. Capstone system architecture
@@ -66,6 +99,14 @@ All code (RTL, UVM, tests, scripts) can live in `common_dut/` or in dedicated pr
 
 - Single coherent **verification solution** or **VIP** another team can integrate.
 - Traceability matrix from requirements through tests, coverage, and sign-off criteria.
+
+### 3. Capstone delivery and handoff workflow
+
+- **Plan**: consolidate Modules 1–2 plans into capstone scope and test/regression strategy.
+- **Build**: mature env, checkers, coverage, and VIP (Module 4–7 artifacts) under `rtl/` and `tb/`.
+- **Execute**: run sanity → core → stress tiers; merge coverage; triage failures with saved seeds.
+- **Sign off**: meet exit criteria in `CAPSTONE_PROJECT.md`; complete `CHECKLIST.md`.
+- **Deliver**: package RTL, UVM env, tests, scripts, and user docs for another team to integrate.
 
 ## Verification & Testing Methods
 

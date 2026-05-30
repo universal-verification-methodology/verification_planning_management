@@ -1,127 +1,175 @@
 1
-00:00:00,000 --> 00:00:05,592
-UVM Environment & Checker Maturity (SV/UVM) Module 4
+00:00:00,000 --> 00:00:25,560
+Welcome to module 4, UVM Environment & Checker Maturity (SV/UVM). In this module you will design and mature your uvm environment (env, agents, drivers, monitors, sequencers) and checking strategy (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale..
 
 2
-00:00:05,942 --> 00:00:25,214
-Learning objectives Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+00:00:25,910 --> 00:00:38,942
+Here is what you will learn in this module. Design and mature your UVM environment (env, agents, drivers, monitors, sequencers) and checking strategy (scoreboards, reference...
 
 3
-00:00:25,564 --> 00:00:28,324
-Prerequisites See module README
+00:00:39,292 --> 00:00:45,340
+Before you start, make sure you have these prerequisites. See module README
 
 4
-00:00:28,674 --> 00:00:47,682
-Learning path Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale.
+00:00:45,690 --> 00:01:01,794
+Learning path. Design and mature your UVM environment (env, agents, drivers, monitors, sequencers) and checking strategy (scoreboards, reference models, protocol/functional assertions) so that your test and...
 
 5
-00:00:48,032 --> 00:01:01,616
-Overview Modules 1–3 focused on planning (scope, tests, regressions) and measurement (coverage).   In Module 4, you focus on the **quality and structure of the verification environment itself**:
+00:01:02,144 --> 00:01:14,360
+Overview. Modules 1–3 focused on planning (scope, tests, regressions) and measurement (coverage). In Module 4, you focus on the quality and...
 
 6
-00:01:01,966 --> 00:01:04,174
-Design architecture
+00:01:14,710 --> 00:01:18,046
+Next section: How to learn this module.
 
 7
-00:01:04,524 --> 00:01:13,596
-RTL / block architecture Module 4: DUT structure and key interfaces (see common_dut/rtl/).
+00:01:18,396 --> 00:01:55,404
+Follow this learning path. Read the guides before running the labs. Re-read module2/TEST_PLAN.md and module3/COVERAGE_DESIGN.md. Scaffold Module 4 workspace: ./scripts/module4.sh --scaffold Complete module4/ENV_DESIGN.md (agents, transactions, connectivity). Complete module4/CHECKER_PLAN.md (scoreboard, reference model, SVA split). Implement or refine UVM components in module4/tb/ and...
 
 8
-00:01:13,946 --> 00:01:21,410
-Verification environment architecture Module 4: UVM layers, agents, and checkers for this phase.
+00:01:55,754 --> 00:02:09,890
+Follow this learning path. Read the guides before running the labs. Validate: ./scripts/module4.sh --check From docs/MODULE4.md — read guides before running demos.
 
 9
-00:01:21,760 --> 00:01:24,856
-From MODULE4 Design Architecture.
+00:02:10,240 --> 00:02:13,480
+Next section: Design architecture.
 
 10
-00:01:25,206 --> 00:01:28,302
-From MODULE4 Design Architecture.
+00:02:13,830 --> 00:02:50,982
+1. Mature UVM environment (stream_fifo). Env (stream_fifo_env): connects source/sink agents, scoreboard, coverage subscribers. Agents: driver + sequencer + monitor per interface; active vs passive roles documented in ENV_DESIGN.md. Transactions: item fields mirror DUT handshake semantics (data, valid/ready timing). Reference implementation sketch: module4/tb/tb_stream_fifo_uvm.sv and...
 
 11
-00:01:28,652 --> 00:01:31,724
-Verification & testing methods
+00:02:51,332 --> 00:03:14,756
+2. Checking architecture. Scoreboard / reference model — golden data path and ordering checks (CHECKER_PLAN.md). SVA — protocol and functional assertions on interfaces and internal flags. Clear split: what is checked in SVA vs scoreboard vs test self-check. Refer to the diagram on the right.
 
 12
-00:01:32,074 --> 00:01:39,130
-Testing and closure flow Module 4: how tests, checks, and metrics close verification goals.
+00:03:15,106 --> 00:03:47,554
+3. UVM phase execution flow. build_phase: create env, agents, scoreboard, coverage subscribers via factory. connect_phase: connect monitor analysis ports to scoreboard and coverage; tie virtual interfaces. run_phase: raise objection, start sequences on sequencers, wait for drain, drop objection. report_phase: summarize errors, assertion failures, and coverage sampling status. Top module...
 
 13
-00:01:39,480 --> 00:01:43,440
-From MODULE4 Verification & Testing Methods.
+00:03:47,904 --> 00:03:55,488
+DUT instantiation in UVM top. Review the code on screen and match it to files in the repository.
 
 14
-00:01:43,790 --> 00:01:47,750
-From MODULE4 Verification & Testing Methods.
+00:03:55,838 --> 00:04:03,614
+stream_env — build & connect. Review the code on screen and match it to files in the repository.
 
 15
-00:01:48,100 --> 00:01:52,060
-From MODULE4 Verification & Testing Methods.
+00:04:03,964 --> 00:04:10,708
+Scoreboard write() hook. Review the code on screen and match it to files in the repository.
 
 16
-00:01:52,410 --> 00:01:54,666
-Syllabus topics
+00:04:11,058 --> 00:04:14,250
+Next section: Key files to study.
 
 17
-00:01:55,016 --> 00:01:57,824
-From MODULE4 Topics Covered.
+00:04:14,600 --> 00:04:54,488
+Open these in the repo. module4/ENV_DESIGN.md — env, agent, driver, monitor, sequencer design module4/CHECKER_PLAN.md — scoreboard, reference model, and assertion strategy module4/tb/stream_pkg.sv — reference UVM package (env, agents, scoreboard) module4/tb/tb_stream_fifo_uvm.sv — top-level UVM testbench and DUT hookup common_dut/rtl/stream_fifo.sv — DUT under verification Trace while running...
 
 18
-00:01:58,174 --> 00:02:00,982
-From MODULE4 Topics Covered.
+00:04:54,838 --> 00:04:58,942
+Next section: Verification & testing methods.
 
 19
-00:02:01,332 --> 00:02:04,140
-From MODULE4 Topics Covered.
+00:04:59,292 --> 00:05:16,884
+1. Stimulus and checking flow. Sequences → driver → DUT → monitor → scoreboard compare and assertion sampling. Reset, backpressure, and error-injection scenarios exercised per TEST_PLAN.md. Refer to the diagram on the right.
 
 20
-00:02:04,490 --> 00:02:07,298
-From MODULE4 Topics Covered.
+00:05:17,234 --> 00:05:32,330
+2. Assertion-based verification (ABV). Place assertions close to interfaces; use assert/assume policy consistent with your simulator flow. Document waiver and severity policy for known benign cases.
 
 21
-00:02:07,648 --> 00:02:10,456
-From MODULE4 Topics Covered.
+00:05:32,680 --> 00:05:50,272
+3. Environment review. Peer/self review of ENV_DESIGN.md and CHECKER_PLAN.md before expanding regression scope. ./scripts/module4.sh --check validates design docs and TB file presence.
 
 22
-00:02:10,806 --> 00:02:13,038
-Hands-on examples
+00:05:50,622 --> 00:05:58,374
+stream_test — run_phase. Review the code on screen and match it to files in the repository.
 
 23
-00:02:13,388 --> 00:02:16,220
-Run from course repository root.
+00:05:58,724 --> 00:06:01,988
+Next section: Syllabus topics.
 
 24
-00:02:16,570 --> 00:02:20,578
-Exercise scaffold The following command is shown on screen.
+00:06:02,338 --> 00:06:16,354
+1. Environment and Agent Architecture. Environment and agent architecture (env vs agents vs tests). Layered testbench structure and reuse across tiers and DUT variants.
 
 25
-00:02:20,928 --> 00:02:26,424
-Hands-on: module4/examples/env_design/
+00:06:16,704 --> 00:06:28,440
+2. Transactions and Sequences. Transaction and sequence design aligned with your test plan. Mapping test intents to UVM sequences and configuration.
 
 26
-00:02:26,774 --> 00:02:32,054
-Hands-on: module4/examples/checker_plan/
+00:06:28,790 --> 00:06:37,430
+3. Drivers and Monitors. Driver and monitor behavior, including resets, backpressure, and error handling.
 
 27
-00:02:32,404 --> 00:02:37,828
-Hands-on: module4/examples/module_tb/
+00:06:37,780 --> 00:06:43,972
+4. Scoreboards and Reference Models. Scoreboard and reference model design.
 
 28
-00:02:38,178 --> 00:02:42,930
-Hands-on: module4/examples/solutions/
+00:06:44,322 --> 00:06:53,010
+5. Assertions and Checking Strategy. Assertion strategy: what to check with SVA vs scoreboards vs tests.
 
 29
-00:02:43,280 --> 00:02:48,032
-Hands-on: module4/examples/validate/
+00:06:53,360 --> 00:06:56,912
+Next section: Command reference highlights.
 
 30
-00:02:48,382 --> 00:02:50,710
-Practice & assessment
+00:06:57,262 --> 00:07:07,822
+Scaffold and validate Module 4. ./scripts/module4.sh --scaffold Full detail in docs/MODULE4.md command reference.
 
 31
-00:02:51,060 --> 00:03:22,956
-Assessment checklist UVM env/agent architecture documented in `module4/ENV_DESIGN.md`. Transaction and sequence designs documented and aligned with `module2/TEST_PLAN.md`. Scoreboards and reference models specified in `module4/CHECKER_PLAN.md`. Key protocol/functional assertions listed and placed. At least one env/checker review (self or peer) completed; action items captured.
+00:07:08,172 --> 00:07:20,604
+Inspect UVM env and scoreboard. head -80 module4/tb/stream_pkg.sv Full detail in docs/MODULE4.md command reference.
 
 32
-00:03:23,306 --> 00:03:51,794
-Summary & next steps Design and mature your **UVM environment** (env, agents, drivers, monitors, sequencers) and **checking strategy** (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale. Complete module4/CHECKLIST.md Run ./scripts/module4.sh --check Next: Next module in course
+00:07:20,954 --> 00:07:24,194
+Next section: Hands-on examples.
+
+33
+00:07:24,544 --> 00:07:31,648
+Module 4 self-check. Watch the terminal output and confirm you see the expected pass message.
+
+34
+00:07:31,998 --> 00:07:38,382
+Exercise scaffold. Review the code on screen and match it to files in the repository.
+
+35
+00:07:38,732 --> 00:07:46,628
+Demo: Environment design template. Watch the terminal output and confirm you see the expected pass message.
+
+36
+00:07:46,978 --> 00:07:54,466
+Demo: Checker plan template. Watch the terminal output and confirm you see the expected pass message.
+
+37
+00:07:54,816 --> 00:08:02,736
+Demo: Module-local UVM TB. Watch the terminal output and confirm you see the expected pass message.
+
+38
+00:08:03,086 --> 00:08:10,718
+Demo: Reference env design. Watch the terminal output and confirm you see the expected pass message.
+
+39
+00:08:11,068 --> 00:08:18,556
+Demo: Module validation. Watch the terminal output and confirm you see the expected pass message.
+
+40
+00:08:18,906 --> 00:08:22,290
+Next section: Practice & assessment.
+
+41
+00:08:22,640 --> 00:08:48,176
+By now you should be able to explain the following. Describe and justify your UVM environment and agent architecture. Implement and maintain drivers, monitors, sequencers, and transactions that match your DUT and test plan. Implement or integrate scoreboards and reference models for robust checking. Design and place protocol and functional assertions that support your verification goals...
+
+42
+00:08:48,526 --> 00:09:18,238
+By now you should be able to explain the following. Transaction and sequence designs documented and aligned with module2/TEST_PLAN.md. Scoreboards and reference models specified in module4/CHECKER_PLAN.md. Key protocol/functional assertions listed and placed. At least one env/checker review (self or peer) completed; action items captured. From MODULE4 Learning Outcomes.
+
+43
+00:09:18,588 --> 00:09:51,492
+Assessment checklist. UVM env/agent architecture documented in module4/ENV_DESIGN.md. Transaction and sequence designs documented and aligned with module2/TEST_PLAN.md. Scoreboards and reference models specified in module4/CHECKER_PLAN.md. Key protocol/functional assertions listed and placed. At least one env/checker review (self or peer) completed; action items captured.
+
+44
+00:09:51,842 --> 00:10:21,698
+In summary: Design and mature your UVM environment (env, agents, drivers, monitors, sequencers) and checking strategy (scoreboards, reference models, protocol/functional assertions) so that your test and coverage plans from earlier modules can be executed reliably at scale. Next up: Next module in course. Design and mature your UVM environment (env, agents, drivers, monitors, sequencers) and...

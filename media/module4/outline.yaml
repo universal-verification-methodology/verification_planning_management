@@ -35,6 +35,22 @@ slides:
     \  \nIn Module 4, you focus on the **quality and structure of the verification\
     \ environment itself**:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path (1/2)
+  bullets:
+  - Re-read `module2/TEST_PLAN.md` and `module3/COVERAGE_DESIGN.md`.
+  - 'Scaffold Module 4 workspace: `./scripts/module4.sh --scaffold`'
+  - Complete `module4/ENV_DESIGN.md` (agents, transactions, connectivity).
+  - Complete `module4/CHECKER_PLAN.md` (scoreboard, reference model, SVA split).
+  - Implement or refine UVM components in `module4/tb/` and `common_dut/tb/`.
+  notes: From docs/MODULE4.md — read guides before running demos.
+- type: bullets
+  title: Suggested learning path (2/2)
+  bullets:
+  - 'Validate: `./scripts/module4.sh --check`'
+  notes: From docs/MODULE4.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Mature UVM environment (stream_fifo)
@@ -54,6 +70,17 @@ slides:
   - SVA — protocol and functional assertions on interfaces and internal flags.
   - 'Clear split: what is checked in SVA vs scoreboard vs test self-check.'
   right: assets/diagrams/verification_architecture.png
+  notes: From MODULE4 Design Architecture.
+- type: bullets
+  title: 3. UVM phase execution flow
+  bullets:
+  - 'build_phase: create env, agents, scoreboard, coverage subscribers via factory.'
+  - 'connect_phase: connect monitor analysis ports to scoreboard and coverage; tie
+    virtual interfaces.'
+  - 'run_phase: raise objection, start sequences on sequencers, wait for drain, drop
+    objection.'
+  - 'report_phase: summarize errors, assertion failures, and coverage sampling status.'
+  - Top module `module4/tb/tb_stream_fifo_uvm.sv` instantiates DUT and calls `run_test()`.
   notes: From MODULE4 Design Architecture.
 - type: code
   title: DUT instantiation in UVM top
@@ -87,6 +114,18 @@ slides:
     \n  // Called for each transaction seen by the monitor\n  function void write(stream_item\
     \ t);\n    num_seen++;\n    `uvm_info(get_type_name(),\n// ..."
 - type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module4/ENV_DESIGN.md` — env, agent, driver, monitor, sequencer design'
+  - '`module4/CHECKER_PLAN.md` — scoreboard, reference model, and assertion strategy'
+  - '`module4/tb/stream_pkg.sv` — reference UVM package (env, agents, scoreboard)'
+  - '`module4/tb/tb_stream_fifo_uvm.sv` — top-level UVM testbench and DUT hookup'
+  - '`common_dut/rtl/stream_fifo.sv` — DUT under verification'
+  - '`scripts/module4.sh` — env/checker doc and TB file checks'
+  notes: Trace while running module4/EXAMPLES.md labs.
+- type: section
   title: Verification & testing methods
 - type: two_column
   title: 1. Stimulus and checking flow
@@ -109,6 +148,16 @@ slides:
     scope.
   - '`./scripts/module4.sh --check` validates design docs and TB file presence.'
   notes: From MODULE4 Verification & Testing Methods.
+- type: code
+  title: stream_test — run_phase
+  language: systemverilog
+  source_file: module4/tb/stream_pkg.sv
+  code: "class stream_test extends uvm_test;\n\n  `uvm_component_utils(stream_test)\n\
+    \n  stream_env env;\n\n  function new(string name, uvm_component parent);\n  \
+    \  super.new(name, parent);\n  endfunction\n\n  function void build_phase(uvm_phase\
+    \ phase);\n    super.build_phase(phase);\n    env = stream_env::type_id::create(\"\
+    env\", this);\n  endfunction\n\n  task run_phase(uvm_phase phase);\n    stream_seq\
+    \ seq;\n\n// ..."
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -138,6 +187,18 @@ slides:
   bullets:
   - 'Assertion strategy: what to check with SVA vs scoreboards vs tests.'
   notes: From MODULE4 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 4
+  bullets:
+  - ./scripts/module4.sh --scaffold
+  notes: Full detail in docs/MODULE4.md command reference.
+- type: bullets
+  title: Inspect UVM env and scoreboard
+  bullets:
+  - head -80 module4/tb/stream_pkg.sv
+  notes: Full detail in docs/MODULE4.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

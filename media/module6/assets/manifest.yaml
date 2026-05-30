@@ -16,7 +16,7 @@ assets:
   source: assets/diagrams/rtl_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 7
+  - 9
   license: verification_planning_management course materials
 - id: verification_architecture
   type: diagram
@@ -24,7 +24,7 @@ assets:
   source: assets/diagrams/verification_architecture.mmd
   generator: render_diagrams.sh
   slides:
-  - 8
+  - 10
   license: verification_planning_management course materials
 - id: testing_methods
   type: diagram
@@ -32,7 +32,7 @@ assets:
   source: assets/diagrams/testing_methods.mmd
   generator: render_diagrams.sh
   slides:
-  - 13
+  - 17
   license: verification_planning_management course materials
 - id: module6_check
   type: screenshot
@@ -40,7 +40,7 @@ assets:
   capture_command: ./scripts/module6.sh --help
   cwd: .
   slides:
-  - 22
+  - 30
   expect_stdout_contains: Module
 - id: ex01_protocol_plan
   type: screenshot
@@ -48,33 +48,33 @@ assets:
   capture_command: head -30 module6/templates/PROTOCOL_VERIFICATION_PLAN.md
   cwd: .
   slides:
-  - 24
+  - 32
 - id: ex02_multi_agent
   type: screenshot
   file: assets/screenshots/ex02_multi_agent.png
   capture_command: head -25 module6/templates/MULTI_AGENT_ARCHITECTURE.md
   cwd: .
   slides:
-  - 25
+  - 33
 - id: ex03_integration
   type: screenshot
   file: assets/screenshots/ex03_integration.png
   capture_command: head -25 module6/templates/INTEGRATION_PLAN.md
   cwd: .
   slides:
-  - 26
+  - 34
 - id: ex04_solutions
   type: screenshot
   file: assets/screenshots/ex04_solutions.png
   capture_command: head -20 module6/.solutions/PROTOCOL_VERIFICATION_PLAN.md
   cwd: .
   slides:
-  - 27
+  - 35
 - id: ex05_validate
   type: screenshot
   file: assets/screenshots/ex05_validate.png
   capture_command: ./scripts/module6.sh --check
   cwd: .
   slides:
-  - 28
+  - 36
   expect_stdout_contains: All required checks passed

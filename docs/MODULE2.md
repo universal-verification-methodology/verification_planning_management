@@ -56,6 +56,41 @@ common_dut/
 4. **Validate your progress**: Run `./scripts/module2.sh` from the repository root.
 5. Align your planned tests with concrete UVM artifacts in `common_dut/tb/`: tests, sequences, configuration knobs.
 
+## Before You Start
+
+1. Re-read `module1/VERIFICATION_PLAN.md` and `module1/REQUIREMENTS_MATRIX.md`.
+2. Scaffold Module 2 workspace if needed: `./scripts/module2.sh --scaffold`
+3. Fill `module2/TEST_PLAN.md`, `REGRESSION_PLAN.md`, and optionally refine `COVERAGE_PLAN.md`.
+4. Map each test intent to a future UVM test name, sequence, and regression tier.
+5. Validate completeness: `./scripts/module2.sh --check`
+6. Complete `module2/CHECKLIST.md` before Module 3.
+
+## Key files to study
+
+- `module2/TEST_PLAN.md` — detailed test catalogue and taxonomy
+- `module2/REGRESSION_PLAN.md` — tier definitions and pass/fail policy
+- `module2/COVERAGE_PLAN.md` — coverage intent linked to tests
+- `common_dut/tb/stream_fifo_env_skeleton.sv` — env hierarchy your tests will target
+- `common_dut/rtl/stream_fifo.sv` — handshake and status behavior to test
+- `scripts/module2.sh` — structure and completeness checks
+
+## Command Reference
+
+### Scaffold and validate Module 2
+
+```bash
+./scripts/module2.sh --scaffold
+./scripts/module2.sh --check
+./scripts/module2.sh --summary
+```
+
+### Review test and regression templates
+
+```bash
+head -40 module2/templates/TEST_PLAN.md
+head -30 module2/templates/REGRESSION_PLAN.md
+```
+
 ## Design Architecture
 
 ### 1. UVM environment skeleton
@@ -69,6 +104,13 @@ common_dut/
 - `TEST_PLAN.md` catalogue entries map to **UVM tests**, **sequences**, and **config** knobs.
 - `REGRESSION_PLAN.md` defines tiers that will eventually select subsets of tests.
 - Naming conventions (`SMK_`, `FTR_`, `ERR_`) link documentation to future `uvm_test` names.
+
+### 3. Test execution mapping (planning level)
+
+- Each catalogue row specifies: UVM test class, base sequence, plusargs/seeds, and regression tier.
+- Smoke tests map to short directed sequences; stress tests map to long-run or backpressure scenarios.
+- Error-injection tests document illegal handshake or overflow/underflow stimulus intent.
+- `./scripts/module2.sh --check` confirms test plan sections and TB skeleton references exist.
 
 ## Verification & Testing Methods
 

@@ -1,78 +1,105 @@
-[Slide 1] Regression Management & Advanced UVM Orchestration (SV/UVM) Module 5
+[Slide 1] Welcome to module 5, Regression Management & Advanced UVM Orchestration (SV/UVM). In this module you will turn your test, coverage, and environment designs into a robust regression system that scales: advanced sequence orchestration (including virtual sequences), flake management, ci integration, performance tuning, and coverage-driven refinement..
 
-[Slide 2] Learning objectives Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+[Slide 2] Here is what you will learn in this module. Turn your test, coverage, and environment designs into a robust regression system that scales: advanced sequence orchestration...
 
-[Slide 3] Prerequisites See module README
+[Slide 3] Before you start, make sure you have these prerequisites. See module README
 
-[Slide 4] Learning path Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement.
+[Slide 4] Learning path. Turn your test, coverage, and environment designs into a robust regression system that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration...
 
-[Slide 5] Overview Modules 1–4 established **what to test**, **how to measure**, and **how to build a solid UVM environment**.  
-In Module 5, you focus on **running that environment at scale**:
+[Slide 5] Overview. Modules 1–4 established what to test, how to measure, and how to build a solid UVM environment. In Module 5, you focus on running that...
 
-[Slide 6] Design architecture
+[Slide 6] Next section: How to learn this module.
 
-[Slide 7] RTL / block architecture Module 5: DUT structure and key interfaces (see common_dut/rtl/).
+[Slide 7] Follow this learning path. Read the guides before running the labs. Re-read module2/REGRESSION_PLAN.md and module4/ENV_DESIGN.md. Scaffold Module 5 workspace: ./scripts/module5.sh --scaffold Document regression ops in module5/REGRESSION_OPS.md and advanced UVM in ADVANCED_UVM_PLAN.md. Plan flake handling in DEBUG_FLAKE_PLAN.md. Implement virtual sequences, callbacks, or config patterns in...
 
-[Slide 8] Verification environment architecture Module 5: UVM layers, agents, and checkers for this phase.
+[Slide 8] Follow this learning path. Read the guides before running the labs. Validate: ./scripts/module5.sh --check From docs/MODULE5.md — read guides before running demos.
 
-[Slide 9] From MODULE5 Design Architecture.
+[Slide 9] Next section: Design architecture.
 
-[Slide 10] From MODULE5 Design Architecture.
+[Slide 10] 1. Regression system architecture. Local quick loops, CI gated merges, optional farm for long suites (REGRESSION_OPS.md). Regression launcher selects tier → test list → seeds → coverage merge → report artifacts. Refer to the diagram on the right.
 
-[Slide 11] Verification & testing methods
+[Slide 11] 2. Advanced UVM orchestration. Virtual sequences coordinate multiple agents (e.g., concurrent source/sink traffic). Callbacks and config DB patterns for mode switches without rewriting tests. Documented in ADVANCED_UVM_PLAN.md; implemented under common_dut/tb/. Refer to the diagram on the right.
 
-[Slide 12] Testing and closure flow Module 5: how tests, checks, and metrics close verification goals.
+[Slide 12] 3. Regression launch and triage pipeline. Launch: tier script selects test list, seeds, plusargs, and parallelism level. Execute: each test produces log, optional waveform, and coverage database. Collect: merge coverage, aggregate pass/fail, and flag timeouts or assertion failures. Triage: reproduce with saved seed; use DEBUG_FLAKE_PLAN.md for intermittent failures. Report: publish tier...
 
-[Slide 13] From MODULE5 Verification & Testing Methods.
+[Slide 13] Monitor — analysis port. Review the code on screen and match it to files in the repository.
 
-[Slide 14] From MODULE5 Verification & Testing Methods.
+[Slide 14] stream_test — run_phase. Review the code on screen and match it to files in the repository.
 
-[Slide 15] From MODULE5 Verification & Testing Methods.
+[Slide 15] Next section: Key files to study.
 
-[Slide 16] Syllabus topics
+[Slide 16] Open these in the repo. module5/REGRESSION_OPS.md — tiers, launchers, CI/farm integration module5/ADVANCED_UVM_PLAN.md — virtual sequences, callbacks, config DB usage module5/DEBUG_FLAKE_PLAN.md — flake detection, quarantine, debug workflow module4/tb/stream_pkg.sv — monitor, test, and sequence patterns to extend scripts/module5.sh — regression and advanced-UVM doc checks Trace while running...
 
-[Slide 17] From MODULE5 Topics Covered.
+[Slide 17] Next section: Verification & testing methods.
 
-[Slide 18] From MODULE5 Topics Covered.
+[Slide 18] 1. Operational regression testing. Every tier has target runtime, pass criteria, and artifact retention (logs, waves, coverage DB). Failures triaged with reproducible seeds and minimized waveforms. Refer to the diagram on the right.
 
-[Slide 19] From MODULE5 Topics Covered.
+[Slide 19] 2. Flake and performance management. DEBUG_FLAKE_PLAN.md — detect flaky tests, quarantine policy, timeout budgets. Performance tuning: parallel jobs, test ordering, and dropping redundant long tests.
 
-[Slide 20] From MODULE5 Topics Covered.
+[Slide 20] 3. Data-driven refinement. Use regression + coverage history to prioritize new tests and retire low-value ones. ./scripts/module5.sh --check validates ops and advanced-UVM planning docs.
 
-[Slide 21] From MODULE5 Topics Covered.
+[Slide 21] Module 5 — regression validation. Review the code on screen and match it to files in the repository.
 
-[Slide 22] From MODULE5 Topics Covered.
+[Slide 22] Next section: Syllabus topics.
 
-[Slide 23] From MODULE5 Topics Covered.
+[Slide 23] 1. Concrete Regression Flows (1/2). Local vs CI vs Farm Developer “inner loop” (fast, focused subsets). CI per-commit/per-PR runs (sanity + selected CORE tests). Nightly/weekly farm runs (CORE/STRESS/FULL tiers). Command-Line Interfaces
 
-[Slide 24] From MODULE5 Topics Covered.
+[Slide 24] 1. Concrete Regression Flows (2/2). Passing seeds, tiers, and configuration via plusargs/env/CLI options. Job Definitions Defining named regression jobs (e.g., sanity, core_nightly, stress_weekly). Mapping jobs to tiers, test lists, and resource limits.
 
-[Slide 25] From MODULE5 Topics Covered.
+[Slide 25] 2. Advanced UVM Orchestration (Virtual Sequences & Multi-Agent) (1/2). Virtual Sequencers & Virtual Sequences Coordinating multiple agents (e.g., data + control + sideband). Layered sequences that correspond to system-level scenarios. Mapping to Test Plan Mapping high-level test intents to virtual sequences.
 
-[Slide 26] From MODULE5 Topics Covered.
+[Slide 26] 2. Advanced UVM Orchestration (Virtual Sequences & Multi-Agent) (2/2). Configuration & Callbacks Using complex configuration objects to parameterize regressions. Using callbacks to inject debug behavior or temporary instrumentation.
 
-[Slide 27] From MODULE5 Topics Covered.
+[Slide 27] 3. Flake Management and Stability (1/2). Flaky Test Identification Signals of flakiness (non-deterministic failures, timeouts). Logging and metadata needed to diagnose flakiness (test ID, seed, environment). Policies Criteria for marking a test as flaky.
 
-[Slide 28] Hands-on examples
+[Slide 28] 3. Flake Management and Stability (2/2). Automatic rerun strategies (e.g., N-of-M reruns to confirm flakiness). Designing Flake-Resistant Tests Avoiding hidden dependencies on timing or environment. Ensuring proper resets and deterministic seeding.
 
-[Slide 29] Run from course repository root.
+[Slide 29] 4. Debug & Observability Strategy (1/2). Logging Standardized log formats (prefixes, IDs, levels). Per-test log collection and retention policies. Waveforms and Traces When to dump waves (always for failures, selectively for passes).
 
-[Slide 30] Exercise scaffold The following command is shown on screen.
+[Slide 30] 4. Debug & Observability Strategy (2/2). Failure Triage Workflow Quick checks (assertion vs scoreboard vs timeout). Reproduction steps (same test, same seed, smaller subset).
 
-[Slide 31] Hands-on: module5/examples/regression_ops/
+[Slide 31] 5. Performance and Scalability (1/2). Bottleneck Identification Longest-running tests and why. Hot spots in sequences, drivers, or reference models. Optimization Strategies Reducing redundant work (e.g., fewer warm-up cycles, targeted stress).
 
-[Slide 32] Hands-on: module5/examples/debug_flake/
+[Slide 32] 5. Performance and Scalability (2/2). Regression Capacity Planning Estimating how many tests can run per hour/day. Planning parallelism and job sharding.
 
-[Slide 33] Hands-on: module5/examples/advanced_uvm/
+[Slide 33] 6. Coverage-Driven Regression Refinement. Using Coverage to Shape Regressions Prioritizing tests that contribute most to coverage gaps. Designing “closure suites” for specific coverage areas. Bug-Driven Refinement Using bug history to prioritize tests and sequences.
 
-[Slide 34] Hands-on: module5/examples/solutions/
+[Slide 34] Next section: Command reference highlights.
 
-[Slide 35] Hands-on: module5/examples/validate/
+[Slide 35] Scaffold and validate Module 5. ./scripts/module5.sh --scaffold Full detail in docs/MODULE5.md command reference.
 
-[Slide 36] Practice & assessment
+[Slide 36] Inspect test run_phase and monitor hooks. grep -n "class stream_test" module4/tb/stream_pkg.sv Full detail in docs/MODULE5.md command reference.
 
-[Slide 37] Exercises Runtime Tuning Coverage-Driven Job Resilience Drill
+[Slide 37] Next section: Hands-on examples.
 
-[Slide 38] Assessment checklist Concrete regression jobs and commands captured in `module5/REGRESSION_OPS.md`. Virtual sequence and advanced UVM usage planned in `module5/ADVANCED_UVM_PLAN.md`. Flake and debug strategy documented in `module5/DEBUG_FLAKE_PLAN.md`. Regression flows demonstrably support coverage and sign-off goals.
+[Slide 38] Module 5 self-check. Watch the terminal output and confirm you see the expected pass message.
 
-[Slide 39] Summary & next steps Turn your test, coverage, and environment designs into a **robust regression system** that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement. Complete module5/CHECKLIST.md Run ./scripts/module5.sh --check Next: Next module in course
+[Slide 39] Exercise scaffold. Review the code on screen and match it to files in the repository.
+
+[Slide 40] Demo: Regression operations template. Watch the terminal output and confirm you see the expected pass message.
+
+[Slide 41] Demo: Debug and flake plan. Watch the terminal output and confirm you see the expected pass message.
+
+[Slide 42] Demo: Advanced UVM plan. Watch the terminal output and confirm you see the expected pass message.
+
+[Slide 43] Demo: Reference regression ops. Watch the terminal output and confirm you see the expected pass message.
+
+[Slide 44] Demo: Module validation. Watch the terminal output and confirm you see the expected pass message.
+
+[Slide 45] Next section: Practice & assessment.
+
+[Slide 46] By now you should be able to explain the following. Define and run repeatable regression flows across local and CI/farm environments. Use virtual sequences and advanced UVM patterns to orchestrate complex scenarios. Detect, triage, and manage flaky tests and instability in regressions. Implement a practical debug and observability strategy (logs, waves, metadata). Use coverage and bug data to...
+
+[Slide 47] By now you should be able to explain the following. A sanity job (fast, per-commit). A core_nightly job. A stress_weekly or full_release job. For each job, specify: Tier(s), test selection rules, expected runtime, and invocation commands. From MODULE5 Learning Outcomes.
+
+[Slide 48] By now you should be able to explain the following. Specific virtual sequences and their participating agents/sequencers. Key configuration parameters (modes, seeds, error-injection toggles). Identify at least 3 scenarios that require multi-agent coordination. In module5/DEBUG_FLAKE_PLAN.md, define: What constitutes a flake in your context. From MODULE5 Learning Outcomes.
+
+[Slide 49] By now you should be able to explain the following. How you quarantine and track flaky tests. How/when they must be fixed before sign-off. Define: Standard log naming and locations. When and how to generate waveforms. From MODULE5 Learning Outcomes.
+
+[Slide 50] By now you should be able to explain the following. Verify on at least one failing test that you can reproduce and debug using these artifacts. From MODULE5 Learning Outcomes.
+
+[Slide 51] Exercises. Runtime Tuning Coverage-Driven Job Resilience Drill
+
+[Slide 52] Assessment checklist. Concrete regression jobs and commands captured in module5/REGRESSION_OPS.md. Virtual sequence and advanced UVM usage planned in module5/ADVANCED_UVM_PLAN.md. Flake and debug strategy documented in module5/DEBUG_FLAKE_PLAN.md. Regression flows demonstrably support coverage and sign-off goals.
+
+[Slide 53] In summary: Turn your test, coverage, and environment designs into a robust regression system that scales: advanced sequence orchestration (including virtual sequences), flake management, CI integration, performance tuning, and coverage-driven refinement. Next up: Next module in course. Turn your test, coverage, and environment designs into a robust regression system that scales: advanced...

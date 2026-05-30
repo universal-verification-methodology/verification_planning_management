@@ -1,127 +1,163 @@
 1
-00:00:00,000 --> 00:00:06,264
-Complex Multi-Agent & Protocol Testbenches (SV/UVM) Module 6
+00:00:00,000 --> 00:00:22,272
+Welcome to module 6, Complex Multi-Agent & Protocol Testbenches (SV/UVM). In this module you will apply your planning, environment, and regression skills to complex multi-agent, protocol-heavy testbenches (e.g., axi-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability..
 
 2
-00:00:06,614 --> 00:00:22,310
-Learning objectives Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+00:00:22,622 --> 00:00:34,382
+Here is what you will learn in this module. Apply your planning, environment, and regression skills to complex multi-agent, protocol-heavy testbenches (e.g., AXI-like...
 
 3
-00:00:22,660 --> 00:00:25,420
-Prerequisites See module README
+00:00:34,732 --> 00:00:40,780
+Before you start, make sure you have these prerequisites. See module README
 
 4
-00:00:25,770 --> 00:00:41,202
-Learning path Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability.
+00:00:41,130 --> 00:00:56,418
+Learning path. Apply your planning, environment, and regression skills to complex multi-agent, protocol-heavy testbenches (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking...
 
 5
-00:00:41,552 --> 00:00:44,768
-Overview By Module 6, you have:
+00:00:56,768 --> 00:01:01,040
+Overview. By Module 6, you have:
 
 6
-00:00:45,118 --> 00:00:47,326
-Design architecture
+00:01:01,390 --> 00:01:04,726
+Next section: How to learn this module.
 
 7
-00:00:47,676 --> 00:00:56,652
-RTL / block architecture Module 6: DUT structure and key interfaces (see common_dut/rtl/).
+00:01:05,076 --> 00:01:45,132
+Follow this learning path. Read the guides before running the labs. Re-read module4/ENV_DESIGN.md and module5/REGRESSION_OPS.md. Scaffold Module 6 workspace: ./scripts/module6.sh --scaffold Complete MULTI_AGENT_ARCHITECTURE.md, PROTOCOL_VERIFICATION_PLAN.md, and INTEGRATION_PLAN.md. Add or refine multi-agent and protocol checker components in common_dut/tb/. Validate: ./scripts/module6.sh...
 
 8
-00:00:57,002 --> 00:01:04,370
-Verification environment architecture Module 6: UVM layers, agents, and checkers for this phase.
+00:01:45,482 --> 00:01:48,722
+Next section: Design architecture.
 
 9
-00:01:04,720 --> 00:01:07,864
-From MODULE6 Design Architecture.
+00:01:49,072 --> 00:02:11,152
+1. Multi-agent / multi-channel TB. Multiple agents (per interface or channel) coordinated by env and virtual sequences. Layered architecture: block agents → fabric/scoreboard → subsystem scenarios (MULTI_AGENT_ARCHITECTURE.md). Refer to the diagram on the right.
 
 10
-00:01:08,214 --> 00:01:11,358
-From MODULE6 Design Architecture.
+00:02:11,502 --> 00:02:30,894
+2. Protocol verification layer. Dedicated protocol checker (SVA or monitor-based) separate from scoreboard data checks. PROTOCOL_VERIFICATION_PLAN.md lists rules, coverage, and integration with agents. Refer to the diagram on the right.
 
 11
-00:01:11,708 --> 00:01:14,852
-From MODULE6 Design Architecture.
+00:02:31,244 --> 00:02:47,276
+3. System integration view. INTEGRATION_PLAN.md describes how block-level env connects to subsystem tests. Reuse agents/VIP across DUT variants via configuration and factory overrides.
 
 12
-00:01:15,202 --> 00:01:18,274
-Verification & testing methods
+00:02:47,626 --> 00:02:54,610
+Monitor observes transactions. Review the code on screen and match it to files in the repository.
 
 13
-00:01:18,624 --> 00:01:25,680
-Testing and closure flow Module 6: how tests, checks, and metrics close verification goals.
+00:02:54,960 --> 00:03:02,016
+Multi-agent architecture template. Review the code on screen and match it to files in the repository.
 
 14
-00:01:26,030 --> 00:01:30,086
-From MODULE6 Verification & Testing Methods.
+00:03:02,366 --> 00:03:05,558
+Next section: Key files to study.
 
 15
-00:01:30,436 --> 00:01:34,492
-From MODULE6 Verification & Testing Methods.
+00:03:05,908 --> 00:03:40,132
+Open these in the repo. module6/MULTI_AGENT_ARCHITECTURE.md — multi-channel env and virtual sequence coordination module6/PROTOCOL_VERIFICATION_PLAN.md — protocol rules, checkers, and coverage module6/INTEGRATION_PLAN.md — block-to-subsystem integration strategy module4/tb/stream_pkg.sv — monitor and agent patterns to extend scripts/module6.sh — multi-agent and protocol doc checks Trace while...
 
 16
-00:01:34,842 --> 00:01:38,898
-From MODULE6 Verification & Testing Methods.
+00:03:40,482 --> 00:03:44,586
+Next section: Verification & testing methods.
 
 17
-00:01:39,248 --> 00:01:41,504
-Syllabus topics
+00:03:44,936 --> 00:04:02,432
+1. Protocol rule testing. Each protocol rule maps to checker fires, coverpoints, and at least one directed or random test. Illegal sequences and corner timing documented with expected checker behavior. Refer to the diagram on the right.
 
 18
-00:01:41,854 --> 00:01:44,710
-From MODULE6 Topics Covered.
+00:04:02,782 --> 00:04:15,814
+2. Multi-agent scenario testing. Virtual sequences stress cross-agent ordering, arbitration, and backpressure. System scoreboard validates end-to-end data and sideband signals.
 
 19
-00:01:45,060 --> 00:01:47,916
-From MODULE6 Topics Covered.
+00:04:16,164 --> 00:04:32,244
+3. Maintainability reviews. Architecture review before adding agents — avoid duplicate monitors and conflicting checkers. ./scripts/module6.sh --check validates multi-agent and protocol planning artifacts.
 
 20
-00:01:48,266 --> 00:01:51,122
-From MODULE6 Topics Covered.
+00:04:32,594 --> 00:04:39,938
+Protocol verification plan excerpt. Review the code on screen and match it to files in the repository.
 
 21
-00:01:51,472 --> 00:01:54,328
-From MODULE6 Topics Covered.
+00:04:40,288 --> 00:04:43,552
+Next section: Syllabus topics.
 
 22
-00:01:54,678 --> 00:01:56,910
-Hands-on examples
+00:04:43,902 --> 00:04:54,534
+1. Multi-Agent Environment Design. Multi-agent and multi-channel environment design. Layered and reusable testbench architecture patterns.
 
 23
-00:01:57,260 --> 00:02:00,092
-Run from course repository root.
+00:04:54,884 --> 00:05:01,412
+2. Protocol Agents and Checkers. Protocol agent and protocol checker design.
 
 24
-00:02:00,442 --> 00:02:04,450
-Exercise scaffold The following command is shown on screen.
+00:05:01,762 --> 00:05:08,818
+3. Scoreboards and Integration. Integration of complex scoreboards and time-based matching.
 
 25
-00:02:04,800 --> 00:02:10,224
-Hands-on: module6/examples/protocol_plan/
+00:05:09,168 --> 00:05:16,968
+4. Debug and Analysis. Debugging and analyzing complex, protocol-heavy simulations.
 
 26
-00:02:10,574 --> 00:02:15,926
-Hands-on: module6/examples/multi_agent/
+00:05:17,318 --> 00:05:20,870
+Next section: Command reference highlights.
 
 27
-00:02:16,276 --> 00:02:21,124
-Hands-on: module6/examples/integration/
+00:05:21,220 --> 00:05:32,020
+Scaffold and validate Module 6. ./scripts/module6.sh --scaffold Full detail in docs/MODULE6.md command reference.
 
 28
-00:02:21,474 --> 00:02:26,226
-Hands-on: module6/examples/solutions/
+00:05:32,370 --> 00:05:46,026
+Review multi-agent architecture template. head -40 module6/templates/MULTI_AGENT_ARCHITECTURE.md Full detail in docs/MODULE6.md command reference.
 
 29
-00:02:26,576 --> 00:02:31,328
-Hands-on: module6/examples/validate/
+00:05:46,376 --> 00:05:49,616
+Next section: Hands-on examples.
 
 30
-00:02:31,678 --> 00:02:34,006
-Practice & assessment
+00:05:49,966 --> 00:05:57,046
+Module 6 self-check. Watch the terminal output and confirm you see the expected pass message.
 
 31
-00:02:34,356 --> 00:03:03,660
-Assessment checklist Multi-agent/multi-channel environment design documented in `module6/MULTI_AGENT_ARCHITECTURE.md`. Protocol verification strategy documented in `module6/PROTOCOL_VERIFICATION_PLAN.md`. Integration patterns and system-level scenarios documented in `module6/INTEGRATION_PLAN.md`. Complex bench design reviewed; action items captured in the docs.
+00:05:57,396 --> 00:06:03,780
+Exercise scaffold. Review the code on screen and match it to files in the repository.
 
 32
-00:03:04,010 --> 00:03:29,066
-Summary & next steps Apply your planning, environment, and regression skills to **complex multi-agent, protocol-heavy testbenches** (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability. Complete module6/CHECKLIST.md Run ./scripts/module6.sh --check Next: Next module in course
+00:06:04,130 --> 00:06:12,098
+Demo: Protocol verification plan. Watch the terminal output and confirm you see the expected pass message.
+
+33
+00:06:12,448 --> 00:06:20,248
+Demo: Multi-agent architecture. Watch the terminal output and confirm you see the expected pass message.
+
+34
+00:06:20,598 --> 00:06:27,990
+Demo: Integration plan. Watch the terminal output and confirm you see the expected pass message.
+
+35
+00:06:28,340 --> 00:06:36,044
+Demo: Reference protocol plan. Watch the terminal output and confirm you see the expected pass message.
+
+36
+00:06:36,394 --> 00:06:43,882
+Demo: Module validation. Watch the terminal output and confirm you see the expected pass message.
+
+37
+00:06:44,232 --> 00:06:47,616
+Next section: Practice & assessment.
+
+38
+00:06:47,966 --> 00:07:15,686
+By now you should be able to explain the following. Design and document multi-agent UVM environments for protocol-based DUTs. Implement and integrate protocol agents and protocol checkers. Apply layered architecture patterns to keep complex benches maintainable. Analyze and debug multi-channel, protocol-level behavior in simulations. Multi-agent/multi-channel environment design documented in...
+
+39
+00:07:16,036 --> 00:07:34,228
+By now you should be able to explain the following. Integration patterns and system-level scenarios documented in module6/INTEGRATION_PLAN.md. Complex bench design reviewed; action items captured in the docs. From MODULE6 Learning Outcomes.
+
+40
+00:07:34,578 --> 00:08:04,938
+Assessment checklist. Multi-agent/multi-channel environment design documented in module6/MULTI_AGENT_ARCHITECTURE.md. Protocol verification strategy documented in module6/PROTOCOL_VERIFICATION_PLAN.md. Integration patterns and system-level scenarios documented in module6/INTEGRATION_PLAN.md. Complex bench design reviewed; action items captured in the docs.
+
+41
+00:08:05,288 --> 00:08:34,328
+In summary: Apply your planning, environment, and regression skills to complex multi-agent, protocol-heavy testbenches (e.g., AXI-like, multi-channel interfaces), focusing on architecture, protocol checking, and maintainability. Next up: Next module in course. Apply your planning, environment, and regression skills to complex multi-agent, protocol-heavy testbenches (e.g., AXI-like... Complete...

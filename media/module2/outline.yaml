@@ -31,6 +31,22 @@ slides:
   - "Module 1 gave you a high-level verification plan, scope, and early test catalogue.\
     \  \nIn this module, you will:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path (1/2)
+  bullets:
+  - Re-read `module1/VERIFICATION_PLAN.md` and `module1/REQUIREMENTS_MATRIX.md`.
+  - 'Scaffold Module 2 workspace if needed: `./scripts/module2.sh --scaffold`'
+  - Fill `module2/TEST_PLAN.md`, `REGRESSION_PLAN.md`, and optionally refine `COVERAGE_PLAN.md`.
+  - Map each test intent to a future UVM test name, sequence, and regression tier.
+  - 'Validate completeness: `./scripts/module2.sh --check`'
+  notes: From docs/MODULE2.md — read guides before running demos.
+- type: bullets
+  title: Suggested learning path (2/2)
+  bullets:
+  - Complete `module2/CHECKLIST.md` before Module 3.
+  notes: From docs/MODULE2.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. UVM environment skeleton
@@ -52,6 +68,18 @@ slides:
     names.
   right: assets/diagrams/verification_architecture.png
   notes: From MODULE2 Design Architecture.
+- type: bullets
+  title: 3. Test execution mapping (planning level)
+  bullets:
+  - 'Each catalogue row specifies: UVM test class, base sequence, plusargs/seeds,
+    and regression tier.'
+  - Smoke tests map to short directed sequences; stress tests map to long-run or backpressure
+    scenarios.
+  - Error-injection tests document illegal handshake or overflow/underflow stimulus
+    intent.
+  - '`./scripts/module2.sh --check` confirms test plan sections and TB skeleton references
+    exist.'
+  notes: From MODULE2 Design Architecture.
 - type: code
   title: Handshake logic (push/pop)
   language: systemverilog
@@ -70,6 +98,18 @@ slides:
     \ monitor in later modules\n  endfunction\n\n  function void connect_phase(uvm_phase\
     \ phase);\n    super.connect_phase(phase);\n    // Stub: connect driver to sequencer,\
     \ etc.\n  endfunction\n\n// ..."
+- type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module2/TEST_PLAN.md` — detailed test catalogue and taxonomy'
+  - '`module2/REGRESSION_PLAN.md` — tier definitions and pass/fail policy'
+  - '`module2/COVERAGE_PLAN.md` — coverage intent linked to tests'
+  - '`common_dut/tb/stream_fifo_env_skeleton.sv` — env hierarchy your tests will target'
+  - '`common_dut/rtl/stream_fifo.sv` — handshake and status behavior to test'
+  - '`scripts/module2.sh` — structure and completeness checks'
+  notes: Trace while running module2/EXAMPLES.md labs.
 - type: section
   title: Verification & testing methods
 - type: two_column
@@ -95,6 +135,30 @@ slides:
   - Plan seed strategy, constraint overrides, and plusargs per test for debuggable
     random runs.
   notes: From MODULE2 Verification & Testing Methods.
+- type: code
+  title: Module 2 — scaffold and check
+  language: bash
+  source_file: scripts/module2.sh
+  code: '#!/usr/bin/env bash
+
+
+    # Module 2: Test Planning & Strategy Orchestrator
+
+    # This script summarizes and checks the planning artifacts for Module 2.
+
+    # Usage: ./scripts/module2.sh [OPTIONS]
+
+
+    set -euo pipefail
+
+
+    # Colors for output
+
+    RED=''\033[0;31m''
+
+    GREEN=''\033[0;32m''
+
+    YELLOW=''\033[1;33m'''
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -196,12 +260,24 @@ slides:
   - Planning targeted tests to close meaningful coverage holes.
   notes: From MODULE2 Topics Covered.
 - type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 2
+  bullets:
+  - ./scripts/module2.sh --scaffold
+  notes: Full detail in docs/MODULE2.md command reference.
+- type: bullets
+  title: Review test and regression templates
+  bullets:
+  - head -40 module2/templates/TEST_PLAN.md
+  notes: Full detail in docs/MODULE2.md command reference.
+- type: section
   title: Hands-on examples
 - type: demo
   title: Module 2 self-check
-  command: ./scripts/module2.sh --test-plan
+  command: ./scripts/module2.sh --help
   screenshot: assets/screenshots/module2_check.png
-  expect_stdout_contains: completed successfully
+  expect_stdout_contains: Module
   notes: Run from course repository root.
 - type: code
   title: Exercise scaffold

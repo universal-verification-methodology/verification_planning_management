@@ -32,6 +32,22 @@ slides:
     \ a solid UVM environment**.  \nIn Module 5, you focus on **running that environment\
     \ at scale**:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path (1/2)
+  bullets:
+  - Re-read `module2/REGRESSION_PLAN.md` and `module4/ENV_DESIGN.md`.
+  - 'Scaffold Module 5 workspace: `./scripts/module5.sh --scaffold`'
+  - Document regression ops in `module5/REGRESSION_OPS.md` and advanced UVM in `ADVANCED_UVM_PLAN.md`.
+  - Plan flake handling in `DEBUG_FLAKE_PLAN.md`.
+  - Implement virtual sequences, callbacks, or config patterns in `common_dut/tb/`.
+  notes: From docs/MODULE5.md — read guides before running demos.
+- type: bullets
+  title: Suggested learning path (2/2)
+  bullets:
+  - 'Validate: `./scripts/module5.sh --check`'
+  notes: From docs/MODULE5.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Regression system architecture
@@ -48,6 +64,17 @@ slides:
   - Callbacks and config DB patterns for mode switches without rewriting tests.
   - Documented in `ADVANCED_UVM_PLAN.md`; implemented under `common_dut/tb/`.
   right: assets/diagrams/verification_architecture.png
+  notes: From MODULE5 Design Architecture.
+- type: bullets
+  title: 3. Regression launch and triage pipeline
+  bullets:
+  - 'Launch: tier script selects test list, seeds, plusargs, and parallelism level.'
+  - 'Execute: each test produces log, optional waveform, and coverage database.'
+  - 'Collect: merge coverage, aggregate pass/fail, and flag timeouts or assertion
+    failures.'
+  - 'Triage: reproduce with saved seed; use `DEBUG_FLAKE_PLAN.md` for intermittent
+    failures.'
+  - 'Report: publish tier summary for sign-off review and nightly dashboard consumption.'
   notes: From MODULE5 Design Architecture.
 - type: code
   title: Monitor — analysis port
@@ -69,6 +96,17 @@ slides:
     \ phase);\n    super.build_phase(phase);\n    env = stream_env::type_id::create(\"\
     env\", this);\n  endfunction\n\n  task run_phase(uvm_phase phase);\n    stream_seq\
     \ seq;\n\n// ..."
+- type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module5/REGRESSION_OPS.md` — tiers, launchers, CI/farm integration'
+  - '`module5/ADVANCED_UVM_PLAN.md` — virtual sequences, callbacks, config DB usage'
+  - '`module5/DEBUG_FLAKE_PLAN.md` — flake detection, quarantine, debug workflow'
+  - '`module4/tb/stream_pkg.sv` — monitor, test, and sequence patterns to extend'
+  - '`scripts/module5.sh` — regression and advanced-UVM doc checks'
+  notes: Trace while running module5/EXAMPLES.md labs.
 - type: section
   title: Verification & testing methods
 - type: two_column
@@ -93,6 +131,30 @@ slides:
     ones.
   - '`./scripts/module5.sh --check` validates ops and advanced-UVM planning docs.'
   notes: From MODULE5 Verification & Testing Methods.
+- type: code
+  title: Module 5 — regression validation
+  language: bash
+  source_file: scripts/module5.sh
+  code: '#!/usr/bin/env bash
+
+
+    # Module 5: Regression & Advanced UVM Orchestrator
+
+    # This script summarizes and checks the artifacts for Module 5.
+
+    # Usage: ./scripts/module5.sh [OPTIONS]
+
+
+    set -euo pipefail
+
+
+    # Colors for output
+
+    RED=''\033[0;31m''
+
+    GREEN=''\033[0;32m''
+
+    YELLOW=''\033[1;33m'''
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -193,6 +255,18 @@ slides:
   - Using bug history to prioritize tests and sequences.
   - Ensuring that fixed bugs get regression tests and coverage.
   notes: From MODULE5 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 5
+  bullets:
+  - ./scripts/module5.sh --scaffold
+  notes: Full detail in docs/MODULE5.md command reference.
+- type: bullets
+  title: Inspect test run_phase and monitor hooks
+  bullets:
+  - grep -n "class stream_test" module4/tb/stream_pkg.sv
+  notes: Full detail in docs/MODULE5.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

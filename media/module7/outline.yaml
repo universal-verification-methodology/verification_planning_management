@@ -31,6 +31,18 @@ slides:
   - "Modules 1–6 built up your **skills and infrastructure**.  \nModule 7 is about\
     \ **applying** them to realistic verification challenges:"
 - type: section
+  title: How to learn this module
+- type: bullets
+  title: Suggested learning path
+  bullets:
+  - Choose a real-world DUT or subsystem scope in `module7/PROJECTS.md`.
+  - 'Scaffold Module 7 workspace: `./scripts/module7.sh --scaffold`'
+  - Design reusable VIP structure in `module7/VIP_DESIGN.md`.
+  - Apply best practices from `module7/BEST_PRACTICES.md` to naming, docs, and API
+    boundaries.
+  - 'Validate: `./scripts/module7.sh --check`'
+  notes: From docs/MODULE7.md — read guides before running demos.
+- type: section
   title: Design architecture
 - type: two_column
   title: 1. Real-world DUT / subsystem
@@ -69,6 +81,17 @@ slides:
     \ in codebase. -->\n\n## 3. Interfaces and Transactions\n\n### 3.1 DUT Interface(s)\n\
     // ..."
 - type: section
+  title: Key files to study
+- type: bullets
+  title: Open these in the repo
+  bullets:
+  - '`module7/PROJECTS.md` — DUT scope, interfaces, and verification goals'
+  - '`module7/VIP_DESIGN.md` — VIP package architecture and public API'
+  - '`module7/BEST_PRACTICES.md` — production-quality verification and delivery standards'
+  - '`module6/MULTI_AGENT_ARCHITECTURE.md` — prior multi-agent patterns to reuse'
+  - '`scripts/module7.sh` — project and VIP design doc checks'
+  notes: Trace while running module7/EXAMPLES.md labs.
+- type: section
   title: Verification & testing methods
 - type: two_column
   title: 1. End-to-end IP verification
@@ -106,6 +129,22 @@ slides:
     \ if applicable. Table of Req ID, Description, Priority, Notes. -->\n\n## 3. Planned\
     \ Verification Approach\n\n<!-- TODO: For each project: Environment, tests (link\
     \ to test_plan.md), coverage, regressions. Document concrete plan. -->\n// ..."
+- type: code
+  title: VIP best practices excerpt
+  language: markdown
+  source_file: module7/templates/BEST_PRACTICES.md
+  code: "# Best Practices & Quality Checklist (Module 7)\n\n> **Purpose**: Capture\
+    \ and enforce best practices for code, structure, and maintenance in your real-world\
+    \ verification/VIP projects.  \n> **Module**: 7 – Real-World Verification Applications\
+    \ & VIP (SV/UVM)\n\n> **Instructions**: Fill in this document for your design.\
+    \ Copy from `module7/templates/` if needed, or edit the file in `module7/` directly.\
+    \ Reference: `module7/.solutions/`.\n\n## 1. Project Structure\n\n<!-- TODO: Guidelines:\
+    \ separation (DUT, UVM/VIP, tests/scripts, docs). Project-specific layout and\
+    \ naming. -->\n\n## 2. Code Quality and Naming\n\n<!-- TODO: Checklist: clear\
+    \ names, no magic numbers, consistent patterns, comments (why not just what).\
+    \ Conventions/decisions. -->\n\n## 3. Documentation\n\n<!-- TODO: Checklist: component\
+    \ descriptions, public API docs, README (build, run, extend). Docs to maintain.\
+    \ -->\n// ..."
 - type: section
   title: Syllabus topics
 - type: bullets
@@ -124,6 +163,18 @@ slides:
   bullets:
   - Best practices for project structure, code quality, docs, and maintenance.
   notes: From MODULE7 Topics Covered.
+- type: section
+  title: Command reference highlights
+- type: bullets
+  title: Scaffold and validate Module 7
+  bullets:
+  - ./scripts/module7.sh --scaffold
+  notes: Full detail in docs/MODULE7.md command reference.
+- type: bullets
+  title: Review VIP and project templates
+  bullets:
+  - head -40 module7/templates/VIP_DESIGN.md
+  notes: Full detail in docs/MODULE7.md command reference.
 - type: section
   title: Hands-on examples
 - type: demo

@@ -56,6 +56,42 @@ common_dut/
 4. Implement or refine the corresponding SV/UVM components in `common_dut/tb/`.  
 5. Use `module4/CHECKLIST.md` to track progress and review readiness.
 
+## Before You Start
+
+1. Re-read `module2/TEST_PLAN.md` and `module3/COVERAGE_DESIGN.md`.
+2. Scaffold Module 4 workspace: `./scripts/module4.sh --scaffold`
+3. Complete `module4/ENV_DESIGN.md` (agents, transactions, connectivity).
+4. Complete `module4/CHECKER_PLAN.md` (scoreboard, reference model, SVA split).
+5. Implement or refine UVM components in `module4/tb/` and `common_dut/tb/`.
+6. Validate: `./scripts/module4.sh --check`
+
+## Key files to study
+
+- `module4/ENV_DESIGN.md` — env, agent, driver, monitor, sequencer design
+- `module4/CHECKER_PLAN.md` — scoreboard, reference model, and assertion strategy
+- `module4/tb/stream_pkg.sv` — reference UVM package (env, agents, scoreboard)
+- `module4/tb/tb_stream_fifo_uvm.sv` — top-level UVM testbench and DUT hookup
+- `common_dut/rtl/stream_fifo.sv` — DUT under verification
+- `scripts/module4.sh` — env/checker doc and TB file checks
+
+## Command Reference
+
+### Scaffold and validate Module 4
+
+```bash
+./scripts/module4.sh --scaffold
+./scripts/module4.sh --check
+./scripts/module4.sh --summary
+```
+
+### Inspect UVM env and scoreboard
+
+```bash
+head -80 module4/tb/stream_pkg.sv
+grep -n "class stream_env" module4/tb/stream_pkg.sv
+grep -n scoreboard module4/tb/stream_pkg.sv
+```
+
 ## Design Architecture
 
 ### 1. Mature UVM environment (stream_fifo)
@@ -70,6 +106,14 @@ common_dut/
 - **Scoreboard / reference model** — golden data path and ordering checks (`CHECKER_PLAN.md`).
 - **SVA** — protocol and functional assertions on interfaces and internal flags.
 - Clear split: what is checked in **SVA** vs **scoreboard** vs **test self-check**.
+
+### 3. UVM phase execution flow
+
+- **build_phase**: create env, agents, scoreboard, coverage subscribers via factory.
+- **connect_phase**: connect monitor analysis ports to scoreboard and coverage; tie virtual interfaces.
+- **run_phase**: raise objection, start sequences on sequencers, wait for drain, drop objection.
+- **report_phase**: summarize errors, assertion failures, and coverage sampling status.
+- Top module `module4/tb/tb_stream_fifo_uvm.sv` instantiates DUT and calls `run_test()`.
 
 ## Verification & Testing Methods
 

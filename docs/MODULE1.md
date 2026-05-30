@@ -56,6 +56,48 @@ common_dut/
 6. **Validate your progress**: Run `./scripts/module1.sh` from the repository root to check structure and completeness.
 7. Review and refine before moving to detailed coverage and regression planning.
 
+## Before You Start
+
+1. Read this module doc and `module1/README.md` for objectives and workspace layout.
+2. Scaffold planning files if needed: `./scripts/module1.sh --scaffold`
+3. Edit `module1/VERIFICATION_PLAN.md` and `module1/REQUIREMENTS_MATRIX.md` from templates.
+4. Inspect shared DUT RTL at `common_dut/rtl/stream_fifo.sv` and the TB skeleton under `common_dut/tb/`.
+5. Validate planning artifacts: `./scripts/module1.sh --check`
+6. Complete `module1/CHECKLIST.md` before starting Module 2.
+
+## Key files to study
+
+- `module1/VERIFICATION_PLAN.md` — verification strategy, scope, and test intents
+- `module1/REQUIREMENTS_MATRIX.md` — requirements-to-test traceability
+- `module1/templates/` — empty templates for a fresh start
+- `module1/.solutions/` — reference solutions (optional comparison)
+- `common_dut/rtl/stream_fifo.sv` — shared course DUT (stream FIFO)
+- `common_dut/tb/stream_fifo_env_skeleton.sv` — UVM env stub hierarchy
+- `scripts/module1.sh` — validation and scaffold orchestrator
+
+## Command Reference
+
+### Scaffold planning workspace
+
+```bash
+./scripts/module1.sh --scaffold
+```
+
+### Validate Module 1 artifacts
+
+```bash
+./scripts/module1.sh --check
+./scripts/module1.sh --summary
+./scripts/module1.sh --traceability-status
+```
+
+### Inspect templates and shared DUT
+
+```bash
+head -30 module1/templates/VERIFICATION_PLAN.md
+head -35 common_dut/rtl/stream_fifo.sv
+```
+
 ## Design Architecture
 
 ### 1. Stream FIFO DUT (shared course RTL)
@@ -71,6 +113,14 @@ common_dut/
 - No full UVM implementation required yet — document **intended** env boundaries in `VERIFICATION_PLAN.md`.
 - `REQUIREMENTS_MATRIX.md` traces features → future tests and coverage bins.
 - `common_dut/tb/` holds skeleton stubs so architecture decisions are concrete, not abstract.
+
+### 3. Repository layout and planning workflow
+
+- **Inputs**: DUT spec, course README, Module 1 templates and optional solutions.
+- **Workspace**: edit `module1/*.md` planning documents directly in the repository.
+- **Shared RTL/TB**: `common_dut/` holds the physical DUT and skeleton env reused in later modules.
+- **Validation loop**: edit plan → run `./scripts/module1.sh --check` → fix TODOs → checklist sign-off.
+- **Outputs**: verification scope, strategy, test catalogue intents, and coverage sketch for Module 2.
 
 ## Verification & Testing Methods
 

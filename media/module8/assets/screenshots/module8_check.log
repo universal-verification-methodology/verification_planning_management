@@ -3,7 +3,6 @@
 [0;36mModule 8: Capstone – End‑to‑End Verification & VIP Delivery[0m
 [0;36m========================================[0m
 
-[0;31m[2026-05-28 21:18:39] Unknown option: --capstone[0m
 Usage: ./scripts/module8.sh [OPTIONS]
 
 Module 8: Capstone – End‑to‑End Verification & VIP Delivery (SV/UVM)
